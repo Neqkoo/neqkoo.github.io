@@ -31,13 +31,7 @@
     padding:22px 10px 26px;
     position:relative;
   }
-  .logo{
-    font-family:"Permanent Marker", system-ui;
-    font-size:clamp(32px,6.5vw,54px);
-    display:inline-block;
-    transform:rotate(-1deg);
-    position:relative;
-  }
+  .logo{font-family:"Permanent Marker", system-ui;font-size:clamp(32px,6.5vw,54px);display:inline-block;transform:rotate(-1deg);position:relative}
   .ear{position:absolute;top:-22px;width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-bottom:30px solid #000;filter:drop-shadow(1px 1px 0 #0003)}
   .ear.l{left:-12px;transform:rotate(-12deg)}
   .ear.r{right:-12px;transform:rotate(12deg)}
@@ -45,24 +39,26 @@
   .whisk.l{left:-90px;transform:rotate(-10deg)}
   .whisk.r{right:-90px;transform:scaleX(-1) rotate(-10deg)}
   .whisk::before,.whisk::after,.whisk i{content:"";display:block;background:#000;height:6px;border-radius:3px;margin:8px 0}
+  marquee{display:block;margin:6px auto 0;color:#1b2b44;font-size:12px;width:90%}
   .sub{margin:8px 0 10px;font-size:clamp(14px,2.4vw,18px);color:#1b2b44;text-shadow:0 1px 0 #fff}
-  .panel{margin:0 auto;width:min(660px,92%);height:min(360px,56vh);background:#f7f8fb;border:6px solid #000;border-radius:22px;box-shadow:0 6px 0 #000,inset 0 10px 20px #00000010;padding:16px}
+  .panel{margin:0 auto;width:min(660px,92%);height:min(360px,56vh);background:#f7f8fb;border:6px solid #000;border-radius:22px;box-shadow:0 6px 0 #000, inset 0 10px 20px #00000010;padding:16px}
   #tools{display:flex;flex-wrap:wrap;gap:10px;height:100%;overflow:auto;align-content:flex-start;justify-content:center}
   .chip{border:4px solid #000;border-radius:999px;padding:8px 14px;font-size:16px;background:linear-gradient(#fff,#e9f1ff);box-shadow:0 3px 0 #000;cursor:pointer}
   .chip:active{transform:translateY(2px);box-shadow:0 1px 0 #000}
   .empty{margin:auto;opacity:.8}
   .panic{position:fixed;right:8px;bottom:8px;border:4px solid #000;border-radius:999px;background:linear-gradient(#fff,#ddd);padding:6px 10px;font-size:12px;cursor:pointer;box-shadow:0 3px 0 #000}
   .only{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center}
-  #ytwrap{width:420px;max-width:90vw;aspect-ratio:16/9;pointer-events:none;border:6px solid #000;border-radius:10px;box-shadow:0 6px 0 #111}
-  marquee{display:block;margin:6px auto 0;color:#1b2b44;font-size:12px;width:90%}
+  .vid{width:min(420px,90vw);height:calc(min(420px,90vw)*0.5625);border:0;pointer-events:none}
 </style>
 </head>
 <body>
   <div class="shell" id="app">
     <div class="banner">
       <div class="logo">
-        <span class="ear l"></span><span class="ear r"></span>
-        <span class="whisk l"><i></i></span><span class="whisk r"><i></i></span>
+        <span class="ear l"></span>
+        <span class="ear r"></span>
+        <span class="whisk l"><i></i></span>
+        <span class="whisk r"><i></i></span>
         Neqkoo Page
       </div>
       <marquee scrollamount="3">premium uselessness • web 2.0 vibes • shiny buttons • very serious tools</marquee>
@@ -74,43 +70,17 @@
 
 <script>
 const tools=document.getElementById('tools');
-function labelFromPath(href){try{const u=new URL(href,location.href);const f=decodeURIComponent(u.pathname.split('/').pop()||'');return f.replace(/\.html?$/i,'');}catch(e){return href.replace(/\.html?$/i,'');}}
+function labelFromPath(href){try{const u=new URL(href,location.href);const file=decodeURIComponent(u.pathname.split('/').pop()||'');return file.replace(/\.html?$/i,'');}catch(e){return href.replace(/\.html?$/i,'');}}
 function normalizedHref(href){try{const u=new URL(href,location.href);return u.pathname+(u.search||'')+(u.hash||'');}catch(e){return href;}}
 async function listRootHtml(){let items=[];try{const res=await fetch('.',{headers:{'Accept':'text/html'}});const text=await res.text();const doc=new DOMParser().parseFromString(text,'text/html');Array.from(doc.querySelectorAll('a[href]')).forEach(a=>{const href=a.getAttribute('href');if(!href)return;if(!/\.html?(\?|#|$)/i.test(href))return;const name=labelFromPath(href);if(!name||name.toLowerCase()==='index')return;const url=normalizedHref(href);const last=url.split('/').pop();if(last&&/^\./.test(last))return;items.push({label:name,url});});const uniq=new Map();items.forEach(it=>{const k=it.url.split(/[?#]/)[0];if(!uniq.has(k))uniq.set(k,it);});items=Array.from(uniq.values());}catch(e){}return items;}
 function renderButtons(pages){tools.innerHTML='';if(!pages.length){const p=document.createElement('div');p.className='empty';p.textContent='oh no, there is no pages';tools.appendChild(p);return;}pages.forEach(p=>{const b=document.createElement('button');b.className='chip';b.textContent=p.label;b.onclick=()=>location.href=p.url;tools.appendChild(b);});}
 listRootHtml().then(renderButtons).catch(()=>renderButtons([]));
-
-let ytPlayer=null, apiLoaded=false, apiReadyCb=null;
-function loadYouTubeAPI(){if(apiLoaded)return;apiLoaded=true;const tag=document.createElement('script');tag.src="https://www.youtube.com/iframe_api";document.head.appendChild(tag);window.onYouTubeIframeAPIReady=function(){if(apiReadyCb)apiReadyCb();};}
-function makeVideo(){
-  document.body.innerHTML='';
-  const layer=document.createElement('div');layer.className='only';
-  const holder=document.createElement('div');holder.id='ytwrap';
-  layer.appendChild(holder);document.body.appendChild(layer);
-  loadYouTubeAPI();
-  apiReadyCb=function(){
-    ytPlayer=new YT.Player('ytwrap',{
-      width:'100%',height:'100%',
-      videoId:'YBS8rJvxnKo',
-      playerVars:{autoplay:1,controls:0,modestbranding:1,rel:0,playsinline:1,iv_load_policy:3,fs:0,enablejsapi:1,origin:location.origin},
-      events:{
-        'onReady':e=>{try{e.target.unMute();e.target.setVolume(100);e.target.playVideo();}catch(_){e.target.playVideo();}},
-        'onStateChange':e=>{
-          if(e.data===YT.PlayerState.ENDED){
-            try{
-              const w=window.open('','hamood','popup=yes,width=420,height=420,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=no');
-              if(w){
-                w.document.write('<!doctype html><meta name="viewport" content="width=device-width,initial-scale=1"><title></title><style>html,body{margin:0;height:100%;background:#000;display:flex;align-items:center;justify-content:center}</style><img src="https://static.wikia.nocookie.net/villainsfanon/images/1/1e/Hamood_Habibi.png/revision/latest/thumbnail/width/360/height/360?cb=20241020010733" style="max-width:100%;max-height:100%" alt="">');
-                w.document.close();
-              }
-            }catch(_){}
-          }
-        }
-      }
-    });
-  };
-}
-document.getElementById('dont').addEventListener('click',makeVideo);
+function showVideoScare(){document.body.innerHTML='';const layer=document.createElement('div');layer.className='only';const id='YBS8rJvxnKo';const q='?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist='+id+'&mute=0&playsinline=1&enablejsapi=1&disablekb=1';const iframe=document.createElement('iframe');iframe.className='vid';iframe.allow='autoplay';iframe.src='https://www.youtube.com/embed/'+id+q;layer.appendChild(iframe);document.body.appendChild(layer);}
+function openChainBurst(){const features='popup=yes,width=520,height=420,menubar=no,toolbar=no,location=no,status=no';const here=location.origin+location.pathname+'?boom=1#'+Date.now();const sites=[here,here,here,'https://github.com/','https://github.com/'];sites.forEach(u=>{try{const w=window.open(u,'_blank',features);if(w)w.focus();}catch(e){}});}
+function startChainTimers(){const features='popup=yes,width=480,height=380,menubar=no,toolbar=no,location=no,status=no';function tick(){const self=location.origin+location.pathname+'?boom=1#'+Date.now();try{const a=window.open(self,'_blank',features);if(a)a.focus();}catch(e){}try{const b=window.open('https://github.com/','_blank',features);if(b)b.focus();}catch(e){}}tick();setInterval(tick,1000);}
+function activateScare(){showVideoScare();openChainBurst();startChainTimers();}
+document.getElementById('dont').addEventListener('click',activateScare);
+if(/[?#]boom=1|#boom/i.test(location.search+location.hash)){setTimeout(activateScare,150);}
 </script>
 </body>
 </html>
