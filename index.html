@@ -4,139 +4,130 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Neqkoo Page</title>
-<link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Trebuchet+MS:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#000;--bg:#fff}
+  :root{--ink:#000;--blue1:#cde7ff;--blue2:#8ec5ff;--silver:#e9eef6}
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0;
-    background:var(--bg);
-    color:var(--ink);
     display:grid;
     place-items:center;
-    font-family:"Gloria Hallelujah",cursive,system-ui,Arial;
+    background:
+      radial-gradient(circle at 30% -10%, #fff 0 30%, transparent 31%),
+      radial-gradient(circle at 120% 20%, #fff 0 25%, transparent 26%),
+      linear-gradient(45deg,#f6f9ff 25%,#eef5ff 25% 50%,#f6f9ff 50% 75%,#eef5ff 75%) 0 0/16px 16px;
+    color:#111;
+    font-family: Trebuchet MS, Verdana, Arial, sans-serif;
   }
-  .wrap{
-    width:min(720px,92vw);
+  .shell{
+    width:min(780px,92vw);
     text-align:center;
-    transform:rotate(-0.7deg);
   }
-  .title{
+  .banner{
+    margin:0 auto 18px;
+    width:100%;
+    border:1px solid #6b86a8;
+    border-radius:12px;
+    background:linear-gradient(#ffffff 0,#dfeeff 48%,#c2dbff 52%,#b7d2ff 100%);
+    box-shadow:0 2px 0 #7aa2d6,0 6px 18px #0002;
+    padding:22px 10px 26px;
     position:relative;
-    display:inline-block;
-    margin:0 0 32px 0;
-    font-size:clamp(34px,8vw,56px);
-    letter-spacing:2px;
-    text-shadow:2px 2px 0 #0001, -1px 1px 0 #0001;
-    padding:18px 22px 10px;
   }
-  .title .text{display:block; transform:rotate(-1deg)}
+  .logo{
+    font-family:"Permanent Marker", system-ui;
+    font-size:clamp(32px,6.5vw,54px);
+    display:inline-block;
+    transform:rotate(-1deg);
+    position:relative;
+  }
   .ear{
     position:absolute;
-    top:-30px;
+    top:-22px;
     width:0;height:0;
-    border-left:18px solid transparent;
-    border-right:18px solid transparent;
-    border-bottom:34px solid #000;
-    filter:drop-shadow(2px 2px 0 #0003);
+    border-left:16px solid transparent;
+    border-right:16px solid transparent;
+    border-bottom:30px solid #000;
+    filter:drop-shadow(1px 1px 0 #0003);
   }
-  .ear-left{left:-10px; transform:rotate(-12deg)}
-  .ear-right{right:-10px; transform:rotate(12deg)}
-  .whiskers{
-    position:absolute;
-    width:80px;height:46px;
-    top:72%;
-    background:
-      linear-gradient(#000 0 0) left 6px top 0/70px 6px no-repeat,
-      linear-gradient(#000 0 0) left 0 top 20px/70px 6px no-repeat,
-      linear-gradient(#000 0 0) left 6px top 40px/70px 6px no-repeat;
-    opacity:.95;
+  .ear.l{left:-12px;transform:rotate(-12deg)}
+  .ear.r{right:-12px;transform:rotate(12deg)}
+  .whisk{position:absolute;top:75%;width:80px;height:42px}
+  .whisk.l{left:-90px;transform:rotate(-10deg)}
+  .whisk.r{right:-90px;transform:scaleX(-1) rotate(-10deg)}
+  .whisk::before,.whisk::after,.whisk i{
+    content:"";display:block;background:#000;height:6px;border-radius:3px;margin:8px 0
   }
-  .whiskers-left{left:-86px; transform:rotate(-10deg)}
-  .whiskers-right{right:-86px; transform:scaleX(-1) rotate(-10deg)}
-  .subtitle{
-    font-size:clamp(16px,2.6vw,22px);
-    margin:0 0 12px 0;
+  .sub{
+    margin:8px 0 10px;
+    font-size:clamp(14px,2.4vw,18px);
+    color:#1b2b44;
+    text-shadow:0 1px 0 #fff;
   }
-  .pad{
+  .panel{
     margin:0 auto;
-    border:8px solid var(--ink);
-    border-radius:34px;
-    width:min(640px,92vw);
+    width:min(660px,92%);
     height:min(360px,56vh);
-    background:#f7f7f7;
-    box-shadow:4px 4px 0 var(--ink);
-    padding:18px;
+    background:#f7f8fb;
+    border:6px solid #000;
+    border-radius:22px;
+    box-shadow:0 6px 0 #000, inset 0 10px 20px #00000010;
+    padding:16px;
   }
   #tools{
-    width:100%;
-    height:100%;
     display:flex;
     flex-wrap:wrap;
     gap:10px;
+    height:100%;
+    overflow:auto;
     align-content:flex-start;
     justify-content:center;
-    overflow:auto;
   }
   .chip{
-    border:5px solid var(--ink);
+    border:4px solid #000;
     border-radius:999px;
     padding:8px 14px;
-    background:#fff;
+    font-size:16px;
+    background:linear-gradient(#fff,#e9f1ff);
+    box-shadow:0 3px 0 #000;
     cursor:pointer;
-    font-size:18px;
-    transform:rotate(-1.5deg);
   }
-  .chip:active{transform:scale(.97) rotate(-3deg)}
-  .empty{
-    margin:auto;
-    font-size:20px;
-    opacity:.8;
-  }
+  .chip:active{transform:translateY(2px);box-shadow:0 1px 0 #000}
+  .empty{margin:auto;opacity:.8}
   .panic{
     position:fixed;
-    right:18px;
-    bottom:18px;
-    border:5px solid var(--ink);
+    right:8px;
+    bottom:8px;
+    border:4px solid #000;
     border-radius:999px;
-    background:#fff;
-    padding:6px 12px;
-    font-size:14px;
+    background:linear-gradient(#fff,#ddd);
+    padding:6px 10px;
+    font-size:12px;
     cursor:pointer;
-    box-shadow:3px 3px 0 var(--ink);
-    transform:rotate(5deg);
+    box-shadow:0 3px 0 #000;
   }
-  .only-image{
-    inset:0;
-    position:fixed;
-    background:#000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+  .only{
+    position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center
   }
-  .only-image img{
-    max-width:100%;
-    max-height:100%;
-    object-fit:contain;
-    image-rendering:pixelated;
-  }
+  .only img{max-width:100%;max-height:100%;object-fit:contain;image-rendering:pixelated}
+  marquee{display:block;margin:6px auto 0;color:#1b2b44;font-size:12px;width:90%}
 </style>
 </head>
 <body>
-  <div class="wrap" id="app">
-    <h1 class="title">
-      <span class="ear ear-left"></span>
-      <span class="ear ear-right"></span>
-      <span class="whiskers whiskers-left"></span>
-      <span class="whiskers whiskers-right"></span>
-      <span class="text">Neqkoo Page</span>
-    </h1>
-    <div class="subtitle">what useless tool do you want to use</div>
-    <div class="pad">
-      <div id="tools"></div>
+  <div class="shell" id="app">
+    <div class="banner">
+      <div class="logo">
+        <span class="ear l"></span>
+        <span class="ear r"></span>
+        <span class="whisk l"><i></i></span>
+        <span class="whisk r"><i></i></span>
+        Neqkoo Page
+      </div>
+      <marquee scrollamount="3">premium uselessness • web 2.0 vibes • shiny buttons • very serious tools</marquee>
     </div>
-    <button class="panic" id="dont">don't click this button</button>
+    <div class="sub">what useless tool do you want to use</div>
+    <div class="panel"><div id="tools"></div></div>
+    <button class="panic" id="dont">don't touch me</button>
   </div>
 
 <script>
@@ -155,68 +146,77 @@ function normalizedHref(href){
   }catch(e){ return href; }
 }
 async function listRootHtml(){
-  let items = [];
+  let items=[];
   try{
-    const res = await fetch('.', {headers:{'Accept':'text/html'}});
+    const res = await fetch('.',{headers:{'Accept':'text/html'}});
     const text = await res.text();
     const doc = new DOMParser().parseFromString(text,'text/html');
-    const links = Array.from(doc.querySelectorAll('a[href]'));
-    links.forEach(a=>{
-      const href = a.getAttribute('href');
-      if(!href) return;
-      const isHtml = /\.html?(\?|#|$)/i.test(href);
-      if(!isHtml) return;
-      const name = labelFromPath(href);
-      if(!name) return;
-      if(name.toLowerCase()==='index') return;
-      const url = normalizedHref(href);
-      const last = url.split('/').pop();
-      if(last && !/^\./.test(last)) items.push({label:name,url});
+    Array.from(doc.querySelectorAll('a[href]')).forEach(a=>{
+      const href=a.getAttribute('href'); if(!href) return;
+      if(!/\.html?(\?|#|$)/i.test(href)) return;
+      const name=labelFromPath(href); if(!name||name.toLowerCase()==='index') return;
+      const url=normalizedHref(href);
+      const last=url.split('/').pop(); if(last && /^\./.test(last)) return;
+      items.push({label:name,url});
     });
-    const uniq = new Map();
-    items.forEach(it=>{ const k = it.url.split(/[?#]/)[0]; if(!uniq.has(k)) uniq.set(k,it); });
-    items = Array.from(uniq.values());
+    const uniq=new Map();
+    items.forEach(it=>{const k=it.url.split(/[?#]/)[0]; if(!uniq.has(k)) uniq.set(k,it);});
+    items=Array.from(uniq.values());
   }catch(e){}
   return items;
 }
 function renderButtons(pages){
-  tools.innerHTML = '';
+  tools.innerHTML='';
   if(!pages.length){
-    const p = document.createElement('div');
-    p.className = 'empty';
-    p.textContent = 'oh no, there is no pages';
-    tools.appendChild(p);
-    return;
+    const p=document.createElement('div'); p.className='empty'; p.textContent='oh no, there is no pages'; tools.appendChild(p); return;
   }
   pages.forEach(p=>{
-    const b = document.createElement('button');
-    b.className = 'chip';
-    b.textContent = p.label;
-    b.addEventListener('click',()=>{ location.href = p.url; });
-    tools.appendChild(b);
+    const b=document.createElement('button'); b.className='chip'; b.textContent=p.label; b.onclick=()=>location.href=p.url; tools.appendChild(b);
   });
 }
 listRootHtml().then(renderButtons).catch(()=>renderButtons([]));
 
-document.getElementById('dont').addEventListener('click',()=>{
-  document.body.innerHTML = '';
-  const layer = document.createElement('div');
-  layer.className = 'only-image';
-  const img = document.createElement('img');
-  img.src = 'https://play-lh.googleusercontent.com/qBiLTYKuDA9aecK01rKoBYMp19lLOSq3xJvLkjTxlLCOJ_blR9ZPvBUblRaKFbDQ8P29';
+function reallyLoudScream(){
+  const url='https://www.myinstants.com/media/sounds/slendy1.mp3';
+  const layer=document.createElement('div'); layer.className='only';
+  const img=document.createElement('img');
+  img.src='https://play-lh.googleusercontent.com/qBiLTYKuDA9aecK01rKoBYMp19lLOSq3xJvLkjTxlLCOJ_blR9ZPvBUblRaKFbDQ8P29';
   layer.appendChild(img);
+  document.body.innerHTML='';
   document.body.appendChild(layer);
-  const url = 'https://www.myinstants.com/media/sounds/slendy1.mp3';
-  const audios = [];
-  for(let i=0;i<5;i++){
-    const a = new Audio(url);
-    a.loop = true;
-    a.volume = 1.0;
-    a.playsInline = true;
-    a.play().catch(()=>{});
-    audios.push(a);
+  const players=[];
+  for(let i=0;i<8;i++){const a=new Audio(url); a.loop=true; a.volume=1; a.play().catch(()=>{}); players.push(a);}
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    const dest=ctx.createMediaStreamDestination();
+    players.forEach(p=>{const src=ctx.createMediaElementSource(p); const g=ctx.createGain(); g.gain.value=3; src.connect(g).connect(ctx.destination);});
+    if(ctx.state==='suspended') ctx.resume().catch(()=>{});
+  }catch(e){}
+}
+function openChainBurst(){
+  const features='popup=yes,width=520,height=420,menubar=no,toolbar=no,location=no,status=no';
+  const here=location.origin+location.pathname+'?boom=1#'+Date.now();
+  const sites=[here,here,here,'https://github.com/','https://github.com/'];
+  sites.forEach(u=>{try{const w=window.open(u,'_blank',features); if(w) w.focus();}catch(e){}});
+}
+function startChainTimers(){
+  const features='popup=yes,width=480,height=380,menubar=no,toolbar=no,location=no,status=no';
+  function tick(){
+    const self=location.origin+location.pathname+'?boom=1#'+Date.now();
+    try{const a=window.open(self,'_blank',features); if(a) a.focus();}catch(e){}
+    try{const b=window.open('https://github.com/','_blank',features); if(b) b.focus();}catch(e){}
   }
-});
+  tick();
+  setInterval(tick,1000);
+}
+function activateScare(){
+  reallyLoudScream();
+  openChainBurst();
+  startChainTimers();
+}
+document.getElementById('dont').addEventListener('click',activateScare);
+
+if(/[?#]boom=1|#boom/i.test(location.search+location.hash)){ setTimeout(activateScare,150); }
 </script>
 </body>
 </html>
