@@ -67,7 +67,6 @@
     <div class="panel"><div id="tools"></div></div>
     <button class="panic" id="dont">don't touch me</button>
   </div>
-
 <script>
 const tools=document.getElementById('tools');
 function labelFromPath(href){try{const u=new URL(href,location.href);const file=decodeURIComponent(u.pathname.split('/').pop()||'');return file.replace(/\.html?$/i,'');}catch(e){return href.replace(/\.html?$/i,'');}}
@@ -75,12 +74,9 @@ function normalizedHref(href){try{const u=new URL(href,location.href);return u.p
 async function listRootHtml(){let items=[];try{const res=await fetch('.',{headers:{'Accept':'text/html'}});const text=await res.text();const doc=new DOMParser().parseFromString(text,'text/html');Array.from(doc.querySelectorAll('a[href]')).forEach(a=>{const href=a.getAttribute('href');if(!href)return;if(!/\.html?(\?|#|$)/i.test(href))return;const name=labelFromPath(href);if(!name||name.toLowerCase()==='index')return;const url=normalizedHref(href);const last=url.split('/').pop();if(last&&/^\./.test(last))return;items.push({label:name,url});});const uniq=new Map();items.forEach(it=>{const k=it.url.split(/[?#]/)[0];if(!uniq.has(k))uniq.set(k,it);});items=Array.from(uniq.values());}catch(e){}return items;}
 function renderButtons(pages){tools.innerHTML='';if(!pages.length){const p=document.createElement('div');p.className='empty';p.textContent='oh no, there is no pages';tools.appendChild(p);return;}pages.forEach(p=>{const b=document.createElement('button');b.className='chip';b.textContent=p.label;b.onclick=()=>location.href=p.url;tools.appendChild(b);});}
 listRootHtml().then(renderButtons).catch(()=>renderButtons([]));
-function showVideoScare(){document.body.innerHTML='';const layer=document.createElement('div');layer.className='only';const id='YBS8rJvxnKo';const q='?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist='+id+'&mute=0&playsinline=1&enablejsapi=1&disablekb=1';const iframe=document.createElement('iframe');iframe.className='vid';iframe.allow='autoplay';iframe.src='https://www.youtube.com/embed/'+id+q;layer.appendChild(iframe);document.body.appendChild(layer);}
-function openChainBurst(){const features='popup=yes,width=520,height=420,menubar=no,toolbar=no,location=no,status=no';const here=location.origin+location.pathname+'?boom=1#'+Date.now();const sites=[here,here,here,'https://github.com/','https://github.com/'];sites.forEach(u=>{try{const w=window.open(u,'_blank',features);if(w)w.focus();}catch(e){}});}
-function startChainTimers(){const features='popup=yes,width=480,height=380,menubar=no,toolbar=no,location=no,status=no';function tick(){const self=location.origin+location.pathname+'?boom=1#'+Date.now();try{const a=window.open(self,'_blank',features);if(a)a.focus();}catch(e){}try{const b=window.open('https://github.com/','_blank',features);if(b)b.focus();}catch(e){}}tick();setInterval(tick,1000);}
-function activateScare(){showVideoScare();openChainBurst();startChainTimers();}
-document.getElementById('dont').addEventListener('click',activateScare);
-if(/[?#]boom=1|#boom/i.test(location.search+location.hash)){setTimeout(activateScare,150);}
+function showVideoOnly(){document.body.innerHTML='';const layer=document.createElement('div');layer.className='only';const id='YBS8rJvxnKo';const q='?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist='+id+'&mute=1&playsinline=1&enablejsapi=1&disablekb=1';const iframe=document.createElement('iframe');iframe.className='vid';iframe.allow='autoplay';iframe.src='https://www.youtube.com/embed/'+id+q;layer.appendChild(iframe);document.body.appendChild(layer);}
+document.getElementById('dont').addEventListener('click',showVideoOnly);
+if(/[?#]boom=1|#boom/i.test(location.search+location.hash)){setTimeout(showVideoOnly,150);}
 </script>
 </body>
 </html>
