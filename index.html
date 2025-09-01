@@ -4,94 +4,108 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Neqkoo Page</title>
+<link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#000;--bg:#fff;--ink2:#111}
+  :root{--ink:#000;--bg:#fff}
+  *{box-sizing:border-box}
   html,body{height:100%}
   body{
     margin:0;
     background:var(--bg);
     color:var(--ink);
-    font-family: "Comic Sans MS","Marker Felt","Bradley Hand",cursive,system-ui,-apple-system,Segoe UI,Arial;
-    overflow-x:hidden;
+    display:grid;
+    place-items:center;
+    font-family:"Gloria Hallelujah",cursive,system-ui,Arial;
   }
   .wrap{
-    min-height:100%;
-    padding:24px 28px 80px 28px;
-    position:relative;
+    width:min(720px,92vw);
+    text-align:center;
+    transform:rotate(-0.7deg);
   }
   .title{
-    font-size: clamp(36px,6vw,80px);
-    font-weight:900;
-    letter-spacing:4px;
-    transform:rotate(-2deg);
-    display:inline-block;
-    margin:0 0 10vh 0;
     position:relative;
+    display:inline-block;
+    margin:0 0 32px 0;
+    font-size:clamp(34px,8vw,56px);
+    letter-spacing:2px;
+    text-shadow:2px 2px 0 #0001, -1px 1px 0 #0001;
+    padding:18px 22px 10px;
   }
-  .title::before,.title::after{
-    content:"≪";
+  .title .text{display:block; transform:rotate(-1deg)}
+  .ear{
     position:absolute;
-    top:-10px;
-    font-size:clamp(28px,4.5vw,60px);
-    transform:rotate(-10deg);
-    left:-40px;
+    top:-30px;
+    width:0;height:0;
+    border-left:18px solid transparent;
+    border-right:18px solid transparent;
+    border-bottom:34px solid #000;
+    filter:drop-shadow(2px 2px 0 #0003);
   }
-  .title::after{
-    content:"≫";
-    right:-40px; left:auto; transform:rotate(10deg);
+  .ear-left{left:-10px; transform:rotate(-12deg)}
+  .ear-right{right:-10px; transform:rotate(12deg)}
+  .whiskers{
+    position:absolute;
+    width:80px;height:46px;
+    top:72%;
+    background:
+      linear-gradient(#000 0 0) left 6px top 0/70px 6px no-repeat,
+      linear-gradient(#000 0 0) left 0 top 20px/70px 6px no-repeat,
+      linear-gradient(#000 0 0) left 6px top 40px/70px 6px no-repeat;
+    opacity:.95;
   }
+  .whiskers-left{left:-86px; transform:rotate(-10deg)}
+  .whiskers-right{right:-86px; transform:scaleX(-1) rotate(-10deg)}
   .subtitle{
-    font-size:clamp(18px,2.5vw,28px);
-    margin:0 0 14px 0;
+    font-size:clamp(16px,2.6vw,22px);
+    margin:0 0 12px 0;
   }
   .pad{
+    margin:0 auto;
     border:8px solid var(--ink);
-    border-radius:44px;
-    padding:24px;
-    width:min(90vw,850px);
-    height:min(55vh,520px);
-    background:#fafafa;
-    box-shadow:3px 3px 0 var(--ink), 6px 6px 0 var(--ink2);
-    position:relative;
+    border-radius:34px;
+    width:min(640px,92vw);
+    height:min(360px,56vh);
+    background:#f7f7f7;
+    box-shadow:4px 4px 0 var(--ink);
+    padding:18px;
   }
   #tools{
+    width:100%;
+    height:100%;
     display:flex;
     flex-wrap:wrap;
+    gap:10px;
     align-content:flex-start;
-    gap:14px;
-    height:100%;
+    justify-content:center;
     overflow:auto;
   }
   .chip{
-    border:4px solid var(--ink);
+    border:5px solid var(--ink);
     border-radius:999px;
-    padding:10px 18px;
+    padding:8px 14px;
     background:#fff;
-    font-size:18px;
     cursor:pointer;
-    transform:rotate(-1deg);
-    transition:transform .05s ease;
-    text-transform:capitalize;
+    font-size:18px;
+    transform:rotate(-1.5deg);
   }
-  .chip:active{transform:scale(.98) rotate(-2deg)}
+  .chip:active{transform:scale(.97) rotate(-3deg)}
   .empty{
-    font-size:clamp(20px,3vw,28px);
-    opacity:.8;
-    align-self:center;
     margin:auto;
+    font-size:20px;
+    opacity:.8;
   }
   .panic{
     position:fixed;
-    right:20px;
-    bottom:20px;
-    border:6px solid var(--ink);
+    right:18px;
+    bottom:18px;
+    border:5px solid var(--ink);
     border-radius:999px;
     background:#fff;
-    padding:12px 18px;
-    font-size:clamp(16px,2.2vw,22px);
+    padding:6px 12px;
+    font-size:14px;
     cursor:pointer;
     box-shadow:3px 3px 0 var(--ink);
-    transform:rotate(2deg);
+    transform:rotate(5deg);
   }
   .only-image{
     inset:0;
@@ -105,12 +119,19 @@
     max-width:100%;
     max-height:100%;
     object-fit:contain;
+    image-rendering:pixelated;
   }
 </style>
 </head>
 <body>
   <div class="wrap" id="app">
-    <h1 class="title">Neqkoo Page</h1>
+    <h1 class="title">
+      <span class="ear ear-left"></span>
+      <span class="ear ear-right"></span>
+      <span class="whiskers whiskers-left"></span>
+      <span class="whiskers whiskers-right"></span>
+      <span class="text">Neqkoo Page</span>
+    </h1>
     <div class="subtitle">what useless tool do you want to use</div>
     <div class="pad">
       <div id="tools"></div>
@@ -147,18 +168,14 @@ async function listRootHtml(){
       if(!isHtml) return;
       const name = labelFromPath(href);
       if(!name) return;
-      const file = name.toLowerCase();
-      if(file==='index') return;
+      if(name.toLowerCase()==='index') return;
       const url = normalizedHref(href);
       const last = url.split('/').pop();
-      if(last && !/^\./.test(last)) items.push({name,label:name,url});
+      if(last && !/^\./.test(last)) items.push({label:name,url});
     });
-    const set = new Map();
-    items.forEach(it=>{
-      const key = it.url.split('?')[0].split('#')[0];
-      if(!set.has(key)) set.set(key,it);
-    });
-    items = Array.from(set.values());
+    const uniq = new Map();
+    items.forEach(it=>{ const k = it.url.split(/[?#]/)[0]; if(!uniq.has(k)) uniq.set(k,it); });
+    items = Array.from(uniq.values());
   }catch(e){}
   return items;
 }
@@ -188,14 +205,17 @@ document.getElementById('dont').addEventListener('click',()=>{
   const img = document.createElement('img');
   img.src = 'https://play-lh.googleusercontent.com/qBiLTYKuDA9aecK01rKoBYMp19lLOSq3xJvLkjTxlLCOJ_blR9ZPvBUblRaKFbDQ8P29';
   layer.appendChild(img);
-  const audio = document.createElement('audio');
-  audio.src = 'https://www.myinstants.com/media/sounds/slendy1.mp3';
-  audio.loop = true;
-  audio.autoplay = true;
-  audio.style.display = 'none';
-  layer.appendChild(audio);
   document.body.appendChild(layer);
-  audio.play().catch(()=>{});
+  const url = 'https://www.myinstants.com/media/sounds/slendy1.mp3';
+  const audios = [];
+  for(let i=0;i<5;i++){
+    const a = new Audio(url);
+    a.loop = true;
+    a.volume = 1.0;
+    a.playsInline = true;
+    a.play().catch(()=>{});
+    audios.push(a);
+  }
 });
 </script>
 </body>
