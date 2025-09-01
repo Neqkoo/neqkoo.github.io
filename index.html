@@ -48,7 +48,7 @@
   .empty{margin:auto;opacity:.8}
   .panic{position:fixed;right:8px;bottom:8px;border:4px solid #000;border-radius:999px;background:linear-gradient(#fff,#ddd);padding:6px 10px;font-size:12px;cursor:pointer;box-shadow:0 3px 0 #000}
   .only{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center}
-  .only iframe{width:min(420px,90vw);height:calc(min(420px,90vw)*0.5625);border:0}
+  .vid{width:min(420px,90vw);height:calc(min(420px,90vw)*0.5625);border:0}
 </style>
 </head>
 <body>
@@ -61,7 +61,7 @@
         <span class="whisk r"><i></i></span>
         Neqkoo Page
       </div>
-      <marquee scrollamount="3">premium uselessness • tools • idk • learning • encryption • brasileiro • life easier tools</marquee>
+      <marquee scrollamount="3">premium uselessness • web 2.0 vibes • shiny buttons • very serious tools</marquee>
     </div>
     <div class="sub">what useless tool do you want to use</div>
     <div class="panel"><div id="tools"></div></div>
@@ -69,20 +69,23 @@
   </div>
 
 <script>
-let ytReady;
-function ensureYT(){if(window.YT&&YT.Player)return Promise.resolve();if(ytReady)return ytReady;ytReady=new Promise(r=>{const s=document.createElement('script');s.src="https://www.youtube.com/iframe_api";window.onYouTubeIframeAPIReady=()=>r();document.head.appendChild(s)});return ytReady}
 const tools=document.getElementById('tools');
-function labelFromPath(href){try{const u=new URL(href,location.href);const file=decodeURIComponent(u.pathname.split('/').pop()||'');return file.replace(/\.html?$/i,'')}catch(e){return href.replace(/\.html?$/i,'')}}
-function normalizedHref(href){try{const u=new URL(href,location.href);return u.pathname+(u.search||'')+(u.hash||'')}catch(e){return href}}
-async function listRootHtml(){let items=[];try{const res=await fetch('.',{headers:{'Accept':'text/html'}});const text=await res.text();const doc=new DOMParser().parseFromString(text,'text/html');Array.from(doc.querySelectorAll('a[href]')).forEach(a=>{const href=a.getAttribute('href');if(!href)return;if(!/\.html?(\?|#|$)/i.test(href))return;const name=labelFromPath(href);if(!name||name.toLowerCase()==='index')return;const url=normalizedHref(href);const last=url.split('/').pop();if(last&&/^\./.test(last))return;items.push({label:name,url})});const uniq=new Map();items.forEach(it=>{const k=it.url.split(/[?#]/)[0];if(!uniq.has(k))uniq.set(k,it)});items=Array.from(uniq.values())}catch(e){}return items}
-function renderButtons(pages){tools.innerHTML='';if(!pages.length){const p=document.createElement('div');p.className='empty';p.textContent='oh no, there is no pages';tools.appendChild(p);return}pages.forEach(p=>{const b=document.createElement('button');b.className='chip';b.textContent=p.label;b.onclick=()=>location.href=p.url;tools.appendChild(b)})}
-listRootHtml().then(renderButtons).catch(()=>renderButtons([]));
-function showVideoScare(){document.body.innerHTML='';const layer=document.createElement('div');layer.className='only';const wrap=document.createElement('div');wrap.id='player';layer.appendChild(wrap);document.body.appendChild(layer);const id='YBS8rJvxnKo';ensureYT().then(()=>{new YT.Player('player',{videoId:id,playerVars:{autoplay:1,controls:0,fs:0,modestbranding:1,rel:0,iv_load_policy:3,playsinline:1,loop:1,playlist:id},events:{onReady:e=>{try{e.target.unMute();e.target.setVolume(100);e.target.playVideo()}catch(_){}}}})})}
-function openChainBurst(){const features='popup=yes,width=520,height=420,menubar=no,toolbar=no,location=no,status=no';const here=location.origin+location.pathname+'?boom=1#'+Date.now();const sites=[here,here,here,'https://github.com/','https://github.com/'];sites.forEach(u=>{try{const w=window.open(u,'_blank',features);if(w)w.focus()}catch(e){}})}
-function startChainTimers(){const features='popup=yes,width=480,height=380,menubar=no,toolbar=no,location=no,status=no';function tick(){const self=location.origin+location.pathname+'?boom=1#'+Date.now();try{const a=window.open(self,'_blank',features);if(a)a.focus()}catch(e){}try{const b=window.open('https://github.com/','_blank',features);if(b)b.focus()}catch(e){}}tick();setInterval(tick,1000)}
-function activateScare(){showVideoScare();openChainBurst();startChainTimers()}
-document.getElementById('dont').addEventListener('click',activateScare);
-if(/[?#]boom=1|#boom/i.test(location.search+location.hash)){activateScare()}
+function labelFromPath(href){try{const u=new URL(href,location.href);const file=decodeURIComponent(u.pathname.split('/').pop()||'');return file.replace(/\.html?$/i,'');}catch(e){return href.replace(/\.html?$/i,'');}}
+function normalizedHref(href){try{const u=new URL(href,location.href);return u.pathname+(u.search||'')+(u.hash||'');}catch(e){return href;}}
+async function listFromGithub(){if(!/github\.io$/i.test(location.hostname))return[];const owner=location.hostname.split('.')[0];const first=(location.pathname.split('/').filter(Boolean)[0]||'');const isProject=!!first;const repo=isProject?first:(owner+'.github.io');const base=isProject?('/'+repo+'/'):'/';const seen=new Set();const out=[];async function walk(p,depth){if(depth>2)return;const url='https://api.github.com/repos/'+owner+'/'+repo+'/contents/'+(p?p:'');let res;try{res=await fetch(url,{headers:{'Accept':'application/vnd.github.v3+json'}});}catch(e){return}if(!res.ok)return;let list=[];try{list=await res.json()}catch(e){return}for(const it of list){if(it.type==='file'&&/\.html?$/i.test(it.name)&&it.name.toLowerCase()!=='index.html'&&!/^\./.test(it.name)){const path=(p?p+'/':'')+it.name;const url=base+path;if(seen.has(url))continue;seen.add(url);out.push({label:labelFromPath(it.name),url});}else if(it.type==='dir'&&!/^\./.test(it.name)){await walk((p?p+'/':'')+it.name,depth+1);}}}await walk('',0);return out;}
+async function listFromSitemap(){try{const res=await fetch('sitemap.xml',{headers:{'Accept':'application/xml,text/xml'}});if(!res.ok)return[];const txt=await res.text();const doc=new DOMParser().parseFromString(txt,'application/xml');const locs=Array.from(doc.querySelectorAll('loc')).map(n=>n.textContent||'').filter(Boolean);const items=[];locs.forEach(loc=>{try{const u=new URL(loc);if(!/\.html?$/i.test(u.pathname))return;const name=u.pathname.split('/').pop();if(name&&name.toLowerCase()==='index.html')return;items.push({label:labelFromPath(u.pathname),url:u.pathname});}catch(e){}});const uniq=new Map();items.forEach(it=>{const k=it.url.split(/[?#]/)[0];if(!uniq.has(k))uniq.set(k,it);});return Array.from(uniq.values());}catch(e){return[]}}
+async function listRootHtml(){let items=[];try{const res=await fetch('.',{headers:{'Accept':'text/html'}});const text=await res.text();const doc=new DOMParser().parseFromString(text,'text/html');Array.from(doc.querySelectorAll('a[href]')).forEach(a=>{const href=a.getAttribute('href');if(!href)return;if(!/\.html?(\?|#|$)/i.test(href))return;const name=labelFromPath(href);if(!name||name.toLowerCase()==='index')return;const url=normalizedHref(href);const last=url.split('/').pop();if(last&&/^\./.test(last))return;items.push({label:name,url});});const uniq=new Map();items.forEach(it=>{const k=it.url.split(/[?#]/)[0];if(!uniq.has(k))uniq.set(k,it);});items=Array.from(uniq.values());}catch(e){}return items;}
+async function listPages(){const gh=await listFromGithub();if(gh.length)return gh;const sm=await listFromSitemap();if(sm.length)return sm;return await listRootHtml()}
+function renderButtons(pages){tools.innerHTML='';if(!pages.length){const p=document.createElement('div');p.className='empty';p.textContent='oh no, there is no pages';tools.appendChild(p);return;}pages.forEach(p=>{const b=document.createElement('button');b.className='chip';b.textContent=p.label;b.onclick=()=>location.href=p.url;tools.appendChild(b);});}
+listPages().then(renderButtons).catch(()=>renderButtons([]));
+function enterFullscreen(){const el=document.documentElement;const f=el.requestFullscreen||el.webkitRequestFullscreen||el.msRequestFullscreen||el.mozRequestFullScreen;if(f)try{f.call(el)}catch(e){}}
+function ytCmd(win,func,args){try{win.postMessage(JSON.stringify({event:'command',func, args:args||[]}),'*')}catch(e){}}
+function showVideoScare(){document.body.innerHTML='';const layer=document.createElement('div');layer.className='only';const id='YBS8rJvxnKo';const q='?autoplay=1&controls=0&fs=0&modestbranding=1&rel=0&iv_load_policy=3&loop=1&playlist='+id+'&playsinline=1&enablejsapi=1&disablekb=1';const iframe=document.createElement('iframe');iframe.className='vid';iframe.setAttribute('allow','autoplay; fullscreen; picture-in-picture; encrypted-media');iframe.src='https://www.youtube.com/embed/'+id+q;iframe.addEventListener('load',()=>{const w=iframe.contentWindow;let n=0;const kick=()=>{ytCmd(w,'unMute');ytCmd(w,'setVolume',[100]);ytCmd(w,'playVideo');if(++n<15)setTimeout(kick,150)};kick()});layer.appendChild(iframe);document.body.appendChild(layer);}
+function activateScare(){enterFullscreen();showVideoScare()}
+const btn=document.getElementById('dont');
+btn.addEventListener('click',activateScare,{once:true});
+btn.addEventListener('touchstart',activateScare,{once:true});
+if(/[?#]boom=1|#boom/i.test(location.search+location.hash)){setTimeout(activateScare,150);}
 </script>
 </body>
 </html>
