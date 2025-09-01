@@ -1,2 +1,4 @@
-# neqkoo.github.io
-Website for Useless things, most of them to spend time and to have fun
+# Neqkoo Github Page
+
+This website was made for fun, things that are useless for me might be useful for you
+I'm learning HTML and JavaScript, so um, yeah
