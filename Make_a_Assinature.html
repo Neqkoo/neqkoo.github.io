@@ -2,311 +2,285 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>CICADA-ISH SIG LAB — 2008 RAW</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CICADA-ish Signer (2008 Raw Style)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-
-    html,body{height:100%}
-    body{
-      margin:0; background:#0b0b0b; color:#9fef9f;
-      font:15px/1.4 "Lucida Console", Monaco, "Courier New", monospace;
+    /* === 2008-ish raw look === */
+    body {
+      background: #ececec url('data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==') repeat;
+      color: #222;
+      font: 13px/1.4 "Courier New", Courier, monospace;
     }
-    .wrap{max-width:980px;margin:28px auto;padding:14px 18px;
-      border:1px solid #2a2a2a; background:#000;
-      box-shadow:0 0 12px #000 inset;
+    #wrap {
+      width: 900px;
+      margin: 24px auto;
+      border: 1px solid #444;
+      background: #f7f7f7;
+      box-shadow: 0 0 0 1px #fff inset;
     }
-    h1{
-      margin:0 0 12px; font-size:20px; letter-spacing:1px; color:#b8ffb8;
-      text-shadow:0 0 3px #1f1, 0 0 8px #0a0;
+    #titlebar {
+      padding: 10px 12px;
+      background: #dcdcdc;
+      border-bottom: 1px solid #444;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
-    .banner{
-      padding:8px 10px; margin:0 0 16px; white-space:pre;
-      border:1px solid #1b1b1b; background:#090909; color:#8cf78c;
+    #titlebar b {
+      display: inline-block;
+      padding: 2px 6px;
+      margin-right: 6px;
+      border: 1px solid #222;
+      background: linear-gradient(#fff, #d9d9d9);
     }
-    .bar{margin:16px 0;border:0;border-top:1px dashed #2c2c2c}
-    .box{
-      border:1px solid #1e1e1e; padding:10px; margin:12px 0;
-      background: #0a0a0a;
+    .panel { padding: 12px; border-top: 1px dashed #aaa; }
+    .row { margin: 10px 0; }
+    label { display: block; margin-bottom: 4px; font-weight: bold; text-shadow: 0 1px 0 #fff; }
+    textarea, input[type="text"] {
+      width: 100%; box-sizing: border-box; padding: 8px;
+      border: 1px solid #666; background: #fff;
+      font: 13px "Courier New", Courier, monospace;
+      resize: vertical; min-height: 64px;
     }
-    label{display:block; margin:8px 0 4px; color:#b8ffb8}
-    textarea, input[type="text"]{
-      width:100%; box-sizing:border-box; background:#000; color:#9fef9f;
-      border:1px solid #2a2a2a; padding:8px; font-family:inherit; resize:vertical;
-      outline:none;
+    textarea.small { min-height: 50px; }
+    .buttons { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+    button {
+      border: 1px solid #222; background: linear-gradient(#ffffff, #dddddd);
+      padding: 6px 10px; cursor: pointer;
     }
-    textarea:focus, input[type="text"]:focus{border-color:#3a3a3a}
-    .row{display:flex; gap:12px; flex-wrap:wrap}
-    .col{flex:1 1 320px}
-    .btn{
-      display:inline-block; margin:6px 6px 0 0; padding:7px 12px; cursor:pointer;
-      font-family:inherit; color:#dfffd8; text-decoration:none;
-      background:#191919;
-      background-image:linear-gradient(#2a2a2a, #121212);
-      border:1px solid #333; border-top-color:#444; border-bottom-color:#111;
-      box-shadow: inset 0 1px 0 #3c3c3c;
-    }
-    .btn:hover{filter:brightness(1.1)}
-    .btn:active{transform:translateY(1px)}
-    .note{font-size:12px;color:#8ba58b}
-    .status{margin-top:8px; padding:8px; border:1px dashed #2a2a2a; background:#050805}
-    .status.ok{color:#8fff8f}
-    .status.err{color:#ff9090}
-    .warn{color:#ffb36b}
-    .footer{margin-top:18px;font-size:12px;color:#9ba99b}
-    .linky{color:#b8ffb8}
-    .mono{font-family:"Lucida Console", Monaco, "Courier New", monospace}
-    .inline{display:inline-block;min-width:10ch}
-    .muted{color:#7aa57a}
+    button:active { background: linear-gradient(#dcdcdc, #f0f0f0); }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .status { margin-top: 10px; padding: 8px; border: 1px solid #999; background: #ffffe0; white-space: pre-wrap; min-height: 24px; }
+    .hint { color: #555; font-style: italic; margin-top: 6px; }
+    .badge { display:inline-block; font-weight:bold; padding:2px 4px; border:1px solid #444; background:#eaeaea; margin-right:6px; }
+    .footer { padding: 10px 12px; border-top: 1px solid #444; background: #eee; font-size: 12px; }
+    .warn { color:#b00000; font-weight:bold; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>> CICADA-ISH SIG LAB <span class="muted">v0.1</span></h1>
-    <pre class="banner">   ____ _ _____  _      _           _        ___ ___  _   _ 
-  / ___(_) ____|| | ___| |__   __ _| |_ __ _|_ _/ _ \| \ | |
- | |   | |  _|  | |/ _ \ '_ \ / _` | __/ _` || | | | |  \| |
- | |___| | |___ | |  __/ |_) | (_| | || (_| || | |_| | |\  |
-  \____|_|____(_)_|\___|_.__/ \__,_|\__\__,_|___\___/|_| \_|
-
-  detached signatures • ASCII armor • raw UI • 2008 energy
-</pre>
-
-    <div id="ctxWarn" class="status warn" style="display:none">
-      Heads-up: your browser says this is <b>not</b> a secure context (no HTTPS / localhost).
-      WebCrypto may be limited. If buttons below fail, serve this file via localhost or HTTPS.
+  <div id="wrap">
+    <div id="titlebar">
+      <span class="badge">ASCII WEB</span>
+      <b>CICADA-ish Signer</b> <span style="opacity:.75">• raw 2008 vibe</span>
     </div>
 
-    <div class="box">
-      <div><span class="inline">Algo:</span> RSA-PSS / SHA-256 · 2048-bit (PGP-ish vibe)</div>
-      <div class="note">All crypto runs in your browser. Keys/signatures are ASCII-armored like old PGP headers
-      (Cicada-flavored). For demos only—don’t use this as your only crypto tool.</div>
-    </div>
-
-    <hr class="bar">
-
-    <!-- KEYPAIR -->
-    <div class="row">
-      <div class="col">
-        <h2 class="muted">[1] Generate Keypair</h2>
-        <button class="btn" id="gen">Generate Keypair</button>
-        <button class="btn" id="copyPub">Copy Public</button>
-        <button class="btn" id="copyPriv">Copy Private</button>
-        <div class="note">Public = shareable • Private = secret (keep offline)</div>
-        <label>Public Key (ASCII-armored)</label>
-        <textarea id="pubKey" rows="8" spellcheck="false" class="mono" placeholder="-----BEGIN CICADAISH PUBLIC KEY----- …"></textarea>
-
-        <label>Private Key (ASCII-armored)</label>
-        <textarea id="privKey" rows="10" spellcheck="false" class="mono" placeholder="-----BEGIN CICADAISH PRIVATE KEY----- …"></textarea>
-      </div>
-
-      <!-- SIGN -->
-      <div class="col">
-        <h2 class="muted">[2] Sign Message</h2>
-        <label>Message</label>
-        <textarea id="msgSign" rows="8" class="mono" placeholder="Write or paste the exact message to sign…"></textarea>
-        <button class="btn" id="signBtn">Sign (detached)</button>
-        <button class="btn" id="copySig">Copy Signature</button>
-        <label>Signature (ASCII-armored)</label>
-        <textarea id="sigOut" rows="8" spellcheck="false" class="mono" placeholder="-----BEGIN CICADAISH SIGNATURE----- …"></textarea>
-        <div id="signStatus" class="status" style="display:none"></div>
-      </div>
-    </div>
-
-    <hr class="bar">
-
-    <!-- VERIFY -->
-    <div class="box">
-      <h2 class="muted">[3] Verify Signature</h2>
+    <div class="panel">
       <div class="row">
-        <div class="col">
-          <label>Message</label>
-          <textarea id="msgVerify" rows="6" class="mono" placeholder="Paste the original message…"></textarea>
+        <label for="msg">Message</label>
+        <textarea id="msg" spellcheck="false" placeholder="Type the message you want to sign...">The quick brown fox jumps over the lazy dog.</textarea>
+      </div>
+
+      <div class="grid">
+        <div class="row">
+          <label for="pubkey">Public Key (PEM, SPKI)</label>
+          <textarea id="pubkey" class="small" spellcheck="false" placeholder="-----BEGIN PUBLIC KEY-----
+..."></textarea>
+          <div class="buttons">
+            <button id="copyPub">Copy Public</button>
+            <button id="clearPub">Clear</button>
+          </div>
         </div>
-        <div class="col">
-          <label>Signature (ASCII-armored)</label>
-          <textarea id="sigIn" rows="6" class="mono" placeholder="-----BEGIN CICADAISH SIGNATURE----- …"></textarea>
-          <label>Public Key (ASCII-armored)</label>
-          <textarea id="pubVerify" rows="6" class="mono" placeholder="-----BEGIN CICADAISH PUBLIC KEY----- …"></textarea>
+        <div class="row">
+          <label for="privkey">Private Key (PEM, PKCS#8)</label>
+          <textarea id="privkey" class="small" spellcheck="false" placeholder="-----BEGIN PRIVATE KEY-----
+..."></textarea>
+          <div class="buttons">
+            <button id="copyPriv">Copy Private</button>
+            <button id="clearPriv">Clear</button>
+          </div>
         </div>
       </div>
-      <button class="btn" id="verifyBtn">Verify</button>
-      <div id="verifyStatus" class="status" style="display:none"></div>
+
+      <div class="row">
+        <label for="sig">Signature (Base64)</label>
+        <textarea id="sig" class="small" spellcheck="false" placeholder="Base64 signature will appear here..."></textarea>
+        <div class="buttons">
+          <button id="copySig">Copy Signature</button>
+          <button id="clearSig">Clear</button>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button id="gen">Generate RSA Keys</button>
+        <button id="sign">Sign Message</button>
+        <button id="verify">Verify Signature</button>
+        <button id="clearAll">Clear All</button>
+      </div>
+
+      <div class="hint">
+        Tip: This uses RSA-PSS with SHA-256 (similar spirit to PGP-style signatures Cicada fans love). Keep your private key safe.
+      </div>
+
+      <div id="status" class="status">Ready.</div>
+      <div id="secureWarn" class="hint"></div>
     </div>
 
     <div class="footer">
-      <span class="muted">Tip:</span> You can save these blocks as plain text files. Armor headers:
-      <span class="mono">CICADAISH PUBLIC KEY</span>, <span class="mono">CICADAISH PRIVATE KEY</span>, <span class="mono">CICADAISH SIGNATURE</span>.
-      <br>Built with <span class="mono">WebCrypto</span> (RSA-PSS). If you want true PGP compatibility, use a dedicated OpenPGP tool.
+      Works best over <span class="warn">https://</span> or <span class="warn">http://localhost</span> (browsers may block crypto on plain file://). No servers involved – all in your browser.
     </div>
   </div>
 
-  <script>
-  (function(){
+<script>
+(function(){
+  // --- Helpers ---
+  const $ = (id) => document.getElementById(id);
+  const enc = new TextEncoder();
 
-    const enc = new TextEncoder();
-    const dec = new TextDecoder();
+  function setStatus(msg) { $("status").textContent = msg; }
+  function appendStatus(msg) { $("status").textContent += "\\n" + msg; }
 
-    function show(id, ok, msg){
-      const el = document.getElementById(id);
-      el.className = 'status ' + (ok === true ? 'ok' : ok === false ? 'err' : '');
-      el.style.display = 'block';
-      el.textContent = msg;
+  function ab2b64(buf){
+    const bytes = new Uint8Array(buf);
+    let binary = "";
+    for (let i=0; i<bytes.byteLength; i++) binary += String.fromCharCode(bytes[i]);
+    return btoa(binary);
+  }
+  function b642ab(b64){
+    const binary = atob(b64.replace(/\\s+/g,''));
+    const len = binary.length;
+    const bytes = new Uint8Array(len);
+    for (let i=0; i<len; i++) bytes[i] = binary.charCodeAt(i);
+    return bytes.buffer;
+  }
+  function wrapPEM(base64, label){
+    const lines = base64.match(/.{1,64}/g).join("\\n");
+    return "-----BEGIN " + label + "-----\\n" + lines + "\\n-----END " + label + "-----";
+  }
+  function stripPEM(pem){
+    return pem.replace(/-----BEGIN [^-]+-----/g,'')
+              .replace(/-----END [^-]+-----/g,'')
+              .replace(/\\s+/g,'');
+  }
+  function copy(el){
+    el.select();
+    document.execCommand('copy');
+  }
+  function checkSecureContext(){
+    if (!window.isSecureContext) {
+      $("secureWarn").innerHTML = "⚠ Your page is not in a secure context. If Crypto fails, open this file via a tiny local server (e.g., <code>python -m http.server</code>) or use <code>http://localhost</code> / <code>https://</code>.";
     }
-    function hide(id){ document.getElementById(id).style.display='none' }
+  }
 
-    function chunk64(s){
-      return s.replace(/(.{64})/g,'$1\n');
+  checkSecureContext();
+
+  // --- Crypto params (RSA-PSS w/ SHA-256) ---
+  const algo = {
+    name: "RSA-PSS",
+    modulusLength: 2048,
+    publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+    hash: "SHA-256"
+  };
+  const signParams = { name: "RSA-PSS", saltLength: 32 };
+
+  let privKey = null;
+  let pubKey  = null;
+
+  async function generate(){
+    try {
+      setStatus("Generating 2048-bit RSA keypair...");
+      const kp = await crypto.subtle.generateKey(algo, true, ["sign","verify"]);
+      privKey = kp.privateKey;
+      pubKey  = kp.publicKey;
+
+      const spki = await crypto.subtle.exportKey("spki", pubKey);
+      const pkcs8 = await crypto.subtle.exportKey("pkcs8", privKey);
+
+      $("pubkey").value  = wrapPEM(ab2b64(spki), "PUBLIC KEY");
+      $("privkey").value = wrapPEM(ab2b64(pkcs8), "PRIVATE KEY");
+      setStatus("Keypair generated. Public/Private PEMs filled in.");
+    } catch (e){
+      setStatus("Failed to generate keys: " + e);
     }
-    function ab2b64(buf){
-      const bytes = new Uint8Array(buf);
-      let bin = '';
-      for (let i=0; i<bytes.length; i++) bin += String.fromCharCode(bytes[i]);
-      return btoa(bin);
-    }
-    function b642ab(b64){
-      const clean = (b64||'').replace(/[^\w+/=]/g,''); 
-      const bin = atob(clean);
-      const bytes = new Uint8Array(bin.length);
-      for (let i=0; i<bin.length; i++) bytes[i] = bin.charCodeAt(i);
-      return bytes.buffer;
-    }
-    function armor(label, base64){
-      return `-----BEGIN ${label}-----\n` + chunk64(base64) + `\n-----END ${label}-----`;
-    }
-    function dearmor(text, label){
-      const re = new RegExp("-----BEGIN\\s+"+label+"-----([\\s\\S]*?)-----END\\s+"+label+"-----","i");
-      const m = (text||'').match(re);
-      return m ? m[1] : text;
-    }
-    function secureContextWarn(){
-      if(!window.isSecureContext){
-        document.getElementById('ctxWarn').style.display = 'block';
+  }
+
+  async function importKeysFromTextareas(){
+    try {
+      const pubText = $("pubkey").value.trim();
+      const privText = $("privkey").value.trim();
+      if (pubText) {
+        const spkiBuf = b642ab(stripPEM(pubText));
+        pubKey = await crypto.subtle.importKey(
+          "spki",
+          spkiBuf,
+          { name: "RSA-PSS", hash: "SHA-256" },
+          true,
+          ["verify"]
+        );
       }
-    }
-
-    const algo = {
-      name: "RSA-PSS",
-      modulusLength: 2048,
-      publicExponent: new Uint8Array([0x01,0x00,0x01]),
-      hash: "SHA-256"
-    };
-
-    async function genKeypair(){
-      const keyPair = await crypto.subtle.generateKey(
-        { name: "RSA-PSS", modulusLength: algo.modulusLength, publicExponent: algo.publicExponent, hash: algo.hash },
-        true,
-        ["sign","verify"]
-      );
-      const spki = await crypto.subtle.exportKey("spki", keyPair.publicKey);
-      const pkcs8 = await crypto.subtle.exportKey("pkcs8", keyPair.privateKey);
-      const pubB64 = ab2b64(spki);
-      const privB64 = ab2b64(pkcs8);
-      return {
-        publicArmored: armor("CICADAISH PUBLIC KEY", pubB64),
-        privateArmored: armor("CICADAISH PRIVATE KEY", privB64)
-      };
-    }
-
-    async function importPublic(armored){
-      const b64 = dearmor(armored, "CICADAISH PUBLIC KEY");
-      const buf = b642ab(b64);
-      return crypto.subtle.importKey(
-        "spki", buf,
-        { name: "RSA-PSS", hash: algo.hash },
-        true, ["verify"]
-      );
-    }
-    async function importPrivate(armored){
-      const b64 = dearmor(armored, "CICADAISH PRIVATE KEY");
-      const buf = b642ab(b64);
-      return crypto.subtle.importKey(
-        "pkcs8", buf,
-        { name: "RSA-PSS", hash: algo.hash },
-        true, ["sign"]
-      );
-    }
-
-    async function signDetached(privateArmored, message){
-      const priv = await importPrivate(privateArmored);
-      const data = enc.encode(message);
-      const sig = await crypto.subtle.sign({name:"RSA-PSS", saltLength:32}, priv, data);
-      const b64 = ab2b64(sig);
-      return armor("CICADAISH SIGNATURE", b64);
-    }
-
-    async function verifyDetached(publicArmored, message, signatureArmored){
-      const pub = await importPublic(publicArmored);
-      const data = enc.encode(message);
-      const b64 = dearmor(signatureArmored, "CICADAISH SIGNATURE");
-      const sig = b642ab(b64);
-      return crypto.subtle.verify({name:"RSA-PSS", saltLength:32}, pub, sig, data);
-    }
-
-    secureContextWarn();
-
-    const el = id => document.getElementById(id);
-
-    el('gen').addEventListener('click', async () => {
-      hide('signStatus'); hide('verifyStatus');
-      try {
-        const kp = await genKeypair();
-        el('pubKey').value = kp.publicArmored;
-        el('privKey').value = kp.privateArmored;
-      } catch(err){
-        show('signStatus', false, 'Key generation failed: ' + (err.message||err));
+      if (privText) {
+        const pkcs8Buf = b642ab(stripPEM(privText));
+        privKey = await crypto.subtle.importKey(
+          "pkcs8",
+          pkcs8Buf,
+          { name: "RSA-PSS", hash: "SHA-256" },
+          true,
+          ["sign"]
+        );
       }
-    });
+      return true;
+    } catch (e){
+      setStatus("Key import error: " + e);
+      throw e;
+    }
+  }
 
-    el('copyPub').addEventListener('click', () => {
-      navigator.clipboard?.writeText(el('pubKey').value);
-    });
-    el('copyPriv').addEventListener('click', () => {
-      navigator.clipboard?.writeText(el('privKey').value);
-    });
-
-    el('signBtn').addEventListener('click', async () => {
-      hide('signStatus');
-      const msg = el('msgSign').value;
-      const priv = el('privKey').value;
-      if(!msg){ show('signStatus', false, 'No message to sign.'); return; }
-      if(!priv){ show('signStatus', false, 'Private key is missing.'); return; }
-      try{
-        const sig = await signDetached(priv, msg);
-        el('sigOut').value = sig;
-        show('signStatus', true, 'Signature created.');
-      }catch(err){
-        show('signStatus', false, 'Signing failed: ' + (err.message||err));
-      }
-    });
-
-    el('copySig').addEventListener('click', () => {
-      navigator.clipboard?.writeText(el('sigOut').value);
-    });
-
-    el('verifyBtn').addEventListener('click', async () => {
-      hide('verifyStatus');
-      const msg = el('msgVerify').value;
-      const sig = el('sigIn').value;
-      const pub = el('pubVerify').value || el('pubKey').value;
-      if(!msg || !sig || !pub){
-        show('verifyStatus', false, 'Need message, signature, and public key.');
+  async function sign(){
+    try {
+      await importKeysFromTextareas();
+      if (!privKey) {
+        setStatus("No private key. Generate or paste a PKCS#8 private key.");
         return;
       }
-      try{
-        const ok = await verifyDetached(pub, msg, sig);
-        if(ok){
-          show('verifyStatus', true, '✔ VALID: signature matches this message and public key.');
-        }else{
-          show('verifyStatus', false, '✖ INVALID: signature does not match.');
-        }
-      }catch(err){
-        show('verifyStatus', false, 'Verification failed: ' + (err.message||err));
-      }
-    });
+      const data = enc.encode($("msg").value);
+      const sig = await crypto.subtle.sign(signParams, privKey, data);
+      const b64 = ab2b64(sig);
+      $("sig").value = b64;
+      setStatus("Signed message. Signature (Base64) updated.");
+    } catch (e){
+      appendStatus("Sign error: " + e);
+    }
+  }
 
-    el('msgSign').value = 'the key to the door is hidden in plain sight';
-    el('msgVerify').value = 'the key to the door is hidden in plain sight';
-  })();
-  </script>
+  async function verify(){
+    try {
+      await importKeysFromTextareas();
+      if (!pubKey) {
+        setStatus("No public key. Generate or paste an SPKI public key.");
+        return;
+      }
+      const data = enc.encode($("msg").value);
+      const sigText = $("sig").value.trim();
+      if (!sigText) { setStatus("Paste a Base64 signature to verify."); return; }
+      const sig = b642ab(sigText);
+      const ok = await crypto.subtle.verify(signParams, pubKey, sig, data);
+      setStatus(ok ? "✅ Signature is VALID for this message & public key." : "❌ Signature is NOT valid.");
+    } catch (e){
+      appendStatus("Verify error: " + e);
+    }
+  }
+
+  // --- Wire up UI ---
+  $("gen").addEventListener("click", generate);
+  $("sign").addEventListener("click", sign);
+  $("verify").addEventListener("click", verify);
+  $("clearAll").addEventListener("click", () => {
+    $("msg").value = "";
+    $("pubkey").value = "";
+    $("privkey").value = "";
+    $("sig").value = "";
+    setStatus("Cleared.");
+  });
+  $("copyPub").addEventListener("click", () => copy($("pubkey")));
+  $("copyPriv").addEventListener("click", () => copy($("privkey")));
+  $("copySig").addEventListener("click", () => copy($("sig")));
+  $("clearPub").addEventListener("click", () => $("pubkey").value = "");
+  $("clearPriv").addEventListener("click", () => $("privkey").value = "");
+  $("clearSig").addEventListener("click", () => $("sig").value = "");
+
+  // Feature detect
+  if (!window.crypto || !crypto.subtle) {
+    setStatus("Your browser does not support Web Crypto (SubtleCrypto). Try a modern browser over HTTPS/localhost.");
+  }
+})();
+</script>
 </body>
 </html>
