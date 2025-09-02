@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Raw AES-256</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body{background:#e9e9e9;margin:0;font-family:"Courier New",monospace;color:#111}
+.wrap{width:760px;max-width:92vw;margin:40px auto;background:#fff;border:1px solid #888;box-shadow:0 0 0 4px #d0d0d0 inset}
+.bar{background:#333;color:#f2f2f2;padding:10px 14px;letter-spacing:1px;text-transform:uppercase;font-size:14px;border-bottom:1px solid #000}
+.inner{padding:16px 14px 20px}
+label{display:block;margin:12px 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#333}
+textarea,input{width:100%;box-sizing:border-box;border:1px solid #444;background:#f9f9f9;padding:10px;font-family:inherit;font-size:14px}
+textarea{min-height:200px;resize:vertical}
+.keyrow{display:flex;gap:8px;align-items:center}
+.keyrow input{flex:1}
+.keyhint{font-size:11px;color:#666;margin-top:6px}
+.btns{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+button{border:1px solid #222;background:#d9d9d9;padding:10px 16px;cursor:pointer;text-transform:uppercase;letter-spacing:.5px;font-family:inherit}
+button:active{transform:translateY(1px)}
+.status{min-height:18px;margin-top:10px;font-size:12px;color:#900}
+.footer{padding:10px 14px;border-top:1px solid #bbb;background:#f4f4f4;color:#444;font-size:11px;text-align:right}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="bar">AES-256 Encrypt / Decrypt</div>
+<div class="inner">
+<label for="io">Text / Encrypted Text</label>
+<textarea id="io" spellcheck="false"></textarea>
+<label for="key">Key (Base64, 32 bytes)</label>
+<div class="keyrow">
+<input id="key" placeholder="Base64 key" autocomplete="off">
+<button id="gen">Generate Key</button>
+</div>
+<div class="keyhint">Keep your key safe. Generated keys are 256-bit and Base64-encoded.</div>
+<div class="btns">
+<button id="enc">Encrypt</button>
+<button id="dec">Decrypt</button>
+</div>
+<div class="status" id="status"></div>
+</div>
+<div class="footer">Raw page • circa 2008 vibes</div>
+</div>
+<script>
+const io=document.getElementById("io");
+const keyIn=document.getElementById("key");
+const gen=document.getElementById("gen");
+const enc=document.getElementById("enc");
+const dec=document.getElementById("dec");
+const statusEl=document.getElementById("status");
+function b64clean(s){return s.replace(/[\r\n\s]/g,"")}
+function bytesToB64(u8){let s="",ch=0x8000;for(let i=0;i<u8.length;i+=ch){s+=String.fromCharCode.apply(null,u8.subarray(i,i+ch))}return btoa(s)}
+function b64ToBytes(b){b=b64clean(b);const s=atob(b);const u=new Uint8Array(s.length);for(let i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u}
+function concat(a,b){const o=new Uint8Array(a.length+b.length);o.set(a,0);o.set(b,a.length);return o}
+function parseKey(s){const k=b64ToBytes(s);if(k.length!==32)throw new Error("Key must be 32 bytes (Base64)");return k}
+async function importKey(raw){return crypto.subtle.importKey("raw",raw,{name:"AES-GCM"},false,["encrypt","decrypt"])}
+function showError(t){statusEl.textContent=t}
+function clearStatus(){statusEl.textContent=""}
+gen.onclick=()=>{const k=new Uint8Array(32);crypto.getRandomValues(k);keyIn.value=bytesToB64(k);clearStatus()}
+enc.onclick=async()=>{clearStatus();try{const k=await importKey(parseKey(keyIn.value.trim()));const iv=new Uint8Array(12);crypto.getRandomValues(iv);const pt=new TextEncoder().encode(io.value);const ct=await crypto.subtle.encrypt({name:"AES-GCM",iv},k,pt);const out=concat(iv,new Uint8Array(ct));io.value=bytesToB64(out)}catch(e){showError("Encrypt failed: "+(e&&e.message?e.message:"error"))}}
+dec.onclick=async()=>{clearStatus();try{const k=await importKey(parseKey(keyIn.value.trim()));const data=b64ToBytes(io.value.trim());if(data.length<13)throw new Error("Invalid encrypted data");const iv=data.subarray(0,12);const ct=data.subarray(12);const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv},k,ct);io.value=new TextDecoder().decode(pt)}catch(e){showError("Decrypt failed (wrong key or corrupted data)")}}
+</script>
+</body>
+</html>
