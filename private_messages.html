@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E2E Group Chat (No Login, No Keys)</title>
+<style>
+*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;margin:0;background:#0b0f14;color:#e6ebf0}
+header{padding:16px;border-bottom:1px solid #1e2630;background:#0f1520;position:sticky;top:0;z-index:2}
+h1{font-size:18px;margin:0}main{max-width:880px;margin:0 auto;padding:16px}
+#join,#chat{background:#0f1520;border:1px solid #1e2630;border-radius:12px;padding:16px}
+label{display:block;font-size:13px;margin:10px 0 6px;color:#a5b4c3}
+input,button,textarea{font:inherit}
+input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #223042;background:#0b121b;color:#e6ebf0;outline:none}
+input:focus,textarea:focus{border-color:#3a86ff}
+button{padding:10px 14px;border-radius:10px;border:1px solid #28435e;background:#18324a;color:#e6ebf0;cursor:pointer}
+button:hover{filter:brightness(1.1)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row3{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px}
+.muted{color:#8aa0b6;font-size:12px}
+.chip{display:inline-flex;gap:6px;align-items:center;background:#0b121b;border:1px solid #223042;border-radius:999px;padding:6px 10px;font-size:12px}
+#roomBadge{margin-top:8px}
+.messages{height:52vh;min-height:320px;overflow:auto;border:1px solid #1e2630;border-radius:10px;padding:10px;background:#0b121b}
+ul{list-style:none;margin:0;padding:0}
+li{padding:8px 10px;border-bottom:1px dashed #1e2630;word-wrap:break-word}
+li .meta{font-size:12px;color:#8aa0b6;margin-bottom:4px;display:flex;gap:8px;flex-wrap:wrap}
+li .text{font-size:15px;white-space:pre-wrap}
+form.send{display:flex;gap:10px;margin-top:10px}
+form.send textarea{height:56px;resize:vertical}
+#status{margin-top:8px;font-size:12px;color:#8aa0b6}
+#warn{color:#ffcc70;font-size:12px;margin-top:10px}
+#join{margin-bottom:16px}
+.small{font-size:12px}
+</style>
+</head>
+<body>
+<header><h1>E2E Group Chat</h1></header>
+<main>
+<section id="join">
+  <div class="row3">
+    <div>
+      <label>Group name</label>
+      <input id="room" placeholder="auto-generated if blank">
+    </div>
+    <div>
+      <label>Passphrase</label>
+      <input id="roomkey" placeholder="auto-generated if blank">
+    </div>
+    <div>
+      <label>Display name</label>
+      <input id="nick" placeholder="auto-generated if blank">
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:12px">
+    <div>
+      <label>Invite link (paste to join)</label>
+      <input id="invite" placeholder="Paste invite link here (optional)">
+    </div>
+    <div style="display:flex;align-items:end;gap:10px">
+      <button id="createBtn" title="Generate room + key + name, copy link">Start new room</button>
+      <button id="joinBtn">Join</button>
+      <span id="roomBadge" class="chip" style="display:none"></span>
+    </div>
+  </div>
+  <div id="warn" class="small"></div>
+  <p class="small muted" style="margin-top:10px">
+    Tip: “Start new room” will copy a share link like <code>?r=ROOM#k=KEY</code>. Send that to friends.
+  </p>
+</section>
+
+<section id="chat" style="display:none">
+  <div class="row" style="align-items:center;margin-bottom:8px">
+    <div class="chip"><span id="meLabel"></span></div>
+    <div style="text-align:right"><span id="status" class="muted"></span></div>
+  </div>
+  <div class="messages" id="messages"></div>
+  <form class="send" id="sendForm">
+    <textarea id="msg" placeholder="Type a message..."></textarea>
+    <button id="sendBtn" type="submit">Send</button>
+  </form>
+</section>
+</main>
+
+<script type="module">
+/* ======= P2P core (no accounts/keys/DB) ======= */
+import {joinRoom, selfId} from 'https://esm.run/trystero@0.21.8/torrent';
+
+const ui = id => document.getElementById(id);
+const state = {
+  room: '', key: '', nick: '', roomObj: null,
+  joined: false, sending: false
+};
+
+const randId = (len=8) => {
+  const bytes = new Uint8Array(len);
+  crypto.getRandomValues(bytes);
+  return Array.from(bytes).map(b => (b & 31).toString(36)).join('');
+};
+const niceSlug = () => {
+  const a = ['nebula','sapphire','ember','polar','lunar','crimson','violet','amber','nova','coral','forest','arctic'];
+  const b = ['otter','lynx','falcon','mako','gecko','puma','heron','ibis','bison','yak','orca','lemur'];
+  return `${a[(Math.random()*a.length)|0]}-${b[(Math.random()*b.length)|0]}-${randId(4)}`;
+};
+
+function info(t){ ui('warn').textContent = t || ''; }
+function setStatus(t){ ui('status').textContent = t || ''; }
+function msgRow(m){
+  const meta=document.createElement('div'); meta.className='meta';
+  meta.textContent = `${m.u} · ${new Date(m.t).toLocaleTimeString()} · ${m.id.slice(0,6)}`;
+  const text=document.createElement('div'); text.className='text'; text.textContent = m.text;
+  const li=document.createElement('li'); li.appendChild(meta); li.appendChild(text); return li;
+}
+function renderMessages(list){
+  const ul=document.createElement('ul');
+  list.sort((a,b)=>a.t-b.t).forEach(m=>ul.appendChild(msgRow(m)));
+  const box=ui('messages'); box.innerHTML=''; box.appendChild(ul); box.scrollTop=box.scrollHeight;
+}
+
+/* Optional message-level encryption using passphrase (on top of DTLS) */
+async function kdf(pass){ // PBKDF2->AES-GCM 256
+  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), {name:'PBKDF2'}, false, ['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2', salt:new TextEncoder().encode('e2e-chat-salt'), iterations:200000, hash:'SHA-256'},
+                                 key, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
+}
+const b64u = ab => btoa(String.fromCharCode(...new Uint8Array(ab))).replaceAll('+','-').replaceAll('/','_').replaceAll('=','');
+const b64uBytes = s => Uint8Array.from(atob(s.replaceAll('-','+').replaceAll('_','/')), c=>c.charCodeAt(0));
+
+async function maybeEncrypt(obj){
+  if(!state.key) return {plain:obj};
+  const aes = await kdf(state.key); const iv = crypto.getRandomValues(new Uint8Array(12));
+  const pt = new TextEncoder().encode(JSON.stringify(obj));
+  const ct = await crypto.subtle.encrypt({name:'AES-GCM', iv}, aes, pt);
+  return {v:1,i:b64u(iv),c:b64u(ct)};
+}
+async function maybeDecrypt(env){
+  if(env.plain) return env.plain;
+  if(!state.key) return null;
+  try{
+    const aes = await kdf(state.key);
+    const iv = b64uBytes(env.i);
+    const ct = b64uBytes(env.c);
+    const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv}, aes, ct);
+    return JSON.parse(new TextDecoder().decode(pt));
+  }catch{ return null; }
+}
+
+/* Share link helpers */
+function buildShareLink(room, key, nick){
+  const u = new URL(location.href);
+  u.searchParams.set('r', room);
+  const hash = new URLSearchParams();
+  if(key) hash.set('k', key);
+  if(nick) hash.set('n', nick);
+  u.hash = hash.toString();
+  return u.toString();
+}
+function parseInviteLink(s){
+  try{
+    const u = new URL(s);
+    const r = u.searchParams.get('r') || '';
+    const h = new URLSearchParams(u.hash.replace(/^#/, ''));
+    const k = h.get('k') || u.searchParams.get('k') || '';
+    const n = h.get('n') || '';
+    return {room:r, key:k, nick:n};
+  }catch{return {room:'', key:'', nick:''};}
+}
+
+/* Join/create room */
+async function doJoin(opts={}){
+  ui('join').style.display='none';
+  ui('chat').style.display='block';
+  state.room = (opts.room || ui('room').value || niceSlug()).trim();
+  state.key  = (opts.key  || ui('roomkey').value || randId(12)).trim();
+  state.nick = (opts.nick || ui('nick').value || ('anon-'+randId(6))).trim();
+
+  // Remember nickname for convenience
+  try{ localStorage.setItem('chat_nick', state.nick); }catch{}
+
+  ui('meLabel').textContent = `You: ${state.nick} · ${selfId.slice(0,6)}`;
+  const badge = ui('roomBadge'); badge.style.display='inline-flex'; badge.textContent = 'Room: '+state.room;
+
+  // Join P2P “room”; Trystero handles matchmaking via decentralized relays (no account).
+  const config = {
+    appId: 'e2e-chat-no-login',         // any unique string for your app
+    // password here encrypts signaling metadata; messages are still E2E via WebRTC DTLS
+    password: state.key                 // use the passphrase to gate joining
+  };
+  const room = joinRoom(config, state.room);
+  state.roomObj = room;
+
+  const [sendMsg, getMsg] = room.makeAction('msg');
+
+  const messages = []; // in-memory log per session
+  const addMessage = (m)=>{ messages.push(m); renderMessages(messages); };
+
+  // When someone joins, we could announce presence (optional)
+  room.onPeerJoin(pid => setStatus(`Peer joined: ${pid.slice(0,6)} · ${new Date().toLocaleTimeString()}`));
+  room.onPeerLeave(pid => setStatus(`Peer left: ${pid.slice(0,6)} · ${new Date().toLocaleTimeString()}`));
+
+  // Receive messages
+  getMsg(async (payload, peerId) => {
+    const data = await maybeDecrypt(payload);
+    if(data){
+      addMessage(data);
+      setStatus(`Last message from ${peerId.slice(0,6)} at ${new Date().toLocaleTimeString()}`);
+    }
+  });
+
+  // Send messages
+  ui('sendForm').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const text = ui('msg').value;
+    if(!text.trim() || state.sending) return;
+    state.sending = true;
+    try{
+      const msg = {t: Date.now(), u: state.nick, id: selfId, text: text.trim()};
+      const env = await maybeEncrypt(msg);
+      await sendMsg(env); // broadcast to room
+      ui('msg').value='';
+      addMessage(msg);
+    }finally{
+      state.sending = false;
+    }
+  });
+
+  setStatus('Online · '+new Date().toLocaleTimeString());
+  state.joined = true;
+}
+
+/* UI wiring */
+ui('createBtn').onclick = async ()=>{
+  // generate everything, join, and copy link
+  const room = niceSlug();
+  const key  = randId(14);
+  const nick = ('anon-'+randId(6));
+  ui('room').value = room;
+  ui('roomkey').value = key;
+  ui('nick').value = nick;
+  const link = buildShareLink(room, key, nick);
+  try{ await navigator.clipboard.writeText(link); info('Invite link copied to clipboard.'); }
+  catch{ info('Invite link: '+link); }
+  await doJoin({room, key, nick});
+};
+
+ui('joinBtn').onclick = async ()=>{
+  const pasted = ui('invite').value.trim();
+  if(pasted){
+    const {room, key, nick} = parseInviteLink(pasted);
+    if(room){ ui('room').value = room; }
+    if(key){ ui('roomkey').value = key; }
+    if(nick){ ui('nick').value = nick; }
+  }
+  await doJoin({});
+};
+
+// Auto-fill nice defaults
+try{
+  ui('nick').value = localStorage.getItem('chat_nick') || '';
+}catch{}
+if(!ui('room').value)   ui('room').value = niceSlug();
+if(!ui('roomkey').value)ui('roomkey').value = randId(12);
+
+// Auto-join if the page was opened via invite link (?r=...#k=...)
+(() => {
+  const params = new URLSearchParams(location.search);
+  const r = params.get('r') || '';
+  const h = new URLSearchParams(location.hash.replace(/^#/, ''));
+  const k = h.get('k') || '';
+  const n = h.get('n') || '';
+  if(r){ ui('room').value = r; }
+  if(k){ ui('roomkey').value = k; }
+  if(n){ ui('nick').value = n; }
+  if(r){ doJoin({room:r, key:k, nick:n}); }
+})();
+</script>
+</body>
+</html>
