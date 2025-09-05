@@ -3,276 +3,249 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>E2E Group Chat (No Login, No Keys)</title>
+<title>GithubTalk</title>
 <style>
-*{box-sizing:border-box}body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;margin:0;background:#0b0f14;color:#e6ebf0}
-header{padding:16px;border-bottom:1px solid #1e2630;background:#0f1520;position:sticky;top:0;z-index:2}
-h1{font-size:18px;margin:0}main{max-width:880px;margin:0 auto;padding:16px}
-#join,#chat{background:#0f1520;border:1px solid #1e2630;border-radius:12px;padding:16px}
-label{display:block;font-size:13px;margin:10px 0 6px;color:#a5b4c3}
-input,button,textarea{font:inherit}
-input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #223042;background:#0b121b;color:#e6ebf0;outline:none}
-input:focus,textarea:focus{border-color:#3a86ff}
-button{padding:10px 14px;border-radius:10px;border:1px solid #28435e;background:#18324a;color:#e6ebf0;cursor:pointer}
-button:hover{filter:brightness(1.1)}
+*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#e9edf3;color:#222}
+a{color:#0b63ce;text-decoration:none}
+header{position:sticky;top:0;z-index:3;background:linear-gradient(#2b74c7,#1a5bb0);border-bottom:1px solid #0e3f84;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.header-inner{max-width:980px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.logo{font-weight:700;color:#fff;text-shadow:0 1px 0 rgba(0,0,0,.2);font-size:20px}
+.badge{margin-left:auto;background:#fff;border:1px solid #c6d4e6;border-radius:20px;padding:4px 10px;font-size:12px;color:#2d5ea8;box-shadow:inset 0 1px 0 #fff,0 1px 0 rgba(0,0,0,.05)}
+main{max-width:980px;margin:16px auto;padding:0 16px}
+.panel{background:#f9fbff;border:1px solid #c6d4e6;border-radius:10px;box-shadow:0 3px 12px rgba(0,0,0,.08);padding:14px}
+.panel h2{margin:0 0 10px 0;font-size:16px;color:#1b4f98;text-shadow:0 1px 0 #fff}
+label{display:block;font-size:13px;margin:10px 0 6px;color:#1b4f98}
+input,button,textarea,select{font:inherit}
+input,textarea,select{width:100%;padding:10px;border-radius:8px;border:1px solid #b6c7dd;background:#fff;outline:none;box-shadow:inset 0 1px 0 #fff}
+input:focus,textarea:focus,select:focus{border-color:#2b74c7;box-shadow:0 0 0 3px rgba(43,116,199,.15),inset 0 1px 0 #fff}
+button{padding:10px 14px;border-radius:8px;border:1px solid #1a5bb0;background:linear-gradient(#2b74c7,#1a5bb0);color:#fff;cursor:pointer;text-shadow:0 1px 0 rgba(0,0,0,.3);box-shadow:0 2px 0 #0e3f84}
+button:hover{filter:brightness(1.05)}
+button:active{transform:translateY(1px);box-shadow:0 1px 0 #0e3f84}
+.btn-sub{border:1px solid #b6c7dd;background:linear-gradient(#ffffff,#eef4fb);color:#1b4f98;text-shadow:none;box-shadow:0 2px 0 #c6d4e6}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.row3{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px}
-.muted{color:#8aa0b6;font-size:12px}
-.chip{display:inline-flex;gap:6px;align-items:center;background:#0b121b;border:1px solid #223042;border-radius:999px;padding:6px 10px;font-size:12px}
-#roomBadge{margin-top:8px}
-.messages{height:52vh;min-height:320px;overflow:auto;border:1px solid #1e2630;border-radius:10px;padding:10px;background:#0b121b}
-ul{list-style:none;margin:0;padding:0}
-li{padding:8px 10px;border-bottom:1px dashed #1e2630;word-wrap:break-word}
-li .meta{font-size:12px;color:#8aa0b6;margin-bottom:4px;display:flex;gap:8px;flex-wrap:wrap}
-li .text{font-size:15px;white-space:pre-wrap}
-form.send{display:flex;gap:10px;margin-top:10px}
-form.send textarea{height:56px;resize:vertical}
-#status{margin-top:8px;font-size:12px;color:#8aa0b6}
-#warn{color:#ffcc70;font-size:12px;margin-top:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.muted{color:#4a6aa8;font-size:12px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;gap:6px;align-items:center;background:#fff;border:1px solid #b6c7dd;border-radius:20px;padding:6px 10px;font-size:12px}
+#roomBadge{display:none}
 #join{margin-bottom:16px}
-.small{font-size:12px}
+#status{font-size:12px;color:#4a6aa8}
+.messages{height:54vh;min-height:320px;overflow:auto;border:1px solid #c6d4e6;border-radius:10px;padding:10px;background:#fff}
+ul{list-style:none;margin:0;padding:0}
+li{padding:10px;border-bottom:1px dashed #c6d4e6;background:linear-gradient(#ffffff,#f7fbff)}
+li .meta{font-size:12px;color:#4a6aa8;margin-bottom:6px;display:flex;gap:8px;flex-wrap:wrap}
+li .text{font-size:15px;white-space:pre-wrap;color:#1a2a44}
+li .bubble{display:inline-block;background:#eef4fb;border:1px solid #c6d4e6;border-radius:8px;padding:8px}
+li img.gif{max-width:260px;border-radius:6px;border:1px solid #c6d4e6;display:block}
+form.send{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;margin-top:10px}
+form.send textarea{height:60px;resize:vertical}
+.toolbar{display:flex;gap:6px}
+.note{margin-top:8px;font-size:12px;color:#1b4f98}
+hr.sep{border:none;border-top:1px solid #c6d4e6;margin:12px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;z-index:10}
+.modal .card{width:min(720px,92vw);background:#f9fbff;border:1px solid #c6d4e6;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.25);padding:14px}
+.modal .card h3{margin:0 0 10px 0;font-size:16px;color:#1b4f98}
+.emoji-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:6px;max-height:240px;overflow:auto;background:#fff;border:1px solid #c6d4e6;border-radius:8px;padding:8px}
+.emoji-grid button{font-size:18px;border:1px solid #c6d4e6;background:#fff;border-radius:6px;padding:6px}
+.gif-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-height:360px;overflow:auto;margin-top:8px}
+.gif-grid img{width:100%;border-radius:8px;border:1px solid #c6d4e6}
+.sidebar{margin-top:12px}
+.recent{display:flex;gap:8px;flex-wrap:wrap}
+.recent .link{padding:6px 10px;border-radius:18px;background:#fff;border:1px solid #b6c7dd;color:#1b4f98}
+.footer{margin:18px 0 10px 0;text-align:center;color:#4a6aa8;font-size:12px}
+.hidden{display:none}
 </style>
 </head>
 <body>
-<header><h1>E2E Group Chat</h1></header>
+<header>
+  <div class="header-inner">
+    <div class="logo">GithubTalk</div>
+    <div id="encBadge" class="badge">End-to-end encrypted</div>
+    <div id="roomBadge" class="badge"></div>
+  </div>
+</header>
 <main>
-<section id="join">
-  <div class="row3">
-    <div>
-      <label>Group name</label>
-      <input id="room" placeholder="auto-generated if blank">
+  <section id="join" class="panel">
+    <h2>Join or Start a Group</h2>
+    <div class="row3">
+      <div>
+        <label>Group name</label>
+        <input id="room" placeholder="auto-generated if blank">
+      </div>
+      <div>
+        <label>Passphrase</label>
+        <input id="roomkey" placeholder="required to join">
+      </div>
+      <div>
+        <label>Username</label>
+        <input id="nick" placeholder="choose a name">
+      </div>
     </div>
-    <div>
-      <label>Passphrase</label>
-      <input id="roomkey" placeholder="auto-generated if blank">
+    <div class="row" style="margin-top:12px">
+      <div>
+        <label>Invite link</label>
+        <input id="invite" placeholder="Paste link to join">
+      </div>
+      <div style="display:flex;align-items:end;gap:8px">
+        <button id="createBtn">Start new group</button>
+        <button id="joinBtn" class="btn-sub">Join</button>
+      </div>
     </div>
-    <div>
-      <label>Display name</label>
-      <input id="nick" placeholder="auto-generated if blank">
+    <div class="sidebar">
+      <div class="muted">Recent groups</div>
+      <div id="recent" class="recent"></div>
+    </div>
+    <hr class="sep">
+    <div class="chips">
+      <span class="chip">Encrypted history, expires in 3 days</span>
+      <span class="chip">No accounts</span>
+      <span class="chip">P2P WebRTC</span>
+    </div>
+    <div id="warn" class="note"></div>
+  </section>
+
+  <section id="chat" class="panel hidden">
+    <div style="display:flex;align-items:center;gap:8px;justify-content:space-between;margin-bottom:8px">
+      <div class="chips"><span id="meLabel" class="chip"></span></div>
+      <div id="status"></div>
+    </div>
+    <div id="messages" class="messages"></div>
+    <form id="sendForm" class="send">
+      <textarea id="msg" placeholder="Type a message…"></textarea>
+      <div class="toolbar">
+        <button type="button" id="emojiBtn">😊</button>
+        <button type="button" id="gifBtn">GIF</button>
+      </div>
+      <button id="sendBtn" type="submit">Send</button>
+      <button type="button" id="shareBtn" class="btn-sub">Invite</button>
+    </form>
+    <div class="note">Everything you send is encrypted before it leaves your device. History is stored locally as ciphertext and shared peer-to-peer on join.</div>
+  </section>
+
+  <div id="emojiModal" class="modal">
+    <div class="card">
+      <h3>Emoji</h3>
+      <div id="emojiGrid" class="emoji-grid"></div>
+      <div style="display:flex;justify-content:flex-end;margin-top:10px"><button type="button" id="emojiClose" class="btn-sub">Close</button></div>
     </div>
   </div>
 
-  <div class="row" style="margin-top:12px">
-    <div>
-      <label>Invite link (paste to join)</label>
-      <input id="invite" placeholder="Paste invite link here (optional)">
-    </div>
-    <div style="display:flex;align-items:end;gap:10px">
-      <button id="createBtn" title="Generate room + key + name, copy link">Start new room</button>
-      <button id="joinBtn">Join</button>
-      <span id="roomBadge" class="chip" style="display:none"></span>
+  <div id="gifModal" class="modal">
+    <div class="card">
+      <h3>GIFs</h3>
+      <div class="row" style="align-items:end">
+        <div><label>Search</label><input id="gifQuery" placeholder="cats, wow, meme…"></div>
+        <div style="display:flex;gap:8px"><button id="gifSearch" type="button">Search</button><button id="gifPaste" type="button" class="btn-sub">Paste URL</button></div>
+      </div>
+      <div id="gifGrid" class="gif-grid"></div>
+      <div style="display:flex;justify-content:flex-end;margin-top:10px"><button type="button" id="gifClose" class="btn-sub">Close</button></div>
     </div>
   </div>
-  <div id="warn" class="small"></div>
-  <p class="small muted" style="margin-top:10px">
-    Tip: “Start new room” will copy a share link like <code>?r=ROOM#k=KEY</code>. Send that to friends.
-  </p>
-</section>
 
-<section id="chat" style="display:none">
-  <div class="row" style="align-items:center;margin-bottom:8px">
-    <div class="chip"><span id="meLabel"></span></div>
-    <div style="text-align:right"><span id="status" class="muted"></span></div>
-  </div>
-  <div class="messages" id="messages"></div>
-  <form class="send" id="sendForm">
-    <textarea id="msg" placeholder="Type a message..."></textarea>
-    <button id="sendBtn" type="submit">Send</button>
-  </form>
-</section>
+  <div class="footer">© GithubTalk</div>
 </main>
 
 <script type="module">
-/* ======= P2P core (no accounts/keys/DB) ======= */
-import {joinRoom, selfId} from 'https://esm.run/trystero@0.21.8/torrent';
-
-const ui = id => document.getElementById(id);
-const state = {
-  room: '', key: '', nick: '', roomObj: null,
-  joined: false, sending: false
-};
-
-const randId = (len=8) => {
-  const bytes = new Uint8Array(len);
-  crypto.getRandomValues(bytes);
-  return Array.from(bytes).map(b => (b & 31).toString(36)).join('');
-};
-const niceSlug = () => {
-  const a = ['nebula','sapphire','ember','polar','lunar','crimson','violet','amber','nova','coral','forest','arctic'];
-  const b = ['otter','lynx','falcon','mako','gecko','puma','heron','ibis','bison','yak','orca','lemur'];
-  return `${a[(Math.random()*a.length)|0]}-${b[(Math.random()*b.length)|0]}-${randId(4)}`;
-};
-
-function info(t){ ui('warn').textContent = t || ''; }
-function setStatus(t){ ui('status').textContent = t || ''; }
-function msgRow(m){
-  const meta=document.createElement('div'); meta.className='meta';
-  meta.textContent = `${m.u} · ${new Date(m.t).toLocaleTimeString()} · ${m.id.slice(0,6)}`;
-  const text=document.createElement('div'); text.className='text'; text.textContent = m.text;
-  const li=document.createElement('li'); li.appendChild(meta); li.appendChild(text); return li;
-}
-function renderMessages(list){
-  const ul=document.createElement('ul');
-  list.sort((a,b)=>a.t-b.t).forEach(m=>ul.appendChild(msgRow(m)));
-  const box=ui('messages'); box.innerHTML=''; box.appendChild(ul); box.scrollTop=box.scrollHeight;
-}
-
-/* Optional message-level encryption using passphrase (on top of DTLS) */
-async function kdf(pass){ // PBKDF2->AES-GCM 256
-  const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), {name:'PBKDF2'}, false, ['deriveKey']);
-  return crypto.subtle.deriveKey({name:'PBKDF2', salt:new TextEncoder().encode('e2e-chat-salt'), iterations:200000, hash:'SHA-256'},
-                                 key, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
-}
-const b64u = ab => btoa(String.fromCharCode(...new Uint8Array(ab))).replaceAll('+','-').replaceAll('/','_').replaceAll('=','');
-const b64uBytes = s => Uint8Array.from(atob(s.replaceAll('-','+').replaceAll('_','/')), c=>c.charCodeAt(0));
-
-async function maybeEncrypt(obj){
-  if(!state.key) return {plain:obj};
-  const aes = await kdf(state.key); const iv = crypto.getRandomValues(new Uint8Array(12));
-  const pt = new TextEncoder().encode(JSON.stringify(obj));
-  const ct = await crypto.subtle.encrypt({name:'AES-GCM', iv}, aes, pt);
-  return {v:1,i:b64u(iv),c:b64u(ct)};
-}
-async function maybeDecrypt(env){
-  if(env.plain) return env.plain;
-  if(!state.key) return null;
-  try{
-    const aes = await kdf(state.key);
-    const iv = b64uBytes(env.i);
-    const ct = b64uBytes(env.c);
-    const pt = await crypto.subtle.decrypt({name:'AES-GCM', iv}, aes, ct);
-    return JSON.parse(new TextDecoder().decode(pt));
-  }catch{ return null; }
-}
-
-/* Share link helpers */
-function buildShareLink(room, key, nick){
-  const u = new URL(location.href);
-  u.searchParams.set('r', room);
-  const hash = new URLSearchParams();
-  if(key) hash.set('k', key);
-  if(nick) hash.set('n', nick);
-  u.hash = hash.toString();
-  return u.toString();
-}
-function parseInviteLink(s){
-  try{
-    const u = new URL(s);
-    const r = u.searchParams.get('r') || '';
-    const h = new URLSearchParams(u.hash.replace(/^#/, ''));
-    const k = h.get('k') || u.searchParams.get('k') || '';
-    const n = h.get('n') || '';
-    return {room:r, key:k, nick:n};
-  }catch{return {room:'', key:'', nick:''};}
-}
-
-/* Join/create room */
-async function doJoin(opts={}){
-  ui('join').style.display='none';
-  ui('chat').style.display='block';
-  state.room = (opts.room || ui('room').value || niceSlug()).trim();
-  state.key  = (opts.key  || ui('roomkey').value || randId(12)).trim();
-  state.nick = (opts.nick || ui('nick').value || ('anon-'+randId(6))).trim();
-
-  // Remember nickname for convenience
-  try{ localStorage.setItem('chat_nick', state.nick); }catch{}
-
-  ui('meLabel').textContent = `You: ${state.nick} · ${selfId.slice(0,6)}`;
-  const badge = ui('roomBadge'); badge.style.display='inline-flex'; badge.textContent = 'Room: '+state.room;
-
-  // Join P2P “room”; Trystero handles matchmaking via decentralized relays (no account).
-  const config = {
-    appId: 'e2e-chat-no-login',         // any unique string for your app
-    // password here encrypts signaling metadata; messages are still E2E via WebRTC DTLS
-    password: state.key                 // use the passphrase to gate joining
-  };
-  const room = joinRoom(config, state.room);
-  state.roomObj = room;
-
-  const [sendMsg, getMsg] = room.makeAction('msg');
-
-  const messages = []; // in-memory log per session
-  const addMessage = (m)=>{ messages.push(m); renderMessages(messages); };
-
-  // When someone joins, we could announce presence (optional)
-  room.onPeerJoin(pid => setStatus(`Peer joined: ${pid.slice(0,6)} · ${new Date().toLocaleTimeString()}`));
-  room.onPeerLeave(pid => setStatus(`Peer left: ${pid.slice(0,6)} · ${new Date().toLocaleTimeString()}`));
-
-  // Receive messages
-  getMsg(async (payload, peerId) => {
-    const data = await maybeDecrypt(payload);
-    if(data){
-      addMessage(data);
-      setStatus(`Last message from ${peerId.slice(0,6)} at ${new Date().toLocaleTimeString()}`);
-    }
-  });
-
-  // Send messages
-  ui('sendForm').addEventListener('submit', async (e)=>{
+import {joinRoom,selfId} from 'https://esm.run/trystero@0.21.8/torrent';
+const ui=id=>document.getElementById(id);
+const EMOJI="😀 😃 😄 😁 😆 😅 😂 🤣 😊 🙂 😉 😍 😘 😜 🤪 🤔 😭 😤 😴 😎 😇 🤗 👍 👎 🙌 👏 🙏 💯 🔥 ✨ 🎉 ❤️ 🧡 💛 💚 💙 💜 🤍 🤎 🖤 ⭐️ 🌟 ☀️ 🌙 ☁️ ⚡️ ❄️ ☕️ 🍕 🍔 🍟 🍣 🍩 🍪 🎮 🎵".split(" ");
+const state={room:"",key:"",nick:"",roomObj:null,joined:false,sending:false,aes:null,signalPass:"",messages:[],seen:new Set()};
+const TTL=3*24*60*60*1000;
+const MAX_STORE=500;
+const randId=(len=8)=>{const b=new Uint8Array(len);crypto.getRandomValues(b);return Array.from(b).map(x=>(x&31).toString(36)).join('')};
+const b64u=ab=>btoa(String.fromCharCode(...new Uint8Array(ab))).replaceAll('+','-').replaceAll('/','_').replaceAll('=','');
+const b64uBytes=s=>Uint8Array.from(atob(s.replaceAll('-','+').replaceAll('_','/')),c=>c.charCodeAt(0));
+const textEnc=new TextEncoder();const textDec=new TextDecoder();
+const setCookie=(n,v,d)=>{const t=new Date(Date.now()+d*864e5).toUTCString();document.cookie=`${n}=${encodeURIComponent(v)}; Expires=${t}; SameSite=Lax;`}
+const getCookie=n=>{const m=document.cookie.match(new RegExp('(?:^|; )'+n.replace(/([.$?*|{}()[\]\\/+^])/g,'\\$1')+'=([^;]*)'));return m?decodeURIComponent(m[1]):""}
+const saveRecent=r=>{let arr=[];try{arr=JSON.parse(getCookie('gt_rooms')||'[]')}catch{};arr=arr.filter(x=>x.r!==r);arr.unshift({r,ts:Date.now()});arr=arr.slice(0,8);setCookie('gt_rooms',JSON.stringify(arr),30);renderRecent()}
+const renderRecent=()=>{let arr=[];try{arr=JSON.parse(getCookie('gt_rooms')||'[]')}catch{};const c=ui('recent');c.innerHTML='';arr.forEach(x=>{const a=document.createElement('a');a.href='#';a.className='link';a.textContent=x.r;a.onclick=e=>{e.preventDefault();ui('room').value=x.r;joinFlow()};c.appendChild(a)})}
+const niceSlug=()=>{const a=['nebula','sapphire','ember','polar','lunar','crimson','violet','amber','nova','coral','forest','arctic'];const b=['otter','lynx','falcon','mako','gecko','puma','heron','ibis','bison','yak','orca','lemur'];return `${a[(Math.random()*a.length)|0]}-${b[(Math.random()*b.length)|0]}-${randId(4)}`}
+const info=t=>ui('warn').textContent=t||'';
+const setStatus=t=>ui('status').textContent=t||'';
+const sha256=async s=>{const h=await crypto.subtle.digest('SHA-256',textEnc.encode(s));return b64u(h)}
+const deriveAes=async pass=>{const key=await crypto.subtle.importKey('raw',textEnc.encode(pass),{name:'PBKDF2'},false,['deriveKey']);return crypto.subtle.deriveKey({name:'PBKDF2',salt:textEnc.encode('githubtalk-e2e'),iterations:200000,hash:'SHA-256'},key,{name:'AES-GCM',length:256},false,['encrypt','decrypt'])}
+const envEncrypt=async obj=>{const iv=crypto.getRandomValues(new Uint8Array(12));const pt=textEnc.encode(JSON.stringify(obj));const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},state.aes,pt);return {v:1,i:b64u(iv),c:b64u(ct)}}
+const envDecrypt=async env=>{try{const iv=b64uBytes(env.i);const ct=b64uBytes(env.c);const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv},state.aes,ct);return JSON.parse(textDec.decode(pt))}catch{return null}}
+const buildLink=(room,key,nick)=>{const u=new URL(location.href);u.searchParams.set('r',room);const h=new URLSearchParams();h.set('k',key);if(nick)h.set('n',nick);u.hash=h.toString();return u.toString()}
+const parseLink=s=>{try{const u=new URL(s);const r=u.searchParams.get('r')||'';const h=new URLSearchParams(u.hash.replace(/^#/,''));const k=h.get('k')||u.searchParams.get('k')||'';const n=h.get('n')||'';return {room:r,key:k,nick:n}}catch{return {room:'',key:'',nick:''}}}
+const storeKey=r=>`gt_hist_${r}`;
+const saveHistory=(room,env,ts)=>{const k=storeKey(room);let arr=[];try{arr=JSON.parse(localStorage.getItem(k)||'[]')}catch{};arr.push({t:ts,e:env});const cutoff=Date.now()-TTL;arr=arr.filter(x=>x.t>=cutoff).slice(-MAX_STORE);localStorage.setItem(k,JSON.stringify(arr))}
+const loadHistory=(room)=>{const k=storeKey(room);let arr=[];try{arr=JSON.parse(localStorage.getItem(k)||'[]')}catch{};const cutoff=Date.now()-TTL;return arr.filter(x=>x.t>=cutoff).map(x=>x.e)}
+const msgKey=m=>`${m.mid||''}`;
+const addMessage=m=>{if(!m||state.seen.has(msgKey(m)))return;state.seen.add(msgKey(m));state.messages.push(m);state.messages.sort((a,b)=>a.t-b.t);renderMessages(state.messages)}
+const msgRow=m=>{const li=document.createElement('li');const meta=document.createElement('div');meta.className='meta';meta.textContent=`${m.u} · ${new Date(m.t).toLocaleString()} · ${m.id.slice(0,6)}`;li.appendChild(meta);if(m.type==='gif'&&m.gif){const img=document.createElement('img');img.className='gif';img.src=m.gif;li.appendChild(img);if(m.text){const tx=document.createElement('div');tx.className='text bubble';tx.textContent=m.text;li.appendChild(tx)}}else{const tx=document.createElement('div');tx.className='text bubble';tx.textContent=m.text||'';li.appendChild(tx)}return li}
+const renderMessages=list=>{const ul=document.createElement('ul');list.forEach(m=>ul.appendChild(msgRow(m)));const box=ui('messages');box.innerHTML='';box.appendChild(ul);box.scrollTop=box.scrollHeight}
+const ensureName=async()=>{let n=ui('nick').value.trim();if(!n){n=prompt('Choose a username')||'';n=n.trim()}if(!n){n='user-'+randId(6)}ui('nick').value=n;try{localStorage.setItem('gt_nick',n)}catch{};return n}
+const joinFlow=async(opts={})=>{
+  ui('join').classList.add('hidden');ui('chat').classList.remove('hidden');
+  state.room=(opts.room||ui('room').value||niceSlug()).trim();
+  state.key=(opts.key||ui('roomkey').value).trim();
+  state.nick=(opts.nick||await ensureName()).trim();
+  if(!state.key){state.key=randId(14);ui('roomkey').value=state.key}
+  state.aes=await deriveAes(state.key);
+  state.signalPass=await sha256('signal:'+state.key);
+  ui('meLabel').textContent=`You: ${state.nick} · ${selfId.slice(0,6)}`;
+  const badge=ui('roomBadge');badge.style.display='inline-block';badge.textContent='Room: '+state.room;
+  try{localStorage.setItem('gt_nick',state.nick)}catch{}
+  saveRecent(state.room);
+  const room=joinRoom({appId:'githubtalk',password:state.signalPass},state.room);
+  state.roomObj=room;
+  const [sendMsg,getMsg]=room.makeAction('msg');
+  const [sendReq,getReq]=room.makeAction('hist_req');
+  const [sendRes,getRes]=room.makeAction('hist_res');
+  room.onPeerJoin(pid=>setStatus(`Peer joined: ${pid.slice(0,6)} · ${new Date().toLocaleTimeString()}`));
+  room.onPeerLeave(pid=>setStatus(`Peer left: ${pid.slice(0,6)} · ${new Date().toLocaleTimeString()}`));
+  const localEnv=loadHistory(state.room);
+  for(const e of localEnv){const d=await envDecrypt(e);if(d)addMessage(d)}
+  getMsg(async(payload)=>{const d=await envDecrypt(payload);if(d){addMessage(d);saveHistory(state.room,payload,d.t);setStatus(`Last message at ${new Date().toLocaleTimeString()}`)}})
+  getReq(async()=>{let arr=[];try{arr=JSON.parse(localStorage.getItem(storeKey(state.room))||'[]')}catch{};arr=arr.slice(-120);const batch=arr.map(x=>x.e);await sendRes({batch})})
+  getRes(async(data)=>{const batch=data?.batch||[];for(const e of batch){const d=await envDecrypt(e);if(d){addMessage(d);saveHistory(state.room,e,d.t)}}})
+  await sendReq({v:1});
+  ui('sendForm').addEventListener('submit',async e=>{
     e.preventDefault();
-    const text = ui('msg').value;
-    if(!text.trim() || state.sending) return;
-    state.sending = true;
+    const text=ui('msg').value;
+    if(!text.trim()||state.sending)return;
+    state.sending=true;
     try{
-      const msg = {t: Date.now(), u: state.nick, id: selfId, text: text.trim()};
-      const env = await maybeEncrypt(msg);
-      await sendMsg(env); // broadcast to room
+      const msg={t:Date.now(),u:state.nick,id:selfId,mid:randId(10),type:'text',text:text.trim()};
+      const env=await envEncrypt(msg);
+      await sendMsg(env);
       ui('msg').value='';
       addMessage(msg);
-    }finally{
-      state.sending = false;
-    }
+      saveHistory(state.room,env,msg.t)
+    }finally{state.sending=false}
   });
-
+  ui('shareBtn').onclick=async()=>{const link=buildLink(state.room,state.key,state.nick);try{await navigator.clipboard.writeText(link);info('Invite link copied')}catch{info(link)}}
   setStatus('Online · '+new Date().toLocaleTimeString());
-  state.joined = true;
+  state.joined=true
 }
-
-/* UI wiring */
-ui('createBtn').onclick = async ()=>{
-  // generate everything, join, and copy link
-  const room = niceSlug();
-  const key  = randId(14);
-  const nick = ('anon-'+randId(6));
-  ui('room').value = room;
-  ui('roomkey').value = key;
-  ui('nick').value = nick;
-  const link = buildShareLink(room, key, nick);
-  try{ await navigator.clipboard.writeText(link); info('Invite link copied to clipboard.'); }
-  catch{ info('Invite link: '+link); }
-  await doJoin({room, key, nick});
+ui('createBtn').onclick=async()=>{
+  const room=niceSlug();const key=randId(14);const nick=ui('nick').value.trim()||('user-'+randId(6));
+  ui('room').value=room;ui('roomkey').value=key;ui('nick').value=nick;
+  const link=buildLink(room,key,nick);
+  try{await navigator.clipboard.writeText(link);info('Invite link copied')}catch{info(link)}
+  await joinFlow({room,key,nick})
 };
-
-ui('joinBtn').onclick = async ()=>{
-  const pasted = ui('invite').value.trim();
-  if(pasted){
-    const {room, key, nick} = parseInviteLink(pasted);
-    if(room){ ui('room').value = room; }
-    if(key){ ui('roomkey').value = key; }
-    if(nick){ ui('nick').value = nick; }
-  }
-  await doJoin({});
+ui('joinBtn').onclick=async()=>{
+  const pasted=ui('invite').value.trim();
+  if(pasted){const {room,key,nick}=parseLink(pasted);if(room)ui('room').value=room;if(key)ui('roomkey').value=key;if(nick)ui('nick').value=nick}
+  await joinFlow({})
 };
-
-// Auto-fill nice defaults
-try{
-  ui('nick').value = localStorage.getItem('chat_nick') || '';
-}catch{}
-if(!ui('room').value)   ui('room').value = niceSlug();
-if(!ui('roomkey').value)ui('roomkey').value = randId(12);
-
-// Auto-join if the page was opened via invite link (?r=...#k=...)
-(() => {
-  const params = new URLSearchParams(location.search);
-  const r = params.get('r') || '';
-  const h = new URLSearchParams(location.hash.replace(/^#/, ''));
-  const k = h.get('k') || '';
-  const n = h.get('n') || '';
-  if(r){ ui('room').value = r; }
-  if(k){ ui('roomkey').value = k; }
-  if(n){ ui('nick').value = n; }
-  if(r){ doJoin({room:r, key:k, nick:n}); }
-})();
+try{ui('nick').value=localStorage.getItem('gt_nick')||''}catch{}
+if(!ui('room').value)ui('room').value=niceSlug();
+renderRecent();
+(()=>{const p=new URLSearchParams(location.search);const r=p.get('r')||'';const h=new URLSearchParams(location.hash.replace(/^#/,''));const k=h.get('k')||'';const n=h.get('n')||'';if(r)ui('room').value=r;if(k)ui('roomkey').value=k;if(n)ui('nick').value=n;if(r&&k){joinFlow({room:r,key:k,nick:n})}})();
+const openModal=(el)=>{el.style.display='flex'};const closeModal=(el)=>{el.style.display='none'};
+ui('emojiBtn').onclick=()=>{const g=ui('emojiGrid');g.innerHTML='';EMOJI.forEach(e=>{const b=document.createElement('button');b.type='button';b.textContent=e;b.onclick=()=>{const t=ui('msg');t.value+=e;};g.appendChild(b)});openModal(ui('emojiModal'))}
+ui('emojiClose').onclick=()=>closeModal(ui('emojiModal'));
+const renderGifs=arr=>{const grid=ui('gifGrid');grid.innerHTML='';arr.forEach(x=>{const u=x;const img=document.createElement('img');img.src=u;img.onclick=async()=>{const msg={t:Date.now(),u:state.nick,id:selfId,mid:randId(10),type:'gif',gif:u};const env=await envEncrypt(msg);const [sendMsg]=state.roomObj.makeAction('msg');await sendMsg(env);addMessage(msg);saveHistory(state.room,env,msg.t);closeModal(ui('gifModal'))};grid.appendChild(img)})}
+const tenorSearch=async(q)=>{const url=`https://tenor.googleapis.com/v2/search?q=${encodeURIComponent(q)}&key=LIVDSRZULELA&client_key=githubtalk&limit=16&media_filter=gif,tinygif`;const r=await fetch(url);if(!r.ok)throw new Error('fail');const j=await r.json();return (j.results||[]).map(x=>x.media_formats?.tinygif?.url||x.media_formats?.gif?.url).filter(Boolean)}
+const giphySearch=async(q)=>{const url=`https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=${encodeURIComponent(q)}&limit=16&rating=pg`;const r=await fetch(url);if(!r.ok)throw new Error('fail');const j=await r.json();return (j.data||[]).map(x=>x.images?.downsized_small?.mp4||x.images?.downsized_medium?.url||x.images?.downsized?.url).filter(u=>u&&u.endsWith('.gif'))}
+ui('gifBtn').onclick=()=>{ui('gifQuery').value='';ui('gifGrid').innerHTML='';openModal(ui('gifModal'))}
+ui('gifSearch').onclick=async()=>{const q=ui('gifQuery').value.trim();if(!q)return;ui('gifGrid').innerHTML='Searching…';try{let urls=[];try{urls=await tenorSearch(q)}catch{urls=[]}if(urls.length===0){try{urls=await giphySearch(q)}catch{}}renderGifs(urls)}catch{ui('gifGrid').innerHTML='No results';}}
+ui('gifPaste').onclick=()=>{const u=prompt('Paste GIF URL');if(!u)return;renderGifs([u])}
+ui('gifClose').onclick=()=>closeModal(ui('gifModal'));
 </script>
 </body>
 </html>
