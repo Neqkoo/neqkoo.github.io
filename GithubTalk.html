@@ -6,17 +6,17 @@
 <title>GithubTalk</title>
 <style>
 *{box-sizing:border-box}
-:root{--bg0:#070a0f;--bg1:rgba(12,18,27,.6);--bg2:rgba(18,26,38,.5);--brd:rgba(255,255,255,.08);--txt:#e7ecf2;--mut:#9ab0c6;--acc1:#6aa4ff;--acc2:#7b5cff}
-[data-theme="light"]{--bg0:#f7f9fc;--bg1:rgba(255,255,255,.9);--bg2:rgba(255,255,255,.8);--brd:rgba(0,0,0,.08);--txt:#0b1728;--mut:#516a84;--acc1:#3a86ff;--acc2:#845ef7}
+:root{--bg0:#070a0f;--bg1:rgba(12,18,27,.6);--bg2:rgba(18,26,38,.5);--brd:rgba(255,255,255,.08);--txt:#e7ecf2;--mut:#9ab0c6;--acc1:#6aa4ff;--acc2:#7b5cff;--bubble:#192233}
+[data-theme="light"]{--bg0:#f7f9fc;--bg1:rgba(255,255,255,.9);--bg2:rgba(255,255,255,.8);--brd:rgba(0,0,0,.08);--txt:#0b1728;--mut:#516a84;--acc1:#3a86ff;--acc2:#845ef7;--bubble:#fff}
 html,body{height:100%}
 body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;color:var(--txt);background:radial-gradient(1200px 800px at 10% -10%,#0f1830 0%,transparent 60%),radial-gradient(1000px 800px at 110% 20%,#161a2e 0%,transparent 60%),linear-gradient(180deg,#0a0f18, #070a0f);background-attachment:fixed}
 [data-theme="light"] body, [data-theme="light"]{background:#eef3fb}
 header{position:sticky;top:0;z-index:5;backdrop-filter:saturate(140%) blur(12px);background:linear-gradient(180deg,rgba(10,16,25,.75),rgba(10,16,25,.45));border-bottom:1px solid var(--brd)}
 [data-theme="light"] header{background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.65))}
-header .wrap{max-width:980px;margin:0 auto;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+header .wrap{max-width:980px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 h1{margin:0;font-size:18px;letter-spacing:.3px}
 .badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.toolbar{display:flex;gap:8px;align-items:center}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .chip{display:inline-flex;gap:8px;align-items:center;background:var(--bg2);border:1px solid var(--brd);color:var(--mut);padding:6px 10px;border-radius:999px;font-size:12px;backdrop-filter:blur(8px)}
 button.toolbarbtn{padding:8px 12px;border-radius:999px;border:1px solid var(--brd);background:var(--bg2);color:var(--txt);cursor:pointer}
 main{max-width:980px;margin:0 auto;padding:16px;display:grid;gap:16px}
@@ -25,10 +25,10 @@ main{max-width:980px;margin:0 auto;padding:16px;display:grid;gap:16px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .row3{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px}
 label{display:block;font-size:12px;color:var(--mut);margin-bottom:6px}
-input,button,textarea{font:inherit}
-input,textarea{width:100%;padding:12px 12px;border-radius:12px;border:1px solid var(--brd);background:rgba(8,12,18,.7);color:var(--txt);outline:none;transition:border .2s, box-shadow .2s, transform .05s}
-[data-theme="light"] input,[data-theme="light"] textarea{background:rgba(255,255,255,.85)}
-input:focus,textarea:focus{border-color:color-mix(in oklch, var(--acc1), white 10%);box-shadow:0 0 0 4px rgba(58,134,255,.12)}
+input,button,textarea,select{font:inherit}
+input,textarea,select{width:100%;padding:12px 12px;border-radius:12px;border:1px solid var(--brd);background:rgba(8,12,18,.7);color:var(--txt);outline:none;transition:border .2s, box-shadow .2s, transform .05s}
+[data-theme="light"] input,[data-theme="light"] textarea,[data-theme="light"] select{background:rgba(255,255,255,.85)}
+input:focus,textarea:focus,select:focus{border-color:color-mix(in oklch, var(--acc1), white 10%);box-shadow:0 0 0 4px rgba(58,134,255,.12)}
 button{padding:11px 14px;border-radius:12px;border:1px solid var(--brd);background:linear-gradient(180deg,rgba(35,50,78,.75),rgba(27,39,60,.75));color:var(--txt);cursor:pointer;transition:transform .05s, filter .2s, border-color .2s}
 [data-theme="light"] button{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.8))}
 button:hover{filter:brightness(1.08)}
@@ -41,14 +41,15 @@ button.primary{border-color:color-mix(in oklch, var(--acc1), black 30%);backgrou
 .tip{font-size:12px;color:var(--mut)}
 #recent{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 #public{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.messages{height:54vh;min-height:340px;overflow:auto;border:1px solid var(--brd);border-radius:14px;padding:10px;background:rgba(8,12,18,.55);backdrop-filter:blur(10px)}
+.messages{height:54vh;min-height:360px;overflow:auto;border:1px solid var(--brd);border-radius:14px;padding:10px;background:rgba(8,12,18,.55);backdrop-filter:blur(10px)}
 [data-theme="light"] .messages{background:rgba(255,255,255,.7)}
 ul{list-style:none;margin:0;padding:0}
-li{padding:10px 10px;border-bottom:1px dashed var(--brd);word-wrap:break-word;animation:fadeUp .25s ease}
-li .meta{font-size:12px;color:var(--mut);margin-bottom:6px;display:flex;gap:8px;flex-wrap:wrap}
-li .text{font-size:15px;white-space:pre-wrap;line-height:1.35}
+li{padding:10px 10px;border-bottom:1px dashed var(--brd);word-wrap:break-word;animation:fadeUp .25s ease;display:grid;grid-template-columns:44px 1fr;gap:8px}
+li .meta{font-size:11px;color:var(--mut);margin-bottom:6px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+li .text{font-size:15px;white-space:pre-wrap;line-height:1.35;background:var(--bubble);padding:10px 12px;border-radius:12px;border:1px solid var(--brd)}
 li .gif{display:block;max-width:280px;border-radius:10px;border:1px solid var(--brd);background:#000}
-form.send{display:grid;grid-template-columns:40px 44px 1fr 110px;gap:10px;margin-top:10px;align-items:end}
+.avatar{width:36px;height:36px;border-radius:999px;border:1px solid var(--brd);object-fit:cover;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(0,0,0,.15))}
+form.send{display:grid;grid-template-columns:40px 44px 44px 1fr 110px;gap:10px;margin-top:10px;align-items:end}
 form.send textarea{height:64px;resize:vertical}
 .iconbtn{display:inline-flex;align-items:center;justify-content:center;height:40px;width:40px;border-radius:10px;background:var(--bg2);border:1px solid var(--brd)}
 .muted{color:var(--mut);font-size:12px}
@@ -57,7 +58,7 @@ form.send textarea{height:64px;resize:vertical}
 #warn{color:#ff7e00;font-size:12px;margin-top:10px}
 .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.45);z-index:20}
 .modal.show{display:flex}
-.modal .panel{width:min(560px,92vw);background:var(--bg1);border:1px solid var(--brd);border-radius:16px;padding:16px;backdrop-filter:blur(16px)}
+.modal .panel{width:min(720px,92vw);background:var(--bg1);border:1px solid var(--brd);border-radius:16px;padding:16px;backdrop-filter:blur(16px)}
 .modal .row{grid-template-columns:1fr}
 .modal .actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
 #emojiPanel{position:absolute;bottom:110px;left:16px;background:var(--bg1);border:1px solid var(--brd);border-radius:14px;padding:8px;display:none;width:280px;backdrop-filter:blur(16px)}
@@ -70,6 +71,11 @@ form.send textarea{height:64px;resize:vertical}
 @keyframes fadeUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .small{font-size:12px}
 .settings-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+hr.sep{border:0;border-top:1px solid var(--brd);margin:10px 0}
+.flex{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.videos{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+video{width:100%;border-radius:12px;border:1px solid var(--brd);background:#000}
+header .rightBtns{display:flex;gap:8px;align-items:center}
 </style>
 </head>
 <body>
@@ -80,13 +86,20 @@ form.send textarea{height:64px;resize:vertical}
       <div class="toolbar">
         <button id="publicBtn" class="toolbarbtn">Public</button>
         <button id="randomBtn" class="toolbarbtn">Talk to a random</button>
+        <button id="contactsBtn" class="toolbarbtn">People</button>
         <button id="settingsBtn" class="toolbarbtn">Settings</button>
       </div>
     </div>
-    <div class="badges">
-      <span id="roomBadge" class="chip hidden"></span>
-      <span id="meBadge" class="chip hidden"></span>
-      <span id="secureBadge" class="chip">🔒 End-to-End</span>
+    <div class="rightBtns">
+      <button id="inviteBtn" class="toolbarbtn hidden">Copy invite</button>
+      <button id="callBtn" class="toolbarbtn hidden">Call</button>
+      <button id="leaveBtn" class="toolbarbtn hidden">Leave</button>
+      <div class="badges">
+        <span id="roomBadge" class="chip hidden"></span>
+        <span id="meBadge" class="chip hidden"></span>
+        <span id="numBadge" class="chip hidden"></span>
+        <span id="secureBadge" class="chip">🔒 End-to-End</span>
+      </div>
     </div>
   </div>
 </header>
@@ -97,6 +110,7 @@ form.send textarea{height:64px;resize:vertical}
       <div id="tabJoin" class="tab active">Join</div>
       <div id="tabCreate" class="tab">Create</div>
       <div id="tabPublic" class="tab">Public</div>
+      <div id="tabDM" class="tab">Private</div>
     </div>
     <div id="joinPane">
       <div class="row" style="align-items:end">
@@ -114,7 +128,7 @@ form.send textarea{height:64px;resize:vertical}
       <p class="tip" style="margin-top:10px">Invite links look like <code>?r=ROOM#k=KEY</code></p>
     </div>
     <div id="createPane" class="hidden">
-      <div class="row">
+      <div class="row3">
         <div>
           <label>Group name</label>
           <input id="room" placeholder="auto-generated if blank">
@@ -123,17 +137,33 @@ form.send textarea{height:64px;resize:vertical}
           <label>Display name</label>
           <input id="nick" placeholder="you will be asked if empty">
         </div>
+        <div>
+          <label>Password</label>
+          <input id="pass" placeholder="auto-generated if blank">
+        </div>
       </div>
       <div class="row" style="margin-top:12px;align-items:end">
         <div>
           <button id="createBtn" class="primary">Create group</button>
         </div>
-        <div class="tip">A long unique passphrase is generated automatically</div>
+        <div class="tip">Long passphrase recommended</div>
       </div>
     </div>
     <div id="publicPane" class="hidden">
       <div class="tip">Public lobbies (no passphrase)</div>
       <div id="public"></div>
+    </div>
+    <div id="dmPane" class="hidden">
+      <div class="row">
+        <div>
+          <label>Start private chat with Number</label>
+          <input id="dmNumber" placeholder="e.g. N7f9K2xQ3p">
+        </div>
+        <div style="display:flex;gap:10px;align-items:end">
+          <button id="startDM" class="primary">Start</button>
+        </div>
+      </div>
+      <div class="tip" style="margin-top:8px">Share your Number in People → My Number</div>
     </div>
   </section>
 
@@ -160,6 +190,7 @@ form.send textarea{height:64px;resize:vertical}
     <form class="send" id="sendForm">
       <button id="emojiBtn" type="button" class="iconbtn">😊</button>
       <button id="gifBtn" type="button" class="iconbtn">GIF</button>
+      <button id="drawBtn" type="button" class="iconbtn">✏️</button>
       <textarea id="msg" placeholder="Type a message..."></textarea>
       <button id="sendBtn" type="submit" class="primary">Send</button>
     </form>
@@ -176,15 +207,29 @@ form.send textarea{height:64px;resize:vertical}
   </div>
 </div>
 
+<div id="callModal" class="modal">
+  <div class="panel">
+    <div class="flex"><span id="callLabel" class="muted small"></span></div>
+    <div class="videos" style="margin-top:8px">
+      <video id="localVideo" autoplay playsinline muted></video>
+      <video id="remoteVideo" autoplay playsinline></video>
+    </div>
+    <div class="actions">
+      <button id="endCall">End</button>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/gun/gun.min.js"></script>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script type="module">
-import {joinRoom, selfId} from 'https://esm.run/trystero@0.21.8/torrent';
+import {joinRoom, selfId} from 'https://esm.run/trystero@0.21.8/torrent'
 
 const ui=id=>document.getElementById(id)
 const qs=s=>document.querySelector(s)
-const state={room:'',key:'',nick:'',roomObj:null,joined:false,sending:false,msgs:[],envlog:[],giphyKey:'',historyLoaded:false,gun:null,gunSubs:{},prefs:{theme:'system',anonymous:false},randomOn:false}
-const TTL_DAYS=3
-const MAX_HISTORY=200
+const state={room:'',key:'',nick:'',roomObj:null,joined:false,sending:false,msgs:[],envlog:[],giphyKey:'',historyLoaded:false,gun:null,gunSubs:{},prefs:{theme:'system',anonymous:false,accent:'#6aa4ff'},randomOn:false,number:'',peer:null,dmWith:'',stream:null,contacts:[],block:[],avatar:''}
+const TTL_DAYS=7
+const MAX_HISTORY=400
 
 function randBytes(n){const b=new Uint8Array(n);crypto.getRandomValues(b);return b}
 function b64u(ab){return btoa(String.fromCharCode(...new Uint8Array(ab))).replaceAll('+','-').replaceAll('/','_').replaceAll('=','')}
@@ -227,17 +272,19 @@ async function ensureNick(){let saved=(localStorage.getItem('gt_nick')||'').trim
 function buildShareLink(room,key,nick){const u=new URL(location.href);u.searchParams.set('r',room);const h=new URLSearchParams();if(key)h.set('k',key);if(nick)h.set('n',nick);u.hash=h.toString();return u.toString()}
 function parseInviteLink(s){try{const u=new URL(s);const r=u.searchParams.get('r')||'';const h=new URLSearchParams(u.hash.replace(/^#/,''));const k=h.get('k')||u.searchParams.get('k')||'';const n=h.get('n')||'';return{room:r,key:k,nick:n}}catch{return{room:'',key:'',nick:''}}}
 
-function msgRow(m){const li=document.createElement('li');const meta=document.createElement('div');meta.className='meta';meta.textContent=`${m.u} · ${new Date(m.t).toLocaleString()} · ${m.id.slice(0,6)}`;li.appendChild(meta);if(m.gif){const im=document.createElement('img');im.className='gif';im.src=m.gif;im.loading='lazy';im.referrerPolicy='no-referrer';li.appendChild(im)}if(m.text){const text=document.createElement('div');text.className='text';const urls=extractUrls(m.text);if(urls.length){const span=document.createElement('span');span.textContent=m.text;li.appendChild(text);text.appendChild(span);urls.forEach(u=>{const b=document.createElement('button');b.className='chip bad';b.style.marginLeft='8px';b.textContent='Open link?';b.onclick=async()=>{const ok=await modalAsk(`<div class="row"><div class="tip">Links can be unsafe. Only continue if you trust the sender.</div><div class="tip" style="margin-top:6px">${u}</div></div>`);if(ok)window.open(u,'_blank','noopener,noreferrer')};text.appendChild(b)})}else{text.textContent=m.text;li.appendChild(text)}}return li}
+function avatarFor(m){const im=document.createElement('img');im.className='avatar';if(m.a){im.src=m.a;im.referrerPolicy='no-referrer'}else{const c=document.createElement('canvas');c.width=72;c.height=72;const ctx=c.getContext('2d');ctx.fillStyle='#222';ctx.fillRect(0,0,72,72);ctx.fillStyle='#888';ctx.font='bold 34px system-ui';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText((m.u||'?').slice(0,1).toUpperCase(),36,40);im.src=c.toDataURL()}return im}
+
+function msgRow(m){const li=document.createElement('li');const av=avatarFor(m);li.appendChild(av);const wrap=document.createElement('div');const meta=document.createElement('div');meta.className='meta';const tagNo=m.no?` · ${m.no}`:'';const tagId=m.id?` · ${m.id.slice(0,6)}`:'';const hideNo=state.prefs.anonymous&&m.id===selfId;meta.textContent=`${m.u}${hideNo?'':' '+tagNo}${tagId} · ${new Date(m.t).toLocaleString()}`;wrap.appendChild(meta);if(m.img){const im=document.createElement('img');im.className='gif';im.src=m.img;im.loading='lazy';im.referrerPolicy='no-referrer';wrap.appendChild(im)}if(m.gif){const im=document.createElement('img');im.className='gif';im.src=m.gif;im.loading='lazy';im.referrerPolicy='no-referrer';wrap.appendChild(im)}if(m.text){const text=document.createElement('div');text.className='text';const urls=extractUrls(m.text);if(urls.length){const span=document.createElement('span');span.textContent=m.text;wrap.appendChild(text);text.appendChild(span);urls.forEach(u=>{const b=document.createElement('button');b.className='chip bad';b.style.marginLeft='8px';b.textContent='Open link?';b.onclick=async()=>{const ok=await modalAsk(`<div class="row"><div class="tip">Links can be unsafe. Only continue if you trust the sender.</div><div class="tip" style="margin-top:6px">${u}</div></div>`);if(ok)window.open(u,'_blank','noopener,noreferrer')};text.appendChild(b)})}else{text.textContent=m.text;wrap.appendChild(text)}}li.appendChild(wrap);return li}
 
 function renderMessages(list){const ul=document.createElement('ul');list.slice().sort((a,b)=>a.t-b.t).forEach(m=>ul.appendChild(msgRow(m)));const box=ui('messages');box.innerHTML='';box.appendChild(ul);box.scrollTop=box.scrollHeight}
 
 function storeKey(room){return'gt_store_'+room}
-function storePush(env){state.envlog.push({ts:Date.now(),env});const cutoff=Date.now()-TTL_DAYS*864e5;state.envlog=state.envlog.filter(x=>x.ts>=cutoff).slice(-2000);localStorage.setItem(storeKey(state.room),JSON.stringify(state.envlog))}
+function storePush(env){state.envlog.push({ts:Date.now(),env});const cutoff=Date.now()-TTL_DAYS*864e5;state.envlog=state.envlog.filter(x=>x.ts>=cutoff).slice(-4000);localStorage.setItem(storeKey(state.room),JSON.stringify(state.envlog))}
 function loadStored(){try{const raw=localStorage.getItem(storeKey(state.room))||'[]';state.envlog=JSON.parse(raw)||[];return state.envlog}catch{return[]}}
 
 async function decryptEnvlogIntoMsgs(){const arr=loadStored();const msgs=[];for(const it of arr){const o=await maybeDecrypt(it.env);if(o&&o.t)msgs.push(o)}return msgs}
 
-function dedupeMerge(newOnes){const seen=new Set(state.msgs.map(m=>m.t+':'+m.id+':'+(m.text||'')+(m.gif||'')));newOnes.forEach(m=>{const k=m.t+':'+m.id+':'+(m.text||'')+(m.gif||'');if(!seen.has(k)){state.msgs.push(m);seen.add(k)}});state.msgs.sort((a,b)=>a.t-b.t);renderMessages(state.msgs)}
+function dedupeMerge(newOnes){const seen=new Set(state.msgs.map(m=>m.t+':'+(m.no||'')+':'+m.id+':'+(m.text||'')+(m.gif||'')+(m.img||'')));newOnes.forEach(m=>{if(m.no&&state.block.includes(m.no))return;const k=m.t+':'+(m.no||'')+':'+m.id+':'+(m.text||'')+(m.gif||'')+(m.img||'');if(!seen.has(k)){state.msgs.push(m);seen.add(k)}});state.msgs.sort((a,b)=>a.t-b.t);renderMessages(state.msgs)}
 
 const emojis=["😀","😄","😁","😆","🤣","🥲","😊","🙂","😉","😌","😍","🥰","😘","😜","🤪","🤨","🫠","🤗","🤫","🤔","😴","🤤","😭","😱","😤","😡","👍","👎","👏","🙏","🤝","💪","🔥","✨","🎉","💯","❤️","🧡","💛","💚","💙","💜","🖤","🤍","🤎","💤","🍀","🌙","⭐","🌈","☕","🍕","🍔","🍣","🍪","🍩","🍫","🍎","🍌","⚽","🏀","🎮","🎧","📷","💡","📎","🔒","🔑","🧩","🧪","🛠️","🚀"]
 function buildEmojiPanel(){const g=ui('emojiGrid');g.innerHTML='';emojis.forEach(e=>{const b=document.createElement('button');b.textContent=e;b.onclick=()=>{ui('msg').value+=e;ui('emojiPanel').style.display='none';ui('msg').focus()};g.appendChild(b)})}
@@ -247,24 +294,51 @@ function closeGifPanel(){ui('gifPanel').style.display='none';ui('gifResults').in
 async function setGiphyKey(){const ok=await modalAsk(`<div class="row"><div><label>GIPHY API Key</label><input id="gk" placeholder="paste key"></div></div>`);if(ok){const v=(qs('#gk')?.value||'').trim();if(v){state.giphyKey=v;localStorage.setItem('gt_giphy_key',v)}}}
 async function searchGifs(q){const key=state.giphyKey||localStorage.getItem('gt_giphy_key')||'dc6zaTOxFJmzC';const endpoint=q?`https://api.giphy.com/v1/gifs/search?api_key=${encodeURIComponent(key)}&q=${encodeURIComponent(q)}&limit=24&rating=pg-13`:`https://api.giphy.com/v1/gifs/trending?api_key=${encodeURIComponent(key)}&limit=24&rating=pg-13`;try{const r=await fetch(endpoint);const j=await r.json();const grid=ui('gifResults');grid.innerHTML='';(j.data||[]).forEach(g=>{const url=(g.images?.downsized?.url)||g.images?.original?.url;if(!url)return;const im=document.createElement('img');im.src=url;im.onclick=async()=>{await sendPayload({gif:url});closeGifPanel()};grid.appendChild(im)})}catch{}}
 
-function activateTabs(){ui('tabJoin').onclick=()=>{ui('tabJoin').classList.add('active');ui('tabCreate').classList.remove('active');ui('tabPublic').classList.remove('active');show(ui('joinPane'));hide(ui('createPane'));hide(ui('publicPane'))};ui('tabCreate').onclick=()=>{ui('tabCreate').classList.add('active');ui('tabJoin').classList.remove('active');ui('tabPublic').classList.remove('active');show(ui('createPane'));hide(ui('joinPane'));hide(ui('publicPane'))};ui('tabPublic').onclick=()=>{ui('tabPublic').classList.add('active');ui('tabJoin').classList.remove('active');ui('tabCreate').classList.remove('active');show(ui('publicPane'));hide(ui('joinPane'));hide(ui('createPane'))}}
+function activateTabs(){ui('tabJoin').onclick=()=>{ui('tabJoin').classList.add('active');ui('tabCreate').classList.remove('active');ui('tabPublic').classList.remove('active');ui('tabDM').classList.remove('active');show(ui('joinPane'));hide(ui('createPane'));hide(ui('publicPane'));hide(ui('dmPane'))};ui('tabCreate').onclick=()=>{ui('tabCreate').classList.add('active');ui('tabJoin').classList.remove('active');ui('tabPublic').classList.remove('active');ui('tabDM').classList.remove('active');show(ui('createPane'));hide(ui('joinPane'));hide(ui('publicPane'));hide(ui('dmPane'))};ui('tabPublic').onclick=()=>{ui('tabPublic').classList.add('active');ui('tabJoin').classList.remove('active');ui('tabCreate').classList.remove('active');ui('tabDM').classList.remove('active');show(ui('publicPane'));hide(ui('joinPane'));hide(ui('createPane'));hide(ui('dmPane'))};ui('tabDM').onclick=()=>{ui('tabDM').classList.add('active');ui('tabJoin').classList.remove('active');ui('tabCreate').classList.remove('active');ui('tabPublic').classList.remove('active');show(ui('dmPane'));hide(ui('joinPane'));hide(ui('createPane'));hide(ui('publicPane'))}}
 
 function applySecurityBadge(){if(state.key){ui('secureBadge').textContent='🔒 End-to-End'}else{ui('secureBadge').textContent='🌐 Public'}}
 
-function setupGun(){if(state.gun)return;state.gun=Gun({peers:['https://relay.peer.ooo/gun','https://gun-manhattan.herokuapp.com/gun']})}
+function setupGun(){if(state.gun)return;state.gun=Gun({peers:['https://relay.peer.ooo/gun','https://gun-manhattan.herokuapp.com/gun','https://gunjs.herokuapp.com/gun']})}
 
 function gunRoomNode(room){setupGun();return state.gun.get('githubtalk').get('rooms').get(room)}
 async function gunMirrorPush(room,env,ts){try{gunRoomNode(room).get('msgs').get(String(ts)).put(env)}catch{}}
 function gunSubscribe(room){setupGun();if(state.gunSubs[room])return;const cutoff=Date.now()-TTL_DAYS*864e5;const node=gunRoomNode(room).get('msgs');const sub=node.map().on(async (env,key)=>{if(!env)return;const msg=await maybeDecrypt(env);if(!msg||!msg.t||msg.t<cutoff)return;storePush(env);dedupeMerge([msg])});state.gunSubs[room]=sub}
-async function gunPrimeHistory(room){setupGun();const cutoff=Date.now()-TTL_DAYS*864e5;const list=[];await new Promise(resolve=>{let done=false;const n=gunRoomNode(room).get('msgs');const t=setTimeout(()=>{if(!done)resolve()},800);n.map().once(async (env,key)=>{if(env){const m=await maybeDecrypt(env);if(m&&m.t>=cutoff)list.push(m)}},()=>{});setTimeout(()=>{done=true;clearTimeout(t);resolve()},900)});if(list.length)dedupeMerge(list.sort((a,b)=>a.t-b.t).slice(-MAX_HISTORY))}
+async function gunPrimeHistory(room){setupGun();const cutoff=Date.now()-TTL_DAYS*864e5;const list=[];await new Promise(resolve=>{let done=false;const n=gunRoomNode(room).get('msgs');const t=setTimeout(()=>{if(!done)resolve()},900);n.map().once(async (env,key)=>{if(env){const m=await maybeDecrypt(env);if(m&&m.t>=cutoff)list.push(m)}},()=>{});setTimeout(()=>{done=true;clearTimeout(t);resolve()},1000)});if(list.length)dedupeMerge(list.sort((a,b)=>a.t-b.t).slice(-MAX_HISTORY))}
 
-async function doJoin(opts={}){hide(ui('join'));show(ui('chat'));state.room=(opts.room||ui('room').value||niceSlug()).trim();state.key=(opts.key??randPass()).trim();if(state.prefs.anonymous)state.nick='anon-'+randId(6);else state.nick=(opts.nick||localStorage.getItem('gt_nick')||'').trim()||('anon-'+randId(6));ui('roomBadge').textContent='Room: '+state.room;ui('meBadge').textContent='You: '+state.nick+' · '+selfId.slice(0,6);show(ui('roomBadge'));show(ui('meBadge'));applySecurityBadge();await savePass(state.room,state.key);saveRecent(state.room);const config={appId:'githubtalk',password:state.key||undefined};const room=joinRoom(config,state.room);state.roomObj=room;const[sendMsg,getMsg]=room.makeAction('msg');const[sendReq,getReq]=room.makeAction('hreq');const[sendRes,getRes]=room.makeAction('hres');getMsg(async(payload,peerId)=>{const data=await maybeDecrypt(payload);if(data){state.msgs.push(data);renderMessages(state.msgs);storePush(payload);await gunMirrorPush(state.room,payload,data.t);setStatus(`Last from ${peerId.slice(0,6)} at ${new Date().toLocaleTimeString()}`)}});getReq(async(payload)=>{const cmd=await maybeDecrypt(payload);if(!cmd)return;const cutoff=cmd.since||0;const plain=await decryptEnvlogIntoMsgs();const pack=plain.filter(m=>m.t>=cutoff).slice(-MAX_HISTORY);const env=await maybeEncrypt({history:pack});await sendRes(env)});getRes(async(payload)=>{const data=await maybeDecrypt(payload);if(data&&Array.isArray(data.history)){dedupeMerge(data.history);state.historyLoaded=true}});room.onPeerJoin(pid=>{setStatus(`Peer joined: ${pid.slice(0,6)} · ${new Date().toLocaleTimeString()}`)});room.onPeerLeave(pid=>{setStatus(`Peer left: ${pid.slice(0,6)} · ${new Date().toLocaleTimeString()}`)});const pre=await decryptEnvlogIntoMsgs();dedupeMerge(pre);setStatus('Online · '+new Date().toLocaleTimeString());state.joined=true;const cutoff=Date.now()-TTL_DAYS*864e5;const env=await maybeEncrypt({since:cutoff});await sendReq(env);gunSubscribe(state.room);await gunPrimeHistory(state.room)}
+async function sendPayload({text,gif,img}){if(!state.roomObj)return;const[sendMsg]=state.roomObj.makeAction('msg');const msg={t:Date.now(),u:state.nick,id:selfId};if(state.avatar)msg.a=state.avatar;if(!state.prefs.anonymous&&state.number)msg.no=state.number;if(text)msg.text=text;if(gif)msg.gif=gif;if(img)msg.img=img;const env=await maybeEncrypt(msg);await sendMsg(env);state.msgs.push(msg);renderMessages(state.msgs);storePush(env);await gunMirrorPush(state.room,env,msg.t)}
 
-async function sendPayload({text,gif}){if(!state.roomObj)return;const[sendMsg]=state.roomObj.makeAction('msg');const msg={t:Date.now(),u:state.nick,id:selfId};if(text)msg.text=text;if(gif)msg.gif=gif;const env=await maybeEncrypt(msg);await sendMsg(env);state.msgs.push(msg);renderMessages(state.msgs);storePush(env);await gunMirrorPush(state.room,env,msg.t)}
+function base58enc(buf){const A='123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';let x=[0];for(const b of buf){let carry=b;for(let i=0;i<x.length;i++){const n=x[i]*256+carry;x[i]=n%58;carry=(n/58)|0}while(carry){x.push(carry%58);carry=(carry/58)|0}}return x.reverse().map(i=>A[i]).join('')||'1'}
+async function hmac(data){const k=await crypto.subtle.importKey('raw',new TextEncoder().encode('numkey-v1'),{name:'HMAC',hash:'SHA-256'},false,['sign']);const sig=await crypto.subtle.sign('HMAC',k,new TextEncoder().encode(data));return new Uint8Array(sig)}
+async function computeNumber(){const secret=getDeviceSecret();const mac=await hmac(secret);const mini=mac.slice(0,10);return 'N'+base58enc(mini)}
 
-ui('createBtn').onclick=async()=>{if(!await ensureNick())return;const room=(ui('room').value||niceSlug()).trim();const key=randPass();const nick=state.nick||('anon-'+randId(6));const link=buildShareLink(room,key,nick);try{await navigator.clipboard.writeText(link);info('Invite link copied')}catch{info('Invite: '+link)}await doJoin({room,key,nick})}
+function showSettings(){const v=state.prefs;const themeSel=`<select id="setTheme"><option value="system"${v.theme==='system'?' selected':''}>System</option><option value="dark"${v.theme==='dark'?' selected':''}>Dark</option><option value="light"${v.theme==='light'?' selected':''}>Light</option></select>`;const nickVal=(localStorage.getItem('gt_nick')||'');const anon=v.anonymous?' checked':'';const acc=v.accent||'#6aa4ff';const av=state.avatar||getCookie('gt_avatar')||'';const body=`<div class="settings-row"><div><label>Username</label><input id="setNick" value="${nickVal}"></div><div><label>Theme</label>${themeSel}</div></div><div class="settings-row" style="margin-top:10px"><div><label>Accent</label><input id="setAcc" type="color" value="${acc}"></div><div><label><input type="checkbox" id="setAnon"${anon}> Anonymous this session</label></div></div><hr class="sep"><div class="settings-row"><div><label>Profile picture</label><canvas id="pfc" width="240" height="160" style="width:100%;border-radius:12px;border:1px solid var(--brd);background:#111"></canvas></div><div><div class="flex" style="margin-top:20px"><button id="pfClear">Clear</button><button id="pfSave" class="primary">Save</button></div><div class="tip" style="margin-top:6px">Saved in cookies</div></div></div>`;ui('modalBody').innerHTML=body;ui('modal').classList.add('show');const c=qs('#pfc');const ctx=c.getContext('2d');let drawing=false;ctx.lineWidth=4;ctx.lineCap='round';ctx.strokeStyle='#fff';if(av){const i=new Image;i.onload=()=>ctx.drawImage(i,0,0,c.width,c.height);i.src=av}c.onpointerdown=e=>{drawing=true;ctx.beginPath();ctx.moveTo(e.offsetX,e.offsetY)};c.onpointermove=e=>{if(!drawing)return;ctx.lineTo(e.offsetX,e.offsetY);ctx.stroke()};c.onpointerup=()=>drawing=false;c.onpointerleave=()=>drawing=false;qs('#pfClear').onclick=()=>{ctx.clearRect(0,0,c.width,c.height)};qs('#pfSave').onclick=()=>{const data=c.toDataURL('image/png');setCookie('gt_avatar',data,365);state.avatar=data};ui('modalYes').onclick=()=>{const n=(qs('#setNick').value||'').trim();const t=qs('#setTheme').value;const a=qs('#setAnon').checked;const ac=qs('#setAcc').value;state.prefs.theme=t;state.prefs.anonymous=a;state.prefs.accent=ac;document.documentElement.style.setProperty('--acc1',ac);document.documentElement.style.setProperty('--acc2',ac);if(n&&!a){localStorage.setItem('gt_nick',n)}if(a){state.nick='anon-'+randId(6)}applyTheme();savePrefs();ui('modal').classList.remove('show')};ui('modalNo').onclick=()=>{ui('modal').classList.remove('show')}}
+function savePrefs(){setCookie('gt_settings',btoa(JSON.stringify(state.prefs)),365)}
+function loadPrefs(){try{const raw=getCookie('gt_settings');if(raw){state.prefs=Object.assign(state.prefs,JSON.parse(atob(raw)));document.documentElement.style.setProperty('--acc1',state.prefs.accent||'#6aa4ff');document.documentElement.style.setProperty('--acc2',state.prefs.accent||'#7b5cff')}applyTheme()}catch{}}
+function applyTheme(){let t=state.prefs.theme;if(t==='system'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t);if(t==='dark'){document.body.style.background='radial-gradient(1200px 800px at 10% -10%,#0f1830 0%,transparent 60%),radial-gradient(1000px 800px at 110% 20%,#161a2e 0%,transparent 60%),linear-gradient(180deg,#0a0f18, #070a0f)'}else{document.body.style.background='#eef3fb'}}
+
+ui('publicBtn').onclick=()=>{ui('tabPublic').click();window.scrollTo({top:0,behavior:'smooth'})}
+ui('settingsBtn').onclick=showSettings
+
+function renderPublic(){const list=['lobby','global','tech','games'];const wrap=ui('public');wrap.innerHTML='';list.forEach(name=>{const b=document.createElement('button');b.className='chip';b.textContent=name;b.onclick=async()=>{if(!await ensureNick())return;await doJoin({room:name,key:'',nick:state.nick})};wrap.appendChild(b)})}
+
+function showContacts(){const me=`<div class="chip">My Number: <b>${state.number}</b></div>`;const list=state.contacts.map(c=>`<div class="flex" style="justify-content:space-between;border:1px solid var(--brd);padding:8px;border-radius:10px"><div><b>${c.name||c.no}</b><div class="small muted">${c.no}</div></div><div class="flex"><button data-act="dm" data-no="${c.no}">DM</button><button data-act="blk" data-no="${c.no}">${state.block.includes(c.no)?'Unblock':'Block'}</button><button data-act="del" data-no="${c.no}">Remove</button></div></div>`).join('')||'<div class="tip">No contacts yet</div>';const body=`<div class="flex" style="margin-bottom:8px">${me}<button id="copyNum">Copy</button></div><div class="settings-row"><div><label>Add by Number</label><input id="addNo" placeholder="N..."></div><div><label>Name</label><input id="addName" placeholder="Optional"></div></div><div class="flex" style="margin-top:8px"><button id="addBtn" class="primary">Add</button></div><hr class="sep"><div id="clist">${list}</div>`;ui('modalBody').innerHTML=body;ui('modal').classList.add('show');ui('modalYes').onclick=()=>ui('modal').classList.remove('show');ui('modalNo').onclick=()=>ui('modal').classList.remove('show');qs('#copyNum').onclick=async()=>{try{await navigator.clipboard.writeText(state.number)}catch{}};qs('#addBtn').onclick=()=>{const no=(qs('#addNo').value||'').trim();if(!no)return;const name=(qs('#addName').value||'').trim();if(!state.contacts.find(x=>x.no===no)){state.contacts.push({no,name});saveContacts();showContacts()}};qs('#clist').onclick=e=>{const b=e.target.closest('button');if(!b)return;const act=b.getAttribute('data-act'),no=b.getAttribute('data-no');if(act==='dm'){startDMWith(no)}else if(act==='del'){state.contacts=state.contacts.filter(x=>x.no!==no);saveContacts();showContacts()}else if(act==='blk'){if(state.block.includes(no)){state.block=state.block.filter(x=>x!==no)}else{state.block.push(no)}saveBlock();showContacts()}}}
+ui('contactsBtn').onclick=showContacts
+function saveContacts(){setCookie('gt_contacts',btoa(JSON.stringify(state.contacts)),365)}
+function loadContacts(){try{const raw=getCookie('gt_contacts');if(raw)state.contacts=JSON.parse(atob(raw))||[]}catch{}}
+function saveBlock(){setCookie('gt_block',btoa(JSON.stringify(state.block)),365)}
+function loadBlock(){try{const raw=getCookie('gt_block');if(raw)state.block=JSON.parse(atob(raw))||[]}catch{}}
+
+function randomQueueStart(){setupGun();if(state.randomOn)return;state.randomOn=true;const offer={by:selfId,t:Date.now(),room:niceSlug(),key:randPass()};state.gun.get('githubtalk').get('queue').get(selfId).put(offer);ui('randomBtn').textContent='Cancel random';const q=state.gun.get('githubtalk').get('queue');const sub=q.map().on(async(o,k)=>{if(!state.randomOn||!o||k===selfId)return;if(Date.now()-o.t>120000)return;q.get(k).get('take').once(val=>{if(val||!state.randomOn)return;q.get(k).get('take').put(selfId);state.randomOn=false;ui('randomBtn').textContent='Talk to a random';q.get(selfId).put(null);q.get(k).put(Object.assign({},o,{take:selfId}));doJoin({room:o.room,key:o.key,nick:state.prefs.anonymous?'anon-'+randId(6):(localStorage.getItem('gt_nick')||'')});setTimeout(()=>{q.get(k).put(null)},5000)})});state.gunSubs['_rand']=sub}
+function randomQueueStop(){if(!state.randomOn)return;state.randomOn=false;ui('randomBtn').textContent='Talk to a random';try{state.gun.get('githubtalk').get('queue').get(selfId).put(null)}catch{}if(state.gunSubs['_rand']){state.gunSubs['_rand']=null}}
+ui('randomBtn').onclick=()=>{if(state.randomOn)randomQueueStop();else randomQueueStart()}
+
+ui('createBtn').onclick=async()=>{if(!await ensureNick())return;const room=(ui('room').value||niceSlug()).trim();const key=(ui('pass').value||randPass()).trim();const nick=state.nick||('anon-'+randId(6));const link=buildShareLink(room,key,nick);try{await navigator.clipboard.writeText(link);info('Invite link copied')}catch{info('Invite: '+link)}await doJoin({room,key,nick})}
 
 ui('joinBtn').onclick=async()=>{if(!await ensureNick())return;const pasted=ui('invite').value.trim();let r='',k='',n='';if(pasted){const x=parseInviteLink(pasted);r=x.room;k=x.key;n=x.nick}if(!r){const url=new URL(location.href);r=url.searchParams.get('r')||'';const h=new URLSearchParams(url.hash.replace(/^#/,''));k=h.get('k')||'';n=h.get('n')||''}if(!r){info('Invite link required');return}if(k===''){k=await loadPass(r)||''}await doJoin({room:r,key:k,nick:n||state.nick})}
+
+ui('startDM').onclick=()=>{const no=(ui('dmNumber').value||'').trim();if(no)startDMWith(no)}
+function startDMWith(no){const mine=state.number;const pair=[mine,no].sort().join('-');const room='dm-'+awaitHash(pair);const key=awaitHash('k:'+pair);doJoin({room,key,nick:state.prefs.anonymous?('anon-'+randId(6)):state.nick,dmWith:no})}
+async function awaitHash(s){const d=new TextEncoder().encode(s);const h=await crypto.subtle.digest('SHA-256',d);return base58enc(new Uint8Array(h).slice(0,16))}
 
 function resumeRoom(room){ui('invite').value='';ui('room').value=room;ui('tabJoin').click();quickJoin(room)}
 
@@ -276,20 +350,24 @@ ui('gifClose').onclick=closeGifPanel
 ui('gifKeyBtn').onclick=setGiphyKey
 ui('gifQuery').addEventListener('input',e=>{clearTimeout(ui('gifQuery')._t);ui('gifQuery')._t=setTimeout(()=>searchGifs(ui('gifQuery').value.trim()),300)})
 
-function renderPublic(){const list=['lobby','global','tech','games'];const wrap=ui('public');wrap.innerHTML='';list.forEach(name=>{const b=document.createElement('button');b.className='chip';b.textContent=name;b.onclick=async()=>{if(!await ensureNick())return;await doJoin({room:name,key:'',nick:state.nick})};wrap.appendChild(b)})}
+ui('inviteBtn').onclick=async()=>{const link=buildShareLink(state.room,state.key,state.nick);try{await navigator.clipboard.writeText(link)}catch{}}
+ui('leaveBtn').onclick=leaveChat
+ui('callBtn').onclick=startCallFlow
+ui('drawBtn').onclick=openDrawModal
 
-function showSettings(){const v=state.prefs;const themeSel=`<select id="setTheme"><option value="system"${v.theme==='system'?' selected':''}>System</option><option value="dark"${v.theme==='dark'?' selected':''}>Dark</option><option value="light"${v.theme==='light'?' selected':''}>Light</option></select>`;const nickVal=(localStorage.getItem('gt_nick')||'');const anon=v.anonymous?' checked':'';ui('modalBody').innerHTML=`<div class="settings-row"><div><label>Username</label><input id="setNick" value="${nickVal}"></div><div><label>Theme</label>${themeSel}</div></div><div style="margin-top:10px"><label><input type="checkbox" id="setAnon"${anon}> Be anonymous this session</label></div>`;ui('modal').classList.add('show');ui('modalYes').onclick=()=>{const n=(qs('#setNick').value||'').trim();const t=qs('#setTheme').value;const a=qs('#setAnon').checked;state.prefs.theme=t;state.prefs.anonymous=a;if(n&&!a){localStorage.setItem('gt_nick',n)}if(a){state.nick='anon-'+randId(6)}applyTheme();savePrefs();ui('modal').classList.remove('show')};ui('modalNo').onclick=()=>{ui('modal').classList.remove('show')}}
-function savePrefs(){setCookie('gt_settings',btoa(JSON.stringify(state.prefs)),365)}
-function loadPrefs(){try{const raw=getCookie('gt_settings');if(raw){state.prefs=Object.assign(state.prefs,JSON.parse(atob(raw)))}applyTheme()}catch{}}
-function applyTheme(){let t=state.prefs.theme;if(t==='system'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t);if(t==='dark'){document.body.style.background='radial-gradient(1200px 800px at 10% -10%,#0f1830 0%,transparent 60%),radial-gradient(1000px 800px at 110% 20%,#161a2e 0%,transparent 60%),linear-gradient(180deg,#0a0f18, #070a0f)'}else{document.body.style.background='#eef3fb'}}
+function openDrawModal(){const body=`<div class="row"><div><label>Canvas</label><canvas id="drawc" width="640" height="400" style="width:100%;border-radius:12px;border:1px solid var(--brd);background:#111;touch-action:none"></canvas></div></div><div class="flex"><input type="range" id="dw" min="1" max="16" value="4" style="width:160px"><input type="color" id="dc" value="#ffffff"><button id="dclear">Clear</button></div>`;ui('modalBody').innerHTML=body;ui('modal').classList.add('show');const c=qs('#drawc');const ctx=c.getContext('2d');let down=false;let last=[0,0];ctx.lineCap='round';ctx.lineJoin='round';function pos(e){const r=c.getBoundingClientRect();const x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;const y=(e.touches?e.touches[0].clientY:e.clientY)-r.top;return[x*(c.width/r.width),y*(c.height/r.height)]}function start(e){down=true;last=pos(e)}function move(e){if(!down)return;const [x,y]=pos(e);ctx.strokeStyle=qs('#dc').value;ctx.lineWidth=+qs('#dw').value;ctx.beginPath();ctx.moveTo(last[0],last[1]);ctx.lineTo(x,y);ctx.stroke();last=[x,y]}function end(){down=false}c.addEventListener('pointerdown',start);c.addEventListener('pointermove',move);c.addEventListener('pointerup',end);c.addEventListener('pointerleave',end);qs('#dclear').onclick=()=>ctx.clearRect(0,0,c.width,c.height);ui('modalYes').onclick=async()=>{const data=c.toDataURL('image/png');ui('modal').classList.remove('show');await sendPayload({img:data})};ui('modalNo').onclick=()=>ui('modal').classList.remove('show')}
 
-ui('publicBtn').onclick=()=>{ui('tabPublic').click();window.scrollTo({top:0,behavior:'smooth'})}
-ui('settingsBtn').onclick=showSettings
+async function doJoin(opts={}){hide(ui('join'));show(ui('chat'));state.room=(opts.room||ui('room').value||niceSlug()).trim();state.key=(opts.key??randPass()).trim();if(state.prefs.anonymous)state.nick='anon-'+randId(6);else state.nick=(opts.nick||localStorage.getItem('gt_nick')||'').trim()||('anon-'+randId(6));state.dmWith=opts.dmWith||'';ui('roomBadge').textContent=(state.room.startsWith('dm-')?'Private: ':'Room: ')+state.room;ui('meBadge').textContent='You: '+state.nick+' · '+selfId.slice(0,6);ui('numBadge').textContent='Number: '+(state.prefs.anonymous?'Hidden':state.number);show(ui('roomBadge'));show(ui('meBadge'));show(ui('numBadge'));applySecurityBadge();await savePass(state.room,state.key);saveRecent(state.room);const config={appId:'githubtalk',password:state.key||undefined};const room=joinRoom(config,state.room);state.roomObj=room;const[sendMsg,getMsg]=room.makeAction('msg');const[sendReq,getReq]=room.makeAction('hreq');const[sendRes,getRes]=room.makeAction('hres');getMsg(async(payload,peerId)=>{const data=await maybeDecrypt(payload);if(data){storePush(payload);dedupeMerge([data]);await gunMirrorPush(state.room,payload,data.t);setStatus(`Last from ${peerId.slice(0,6)} at ${new Date().toLocaleTimeString()}`)}});getReq(async(payload)=>{const cmd=await maybeDecrypt(payload);if(!cmd)return;const cutoff=cmd.since||0;const plain=await decryptEnvlogIntoMsgs();const pack=plain.filter(m=>m.t>=cutoff).slice(-MAX_HISTORY);const env=await maybeEncrypt({history:pack});await sendRes(env)});getRes(async(payload)=>{const data=await maybeDecrypt(payload);if(data&&Array.isArray(data.history)){dedupeMerge(data.history);state.historyLoaded=true}});room.onPeerJoin(pid=>{setStatus(`Peer joined: ${pid.slice(0,6)} · ${new Date().toLocaleTimeString()}`)});room.onPeerLeave(pid=>{setStatus(`Peer left: ${pid.slice(0,6)} · ${new Date().toLocaleTimeString()}`)});const pre=await decryptEnvlogIntoMsgs();dedupeMerge(pre);setStatus('Online · '+new Date().toLocaleTimeString());state.joined=true;const cutoff=Date.now()-TTL_DAYS*864e5;const env=await maybeEncrypt({since:cutoff});await sendReq(env);gunSubscribe(state.room);await gunPrimeHistory(state.room);show(ui('inviteBtn'));show(ui('leaveBtn'));if(state.room.startsWith('dm-'))show(ui('callBtn'));else hide(ui('callBtn'))}
 
-function randomQueueStart(){setupGun();if(state.randomOn)return;state.randomOn=true;const offer={by:selfId,t:Date.now(),room:niceSlug(),key:randPass()};state.gun.get('githubtalk').get('queue').get(selfId).put(offer);ui('randomBtn').textContent='Cancel random';const q=state.gun.get('githubtalk').get('queue');const sub=q.map().on(async(o,k)=>{if(!state.randomOn||!o||k===selfId)return;if(Date.now()-o.t>120000)return;const ticket='take_'+k;q.get(k).get('take').once(val=>{if(val||!state.randomOn)return;q.get(k).get('take').put(selfId);state.randomOn=false;ui('randomBtn').textContent='Talk to a random';q.get(selfId).put(null);q.get(k).put(Object.assign({},o,{take:selfId}));doJoin({room:o.room,key:o.key,nick:state.prefs.anonymous?'anon-'+randId(6):(localStorage.getItem('gt_nick')||'')});setTimeout(()=>{q.get(k).put(null)},5000)})});state.gunSubs['_rand']=sub}
-function randomQueueStop(){if(!state.randomOn)return;state.randomOn=false;ui('randomBtn').textContent='Talk to a random';try{state.gun.get('githubtalk').get('queue').get(selfId).put(null)}catch{}if(state.gunSubs['_rand']){state.gunSubs['_rand']=null}}
+function leaveChat(){if(!state.roomObj){hide(ui('chat'));show(ui('join'));hide(ui('inviteBtn'));hide(ui('leaveBtn'));hide(ui('callBtn'));return}try{state.roomObj?.leave?.()}catch{}state.room='';state.key='';state.roomObj=null;state.msgs=[];ui('messages').innerHTML='';hide(ui('chat'));show(ui('join'));hide(ui('inviteBtn'));hide(ui('leaveBtn'));hide(ui('callBtn'));setStatus('')}
 
-ui('randomBtn').onclick=()=>{if(state.randomOn)randomQueueStop();else randomQueueStart()}
+async function initNumber(){state.number=await computeNumber();if(!state.prefs.anonymous)show(ui('numBadge'))}
+
+let ringing=null
+async function startCallFlow(){if(!state.room.startsWith('dm-'))return;const target=state.dmWith;if(!target)return;await ensurePeer();ui('callLabel').textContent='Calling '+target;show(ui('callModal'));const stream=await getMedia();state.stream=stream;ui('localVideo').srcObject=stream;const call=state.peer.call('gt-'+target,stream);call.on('stream',s=>{ui('remoteVideo').srcObject=s})}
+async function ensurePeer(){if(state.peer)return;const id='gt-'+state.number;state.peer=new Peer(id);state.peer.on('call',async c=>{ui('callLabel').textContent='Incoming call';show(ui('callModal'));const stream=await getMedia();state.stream=stream;ui('localVideo').srcObject=stream;c.answer(stream);c.on('stream',s=>{ui('remoteVideo').srcObject=s})})}
+async function getMedia(){return await navigator.mediaDevices.getUserMedia({video:true,audio:true})}
+ui('endCall').onclick=()=>{hide(ui('callModal'));try{ui('localVideo').srcObject&&ui('localVideo').srcObject.getTracks().forEach(t=>t.stop());ui('remoteVideo').srcObject&&ui('remoteVideo').srcObject.getTracks().forEach(t=>t.stop())}catch{}}
 
 buildEmojiPanel()
 activateTabs()
@@ -297,6 +375,10 @@ renderRecent()
 renderPublic()
 loadPrefs()
 applyTheme()
+loadContacts()
+loadBlock()
+state.avatar=getCookie('gt_avatar')||''
+await initNumber()
 
 const params=new URLSearchParams(location.search);const r=params.get('r')||'';const h=new URLSearchParams(location.hash.replace(/^#/,''));const k=h.get('k')||'';const n=h.get('n')||''
 if(r){ui('invite').value=location.href;ui('tabJoin').click()}
