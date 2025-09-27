@@ -1,26 +1,24 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Mini Bomberman — 3 Items + Bots</title>
+  <meta charset="UTF-8">
+  <title>Bomberman Enhanced</title>
   <style>
-    body { background:#222; color:#eee; font-family:system-ui,Segoe UI, Roboto, Arial; margin:0; padding:20px; display:flex; gap:20px; }
-    #ui { width:300px; }
-    canvas { background:#88c; display:block; image-rendering:pixelated; border:6px solid #333; box-shadow:0 6px 20px rgba(0,0,0,0.6); }
-    button, select { font-size:16px; padding:8px; margin-top:8px; width:100%; box-sizing:border-box; }
-    h1 { font-size:18px; margin:0 0 8px 0; }
-    p { margin:6px 0; font-size:13px; color:#ddd; }
-    .info { font-size:13px; color:#bbb; margin-top:12px; }
-    .legend { font-size:13px; margin-top:8px; }
-    .player-legend { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
-    .pill { padding:6px 8px; border-radius:6px; font-weight:600; color:#111; }
-    .p1 { background:#ffb3b3; } .p2 { background:#b3ffd6; } .p3 { background:#b3d1ff; } .p4 { background:#ffe6b3; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: sans-serif; background: #1c1c1c; color: #fff; display: flex; }
+    #ui { width: 260px; padding: 20px; background: #2b2b2b; }
+    #ui h1 { font-size: 20px; margin: 0 0 10px; }
+    #ui select, #ui button { width: 100%; margin: 10px 0; font-size: 16px; padding: 8px; }
+    #ui p { font-size: 12px; color: #ccc; }
+    canvas { border: 4px solid #444; background: #333; margin: 20px; image-rendering: pixelated; }
+    .pill { display: inline-block; margin: 4px 0; padding: 6px 10px; border-radius: 5px; font-size: 13px; color: #111; }
+    .p1 { background: #ff9090; } .p2 { background: #90ffc0; } .p3 { background: #90c0ff; } .p4 { background: #ffe090; }
   </style>
 </head>
 <body>
   <div id="ui">
-    <h1>Mini Bomberman</h1>
-    <label for="humanCount">Number of human players (1–4):</label>
+    <h1>Bomberman+</h1>
+    <label for="humanCount">Human Players:</label>
     <select id="humanCount">
       <option value="1">1</option>
       <option value="2" selected>2</option>
@@ -28,522 +26,177 @@
       <option value="4">4</option>
     </select>
     <button id="startBtn">Start Game</button>
-    <div class="info">
-      <strong>Controls (per player):</strong>
-      <div class="player-legend">
-        <div class="pill p1">P1: WASD / Space</div>
-        <div class="pill p2">P2: Arrow Keys / Enter</div>
-        <div class="pill p3">P3: IJKL / O</div>
-        <div class="pill p4">P4: TFGH / R</div>
-      </div>
-      <div class="legend">
-        <p>Goal: last player/bot alive. Explosions destroy breakable blocks and can reveal items.</p>
-        <p>Items (3): <strong>Extra Bomb</strong>, <strong>Range+</strong>, <strong>Speed+</strong>.</p>
-      </div>
-    </div>
-    <div style="margin-top:12px">
-      <button id="restartBtn">Reset (to menu)</button>
-    </div>
+    <p><span class="pill p1">P1: WASD + Space</span></p>
+    <p><span class="pill p2">P2: Arrows + /</span></p>
+    <p><span class="pill p3">P3: IJKL + O</span></p>
+    <p><span class="pill p4">P4: TFGH + R</span></p>
+    <p>Items: <strong>+B</strong> Bomb, <strong>+R</strong> Range, <strong>+S</strong> Speed</p>
+    <p>Last alive wins</p>
+    <button id="restartBtn">Back to Menu</button>
+    <p id="status">Awaiting input...</p>
   </div>
-
-  <div>
-    <canvas id="game" width="816" height="704"></canvas>
-    <div id="status" style="color:#ddd;margin-top:8px;"></div>
-  </div>
-
-<script>
-/*
-  Mini Bomberman in pure JS + Canvas.
-  - 13 x 11 grid (classic proportions)
-  - 3 item types: extra bomb, range, speed
-  - selectable number of human players (rest bots) up to 4
-  - bots with simple random-moving AI
-*/
-
-// ---- Config ----
-const COLS = 17;     // width
-const ROWS = 13;     // height
-const TILE = 48;     // pixels per tile
-const TOTAL_PLAYERS = 4;
-const FPS = 60;
-
-// map tile types
-const TILE_EMPTY = 0;
-const TILE_WALL = 1;        // unbreakable
-const TILE_BLOCK = 2;       // destructible
-const TILE_BOMB = 3;        // for rendering convenience; bombs are tracked separately
-const TILE_ITEM = 4;        // item on floor (will be also represented in items array)
-
-// 3 items
-const ITEM_EXTRA_BOMB = 1;
-const ITEM_RANGE = 2;
-const ITEM_SPEED = 3;
-
-// colors & simple sprites
-const COLORS = {
-  floor:'#6aa', wall:'#555', block:'#a66', bomb:'#000', flame:'#fffb8f',
-  itemExtra:'#ff9', itemRange:'#9ff', itemSpeed:'#f9f'
-};
-
-// ---- Globals ----
-const canvas = document.getElementById('game');
-const ctx = canvas.getContext('2d');
-canvas.width = COLS * TILE;
-canvas.height = ROWS * TILE;
-let humanCountSelect = document.getElementById('humanCount');
-let startBtn = document.getElementById('startBtn');
-let restartBtn = document.getElementById('restartBtn');
-let statusDiv = document.getElementById('status');
-
-let gameState = 'menu'; // menu | running | ended
-
-// map and entities
-let map = [];
-let players = []; // players and bots (both in this list)
-let bombs = [];
-let flames = [];
-let items = []; // {x,y,type}
-let keysDown = {};
-let tick = 0;
-let humanCount = 2;
-
-// keybindings for each player slot
-const KEYSETS = [
-  { up:'w', down:'s', left:'a', right:'d', bomb:' ' },           // P1
-  { up:'ArrowUp', down:'ArrowDown', left:'ArrowLeft', right:'ArrowRight', bomb:'Enter' }, // P2
-  { up:'i', down:'k', left:'j', right:'l', bomb:'o' },           // P3
-  { up:'t', down:'g', left:'f', right:'h', bomb:'r' }            // P4
-];
-
-// utility
-const rand = (n)=>(Math.floor(Math.random()*n));
-const chance = (p)=>(Math.random() < p);
-
-// ---- Map creation ----
-function createMap() {
-  map = Array.from({length:ROWS}, ()=>Array(COLS).fill(TILE_EMPTY));
-  // create walls around and inner solid walls
-  for (let r=0;r<ROWS;r++){
-    for (let c=0;c<COLS;c++){
-      if (r===0 || r===ROWS-1 || c===0 || c===COLS-1) { map[r][c]=TILE_WALL; continue; }
-      if (r%2===0 && c%2===0) { map[r][c]=TILE_WALL; continue; } // classic pattern
-      // fill breakable blocks with some probability, but leave spawn safe tiles empty
-      map[r][c] = (Math.random() < 0.65) ? TILE_BLOCK : TILE_EMPTY;
-    }
-  }
-  // clear spawn areas for 4 players (corners)
-  const spawns = [[1,1],[ROWS-2,COLS-2],[1,COLS-2],[ROWS-2,1]];
-  for (let i=0;i<spawns.length;i++){
-    let [sr,sc] = spawns[i];
-    const clear = [
-      [sr,sc],
-      [sr+1,sc],
-      [sr,sc+1]
+  <canvas id="game" width="816" height="624"></canvas>
+  <script>
+    const TILE = 48, ROWS = 13, COLS = 17;
+    const TILE_WALL = 1, TILE_BLOCK = 2;
+    const ITEM_EXTRA = 1, ITEM_RANGE = 2, ITEM_SPEED = 3;
+    const COLORS = { wall:'#444', block:'#854', floor:'#444c', bomb:'#000', flame:'#fc6' };
+    const canvas = document.getElementById('game'), ctx = canvas.getContext('2d');
+    const humanCountSel = document.getElementById('humanCount'), status = document.getElementById('status');
+    const keysets = [
+      {up:'w',down:'s',left:'a',right:'d',bomb:' '},
+      {up:'ArrowUp',down:'ArrowDown',left:'ArrowLeft',right:'ArrowRight',bomb:'/'},
+      {up:'i',down:'k',left:'j',right:'l',bomb:'o'},
+      {up:'t',down:'g',left:'f',right:'h',bomb:'r'}
     ];
-    for (const [r,c] of clear) if (r>=0 && r<ROWS && c>=0 && c<COLS) map[r][c]=TILE_EMPTY;
-  }
+    let keys={}, map=[], items=[], bombs=[], flames=[], players=[], state='menu', humanCount=2, tick=0;
+    const rand = n => Math.floor(Math.random()*n), chance = p => Math.random() < p;
+    document.addEventListener('keydown', e=>{ keys[e.key]=true; if([' ','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Enter','/'].includes(e.key)) e.preventDefault(); });
+    document.addEventListener('keyup', e=>{ keys[e.key]=false; });
+    document.getElementById('startBtn').onclick = ()=>{ humanCount=+humanCountSel.value; startGame(); };
+    document.getElementById('restartBtn').onclick = ()=>{ state='menu'; status.textContent='Awaiting input...'; };
 
-  items = []; bombs = []; flames = [];
-}
+    function startGame() {
+      state = 'playing'; status.textContent='Playing...'; tick=0; map = [], bombs=[], flames=[], items=[];
+      for (let r=0;r<ROWS;r++) {
+        let row=[]; for (let c=0;c<COLS;c++) {
+          if (r===0||c===0||r===ROWS-1||c===COLS-1 || (r%2===0 && c%2===0)) row.push(TILE_WALL);
+          else row.push(chance(0.75)?TILE_BLOCK:0);
+        } map.push(row);
+      }
+      let spawns=[[1,1],[ROWS-2,COLS-2],[1,COLS-2],[ROWS-2,1]];
+      for (let [r,c] of spawns) for (let dr=0;dr<=1;dr++) for (let dc=0;dc<=1;dc++) map[r+dr][c+dc]=0;
+      players = [];
+      for (let i=0;i<4;i++) {
+        let [r,c]=spawns[i];
+        players.push({id:i, r, c, alive:true, human:i<humanCount, bombMax:1, bombCount:0, range:1, speed:1, moveCD:0, aiDir:null, aiTick:0});
+      }
+    }
 
-// ---- Entities ----
-function createPlayers(humans) {
-  players = [];
-  const spawnSpots = [
-    {r:1,c:1},
-    {r:ROWS-2,c:COLS-2},
-    {r:1,c:COLS-2},
-    {r:ROWS-2,c:1}
-  ];
-  for (let i=0;i<TOTAL_PLAYERS;i++){
-    const spawn = spawnSpots[i];
-    const p = {
-      id:i,
-      r:spawn.r,
-      c:spawn.c,
-      x:spawn.c,
-      y:spawn.r,
-      human: i < humans,
-      alive:true,
-      colorIdx: i+1,
-      bombsMax:1,
-      bombsPlaced:0,
-      range:1,
-      speed:1, // tiles per second base
-      moveCooldown:0,
-      aiDelay: rand(30)+30,
-      aiDir: null,
-      respawnTimer:0
-    };
-    players.push(p);
-  }
-}
-
-// ---- Bombs and Flames ----
-function placeBomb(player) {
-  if (!player.alive) return;
-  if (player.bombsPlaced >= player.bombsMax) return;
-  const r = Math.round(player.r);
-  const c = Math.round(player.c);
-  // check if bomb already exists at tile
-  if (bombs.some(b=>b.r===r && b.c===c)) return;
-  bombs.push({
-    r,c,
-    timer:180, // frames (3s at 60fps)
-    owner:player,
-    range:player.range
-  });
-  player.bombsPlaced++;
-}
-
-function explodeBomb(b) {
-  // remove bomb from bombs
-  bombs = bombs.filter(x=>x!==b);
-  if (b.owner) b.owner.bombsPlaced = Math.max(0, b.owner.bombsPlaced-1);
-  const centers = [{r:b.r,c:b.c}];
-  const dirs = [[-1,0],[1,0],[0,-1],[0,1]];
-  for (const [dr,dc] of dirs){
-    for (let step=1; step<=b.range; step++){
-      const rr = b.r + dr*step;
-      const cc = b.c + dc*step;
-      if (rr<0||rr>=ROWS||cc<0||cc>=COLS) break;
-      if (map[rr][cc]===TILE_WALL) break;
-      centers.push({r:rr,c:cc});
-      if (map[rr][cc]===TILE_BLOCK){
-        // block destroyed by explosion (stop further propagation)
-        // chance to spawn an item
-        if (Math.random() < 0.5){
-          const sp = Math.random();
-          let it;
-          if (sp < 0.33) it = ITEM_EXTRA_BOMB;
-          else if (sp < 0.66) it = ITEM_RANGE;
-          else it = ITEM_SPEED;
-          items.push({r:rr,c:cc,type:it});
+    function loop() {
+      requestAnimationFrame(loop); if (state!=='playing') return;
+      tick++; ctx.clearRect(0,0,canvas.width,canvas.height);
+      for (let b of bombs) { b.t--; if (b.t<=0) explode(b); }
+      bombs = bombs.filter(b=>b.t>0);
+      for (let f of flames) f.t--;
+      flames = flames.filter(f=>f.t>0);
+      for (let p of players) if (p.alive) {
+        if (flames.some(f=>f.r===p.r&&f.c===p.c)) p.alive=false;
+      }
+      for (let p of players) if (p.alive) {
+        if (p.human) handleInput(p); else handleAI(p);
+      }
+      for (let it of items) {
+        for (let p of players) if (p.alive && p.r===it.r && p.c===it.c) {
+          if (it.t===ITEM_EXTRA) p.bombMax++;
+          if (it.t===ITEM_RANGE) p.range++;
+          if (it.t===ITEM_SPEED) p.speed+=0.5;
+          it.dead=true;
         }
-        map[rr][cc] = TILE_EMPTY;
-        break;
       }
-      // bombs chain-react
-      const hitBomb = bombs.find(bb=>bb.r===rr&&bb.c===cc);
-      if (hitBomb) {
-        // immediate explosion: set timer to 0 and it will be exploded this frame or next
-        hitBomb.timer = 0;
-      }
-    }
-  }
-  // create flames
-  for (const p of centers){
-    flames.push({r:p.r,c:p.c,timer:30}); // flames last 0.5s (30 frames)
-  }
-}
-
-// ---- Input ----
-window.addEventListener('keydown', e=>{
-  keysDown[e.key] = true;
-  // prevent scrolling with space / arrows
-  if ([' ', 'ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) e.preventDefault();
-});
-window.addEventListener('keyup', e=>{
-  keysDown[e.key] = false;
-});
-
-// ---- Game logic ----
-function update() {
-  tick++;
-  if (gameState !== 'running') return;
-
-  // bombs
-  for (const b of [...bombs]) {
-    b.timer--;
-    if (b.timer <= 0) explodeBomb(b);
-  }
-
-  // flames -- damage players and expire
-  for (const f of [...flames]) {
-    f.timer--;
-    if (f.timer <= 0) {
-      flames = flames.filter(x=>x!==f);
-      continue;
-    }
-    // damage any player on that tile
-    for (const p of players){
-      if (!p.alive) continue;
-      if (Math.round(p.r)===f.r && Math.round(p.c)===f.c){
-        killPlayer(p);
+      items = items.filter(i=>!i.dead);
+      draw();
+      let alive = players.filter(p=>p.alive);
+      if (alive.length<=1) {
+        state='over';
+        status.textContent = alive.length ? `Winner: P${alive[0].id+1}` : 'Draw!';
       }
     }
-  }
 
-  // items pickup
-  for (const it of [...items]) {
-    for (const p of players){
-      if (!p.alive) continue;
-      if (Math.round(p.r)===it.r && Math.round(p.c)===it.c){
-        applyItem(p, it.type);
-        items = items.filter(x=>x!==it);
+    function handleInput(p) {
+      const k=keysets[p.id]; const s=12/p.speed; if (p.moveCD>0) p.moveCD--;
+      let moved=false,tr=p.r,tc=p.c;
+      if (p.moveCD<=0) {
+        if (keys[k.up]) tr--;
+        else if (keys[k.down]) tr++;
+        else if (keys[k.left]) tc--;
+        else if (keys[k.right]) tc++;
+        if (canMove(tr,tc)) { p.r=tr;p.c=tc;p.moveCD=s; }
+      }
+      if (keys[k.bomb] && !p.bombLock) {
+        dropBomb(p); p.bombLock=true;
+      } else if (!keys[k.bomb]) p.bombLock=false;
+    }
+
+    function handleAI(p) {
+      const s=12/p.speed; if (p.moveCD>0) p.moveCD--;
+      if (--p.aiTick<=0) {
+        p.aiTick=20+rand(40);
+        let targets = players.filter(x=>x.human && x.alive);
+        if (targets.length) {
+          let nearest = targets.reduce((a,b)=>dist(p,b)<dist(p,a)?b:a);
+          if (dist(p,nearest)<=6) {
+            if (Math.abs(nearest.r-p.r)>Math.abs(nearest.c-p.c)) p.aiDir = (nearest.r<p.r)?'up':'down';
+            else p.aiDir = (nearest.c<p.c)?'left':'right';
+          }
+        }
+      }
+      let dir = p.aiDir || ['up','down','left','right'][rand(4)];
+      let [tr,tc]=[p.r,p.c]; if (dir==='up') tr--; if (dir==='down') tr++; if (dir==='left') tc--; if (dir==='right') tc++;
+      if (p.moveCD<=0 && canMove(tr,tc) && !flames.some(f=>f.r===tr&&f.c===tc)) { p.r=tr;p.c=tc;p.moveCD=s; }
+      if (bombs.every(b=>!(b.r===p.r&&b.c===p.c)) && chance(0.01)) dropBomb(p);
+    }
+
+    function canMove(r,c) {
+      if (r<0||r>=ROWS||c<0||c>=COLS) return false;
+      if (map[r][c]!==0) return false;
+      if (bombs.some(b=>b.r===r&&b.c===c)) return false;
+      return true;
+    }
+
+    function dropBomb(p) {
+      if (p.bombCount>=p.bombMax) return;
+      if (bombs.some(b=>b.r===p.r&&b.c===p.c)) return;
+      bombs.push({r:p.r,c:p.c,t:80,p,range:p.range}); p.bombCount++;
+    }
+
+    function explode(b) {
+      b.p.bombCount--; flames.push({r:b.r,c:b.c,t:20});
+      for (let [dr,dc] of [[-1,0],[1,0],[0,-1],[0,1]]) {
+        for (let i=1;i<=b.range;i++) {
+          let nr=b.r+dr*i,nc=b.c+dc*i;
+          if (nr<0||nr>=ROWS||nc<0||nc>=COLS) break;
+          if (map[nr][nc]===TILE_WALL) break;
+          flames.push({r:nr,c:nc,t:20});
+          if (map[nr][nc]===TILE_BLOCK) {
+            map[nr][nc]=0;
+            if (chance(0.3)) {
+              items.push({r:nr,c:nc,t:rand(3)+1});
+            }
+            break;
+          }
+          let other = bombs.find(x=>x.r===nr&&x.c===nc);
+          if (other) { other.t=1; break; }
+        }
       }
     }
-  }
 
-  // players movement and actions
-  for (const p of players) {
-    if (!p.alive) continue;
-    if (p.human) {
-      handleHumanInput(p);
-    } else {
-      handleAI(p);
-    }
-    // movement cooldown based on speed
-    if (p.moveCooldown > 0) p.moveCooldown--;
-  }
-
-  // check win/lose
-  const alive = players.filter(p=>p.alive);
-  const humansAlive = alive.filter(p=>p.human);
-  if (alive.length <= 1) {
-    gameState = 'ended';
-    if (alive.length===1) statusDiv.textContent = `Winner: Player ${alive[0].id+1} (${alive[0].human ? 'Human' : 'Bot'})`;
-    else statusDiv.textContent = 'Draw: no survivors';
-  }
-
-  // remove bombs drawn as tiles if needed (we track bombs array)
-}
-
-// apply item
-function applyItem(player, type){
-  if (type===ITEM_EXTRA_BOMB) player.bombsMax = Math.min(5, player.bombsMax + 1);
-  else if (type===ITEM_RANGE) player.range = Math.min(6, player.range + 1);
-  else if (type===ITEM_SPEED) player.speed = Math.min(4, player.speed + 0.5);
-}
-
-// kill player
-function killPlayer(p){
-  p.alive = false;
-  p.respawnTimer = 120;
-  // remove bombs they placed? bombs remain.
-}
-
-// handle human input for a player
-function handleHumanInput(p) {
-  const keys = KEYSETS[p.id];
-  // moving only when moveCooldown <= 0
-  const speedFrames = Math.max(1, Math.round(12 / p.speed)); // smaller is faster
-  if (p.moveCooldown <= 0) {
-    let moved = false;
-    let tr=p.r, tc=p.c;
-    if (keysDown[keys.up]) { tr = p.r-1; moved=true; }
-    else if (keysDown[keys.down]) { tr = p.r+1; moved=true; }
-    else if (keysDown[keys.left]) { tc = p.c-1; moved=true; }
-    else if (keysDown[keys.right]) { tc = p.c+1; moved=true; }
-
-    if (moved) {
-      if (canMoveTo(tr,tc)) {
-        p.r = tr; p.c = tc;
-        p.moveCooldown = speedFrames;
-      } else {
-        // bump into bomb is allowed? Standard bomberman you can't walk through bombs.
-        // Do nothing.
+    function draw() {
+      for (let r=0;r<ROWS;r++) for (let c=0;c<COLS;c++) {
+        ctx.fillStyle=map[r][c]===TILE_WALL?COLORS.wall:map[r][c]===TILE_BLOCK?COLORS.block:COLORS.floor;
+        ctx.fillRect(c*TILE,r*TILE,TILE,TILE);
+      }
+      for (let it of items) {
+        ctx.fillStyle = it.t===ITEM_EXTRA?'#0ff':it.t===ITEM_RANGE?'#f0f':'#ff0';
+        ctx.fillRect(it.c*TILE+12,it.r*TILE+12,24,24);
+      }
+      for (let b of bombs) {
+        ctx.fillStyle=COLORS.bomb;
+        ctx.beginPath(); ctx.arc(b.c*TILE+24,b.r*TILE+24,16,0,Math.PI*2); ctx.fill();
+      }
+      for (let f of flames) {
+        ctx.fillStyle=COLORS.flame;
+        ctx.fillRect(f.c*TILE+4,f.r*TILE+4,40,40);
+      }
+      for (let p of players) if (p.alive) {
+        ctx.fillStyle=['#f66','#6f6','#66f','#ff6'][p.id];
+        ctx.beginPath(); ctx.arc(p.c*TILE+24,p.r*TILE+24,18,0,Math.PI*2); ctx.fill();
       }
     }
-  }
 
-  // bomb dropping key - detect just-pressed (simple)
-  if (keysDown[keys.bomb]) {
-    // to avoid continuous placement, we only place when moveCooldown==0 or we can detect a "just pressed". For simplicity, only allow place if a small flag not set.
-    if (!p._bombKeyLock) {
-      placeBomb(p);
-      p._bombKeyLock = true;
-    }
-  } else {
-    p._bombKeyLock = false;
-  }
-}
+    function dist(a,b){ return Math.abs(a.r-b.r)+Math.abs(a.c-b.c); }
 
-// simple AI
-function handleAI(p){
-  // a very small AI:
-  // - every aiDelay frames pick a random direction or target a nearby human
-  // - try to avoid placing bombs on fire often, but sometimes place
-  if (p.aiDelay-- <= 0) {
-    p.aiDelay = rand(50)+30;
-    // 50% chance to chase nearest human if within 6 tiles
-    const humans = players.filter(x=>x.human && x.alive);
-    if (humans.length>0 && chance(0.5)) {
-      let nearest = null; let dist=9999;
-      for (const h of humans) {
-        const d = Math.abs(h.r - p.r) + Math.abs(h.c - p.c);
-        if (d < dist) { dist=d; nearest=h; }
-      }
-      if (nearest && dist <= 7) {
-        // choose direction towards human
-        const dr = Math.sign(nearest.r - p.r);
-        const dc = Math.sign(nearest.c - p.c);
-        if (Math.random() < 0.5 && dr !== 0) p.aiDir = dr<0 ? 'up' : 'down';
-        else if (dc !== 0) p.aiDir = dc<0 ? 'left' : 'right';
-        else p.aiDir = ['up','down','left','right'][rand(4)];
-      } else {
-        p.aiDir = ['up','down','left','right'][rand(4)];
-      }
-    } else {
-      p.aiDir = ['up','down','left','right'][rand(4)];
-    }
-    // sometimes drop bomb if close to target
-    if (chance(0.15)) {
-      placeBomb(p);
-    }
-  }
-
-  // execute movement (based on p.aiDir)
-  const speedFrames = Math.max(1, Math.round(12 / p.speed));
-  if (p.moveCooldown <= 0 && p.aiDir) {
-    let tr=p.r, tc=p.c;
-    if (p.aiDir==='up') tr = p.r-1;
-    if (p.aiDir==='down') tr = p.r+1;
-    if (p.aiDir==='left') tc = p.c-1;
-    if (p.aiDir==='right') tc = p.c+1;
-    if (canMoveTo(tr,tc)) {
-      p.r = tr; p.c = tc; p.moveCooldown = speedFrames;
-    } else {
-      // choose another random dir next time
-      p.aiDir = ['up','down','left','right'][rand(4)];
-    }
-  }
-
-  // slight chance to drop bomb if near a human or randomly
-  if (chance(0.01)) placeBomb(p);
-}
-
-// can the tile be moved into (not wall, not block, not bomb)
-function canMoveTo(r,c) {
-  if (r<0||r>=ROWS||c<0||c>=COLS) return false;
-  if (map[r][c] === TILE_WALL) return false;
-  if (map[r][c] === TILE_BLOCK) return false;
-  // block if bomb present
-  if (bombs.some(b=>b.r===r && b.c===c)) return false;
-  // allowed
-  return true;
-}
-
-// ---- Rendering ----
-function draw() {
-  // background
-  ctx.fillStyle = '#6aa';
-  ctx.fillRect(0,0,canvas.width, canvas.height);
-
-  // draw tiles
-  for (let r=0;r<ROWS;r++){
-    for (let c=0;c<COLS;c++){
-      const x = c*TILE, y = r*TILE;
-      const t = map[r][c];
-      if (t === TILE_WALL) {
-        ctx.fillStyle = COLORS.wall; ctx.fillRect(x,y,TILE,TILE);
-        ctx.fillStyle = '#444'; ctx.fillRect(x+6,y+6,TILE-12,TILE-12);
-      } else if (t === TILE_BLOCK) {
-        ctx.fillStyle = COLORS.block; ctx.fillRect(x,y,TILE,TILE);
-        ctx.fillStyle = '#7a3'; ctx.fillRect(x+8,y+8,TILE-16,TILE-16);
-      } else {
-        // floor
-        ctx.fillStyle = '#8ec'; ctx.fillRect(x,y,TILE,TILE);
-      }
-    }
-  }
-
-  // draw items
-  for (const it of items){
-    const x = it.c*TILE, y = it.r*TILE;
-    if (it.type === ITEM_EXTRA_BOMB) {
-      ctx.fillStyle = COLORS.itemExtra; ctx.fillRect(x+12,y+12, TILE-24, TILE-24);
-      ctx.fillStyle = '#111'; ctx.fillText('+B', x+16, y+32);
-    } else if (it.type === ITEM_RANGE) {
-      ctx.fillStyle = COLORS.itemRange; ctx.fillRect(x+12,y+12, TILE-24, TILE-24);
-      ctx.fillStyle = '#111'; ctx.fillText('+R', x+16, y+32);
-    } else if (it.type === ITEM_SPEED) {
-      ctx.fillStyle = COLORS.itemSpeed; ctx.fillRect(x+12,y+12, TILE-24, TILE-24);
-      ctx.fillStyle = '#111'; ctx.fillText('+S', x+16, y+32);
-    }
-  }
-
-  // draw bombs
-  for (const b of bombs){
-    const x = b.c*TILE, y = b.r*TILE;
-    ctx.fillStyle = COLORS.bomb; ctx.beginPath();
-    ctx.arc(x+TILE/2, y+TILE/2, TILE/3, 0, 2*Math.PI); ctx.fill();
-    // timer ring
-    const frac = (b.timer/180);
-    ctx.strokeStyle = `rgba(255,255,255,${Math.max(0.2,0.8*frac)})`;
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.arc(x+TILE/2, y+TILE/2, TILE/3+3, 0, Math.PI*2*frac);
-    ctx.stroke();
-  }
-
-  // flames
-  for (const f of flames){
-    const x = f.c*TILE, y = f.r*TILE;
-    ctx.fillStyle = COLORS.flame; ctx.fillRect(x+4,y+4,TILE-8,TILE-8);
-  }
-
-  // players
-  for (const p of players){
-    const x = p.c*TILE, y = p.r*TILE;
-    if (!p.alive) {
-      ctx.fillStyle = '#222';
-      ctx.fillRect(x+8,y+8,TILE-16,TILE-16);
-      ctx.fillStyle = '#900'; ctx.fillText('X', x+TILE/2-4, y+TILE/2+4);
-      continue;
-    }
-    // color
-    const colors = ['#fff','#ff9999','#99ffcc','#99baff','#ffd89b'];
-    const col = colors[(p.id+1)%colors.length];
-    ctx.fillStyle = col;
-    ctx.fillRect(x+8,y+8,TILE-16,TILE-16);
-    ctx.fillStyle = '#111'; ctx.font = '14px sans-serif';
-    ctx.fillText('P'+(p.id+1), x+10, y+28);
-    // stats
-    ctx.font = '11px sans-serif';
-    ctx.fillStyle = '#000';
-    ctx.fillText(`B:${p.bombsMax} R:${p.range} S:${p.speed}`, x+6, y+40);
-  }
-}
-
-// ---- Game loop ----
-function loop() {
-  try {
-    update();
-    draw();
-  } catch (err) {
-    console.error('Game error:', err);
-    gameState = 'ended';
-    statusDiv.textContent = 'Fatal error — see console';
-  }
-  requestAnimationFrame(loop);
-}
-
-// ---- Start / Reset handlers ----
-startBtn.addEventListener('click', ()=>{
-  humanCount = Math.max(1, Math.min(4, Number(humanCountSelect.value) || 2));
-  startGame(humanCount);
-});
-
-restartBtn.addEventListener('click', ()=>{
-  // return to menu-style state
-  gameState = 'menu';
-  statusDiv.textContent = 'Choose number of human players and click Start.';
-  // clear canvas
-  ctx.fillStyle = '#333'; ctx.fillRect(0,0,canvas.width,canvas.height);
-});
-
-function startGame(humans) {
-  createMap();
-  createPlayers(humans);
-  statusDiv.textContent = 'Game running — good luck!';
-  gameState = 'running';
-}
-
-// ---- Initialization ----
-statusDiv.textContent = 'Choose number of human players and click Start.';
-loop();
-
-</script>
+    loop();
+  </script>
 </body>
 </html>
