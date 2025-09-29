@@ -6,61 +6,70 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 *{box-sizing:border-box}
-:root{--bg:#eef3fb;--fg:#1f2a3a;--line:#d9e2f1;--acc:#2b90ff;--hot:#ff4d6d}
+:root{
+  --bg:#eef3fb;--fg:#1b2330;--mut:#6b7a91;--line:#d9e2f1;
+  --pri:#128C7E;--pri2:#075E54;--cta:#25D366;--hot:#ff4d6d;
+  --card:#ffffff;--soft:#f6fafc;--bubble-me:#d7f5e5;--bubble-them:#ffffff
+}
+html[data-theme="dark"]{
+  --bg:#0f161b;--fg:#e9eef6;--mut:#9bb0c6;--line:#253343;
+  --pri:#0e6e64;--pri2:#064943;--cta:#1fbf56;--hot:#ff547c;
+  --card:#15222c;--soft:#0e1a22;--bubble-me:#113b33;--bubble-them:#1a2a36
+}
 html,body{height:100%}
-body{margin:0;background:linear-gradient(180deg,#f8fbff,#e8eef8);font:14px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--fg);overflow:hidden}
-.header{height:56px;background:linear-gradient(180deg,#1f2a3a,#142033);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+body{margin:0;background:linear-gradient(180deg,var(--soft),var(--bg));font:15px/1.5 Tahoma,Segoe UI,Arial,sans-serif;color:var(--fg);overflow:hidden}
+.header{height:58px;background:linear-gradient(180deg,var(--pri),var(--pri2));color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 12px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
 .brand{display:flex;align-items:center;gap:10px}
-.logo{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#2b90ff,#00c2a8)}
+.logo{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,#25D366,#34B7F1)}
 .title{font-weight:800}
 .actions{display:flex;gap:8px}
-.btn{height:34px;padding:0 12px;border:0;border-radius:10px;background:#2b90ff;color:#fff;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
-.btn.alt{background:#334155}
-.btn.ghost{background:transparent;border:1px solid #3f5b82;color:#d8e7ff}
-.btn.danger{background:var(--hot)}
-.app{display:grid;grid-template-columns:300px 1fr;height:calc(100% - 56px)}
-.sidebar{border-right:1px solid var(--line);background:linear-gradient(180deg,#f4f7fd,#eef3fb);display:flex;flex-direction:column}
+.btn{height:34px;padding:0 12px;border:0;border-radius:8px;background:var(--cta);color:#063b2e;font-weight:800;cursor:pointer;display:inline-flex;align-items:center}
+.btn.alt{background:#213243;color:#cfe9ff}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff}
+.btn.danger{background:var(--hot);color:#fff}
+.app{display:grid;grid-template-columns:320px 1fr;height:calc(100% - 58px)}
+.sidebar{border-right:1px solid var(--line);background:linear-gradient(180deg,var(--soft),var(--bg));display:flex;flex-direction:column}
 .search{padding:10px}
-.input{width:100%;height:36px;border:1px solid #cdd6e6;border-radius:9px;padding:0 10px;background:#fff;outline:0}
-.section{padding:8px 12px;font-size:12px;font-weight:800;color:#5f6d83;letter-spacing:.4px}
+.input{width:100%;height:36px;border:1px solid var(--line);border-radius:9px;padding:0 10px;background:var(--card);color:var(--fg);outline:0}
+.section{padding:8px 12px;font-size:12px;font-weight:800;color:var(--mut);letter-spacing:.3px}
 .list{flex:1;overflow:auto}
-.item{display:flex;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer}
-.item:hover{background:#f3f7ff}
-.item.active{background:#eaf2ff}
-.avatar{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#8aa3ff,#76efdf)}
-.meta{font-size:11px;color:#6b7a91}
+.item{display:flex;gap:10px;padding:10px 12px;border-bottom:1px solid var(--line);cursor:pointer;align-items:center}
+.item:hover{background:rgba(37,211,102,.08)}
+.item.active{background:rgba(37,211,102,.18)}
+.avatar{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#67e0c2,#7ab9ff)}
+.meta{font-size:11px;color:var(--mut)}
 .controls{padding:10px;border-top:1px solid var(--line);display:flex;gap:8px}
 .main{display:grid;grid-template-rows:auto 1fr auto}
-.chathead{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,#fbfdff,#f1f6ff)}
+.chathead{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--card),var(--soft))}
 .peer{display:flex;align-items:center;gap:10px}
-.peer .avatar{width:38px;height:38px}
-.pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#e6f1ff;color:#173a72;font-size:12px;font-weight:800}
-.chat{overflow:auto;background:linear-gradient(180deg,#f9fbfe,#eff4ff)}
-.msgs{padding:16px 16px 80px 16px;display:flex;flex-direction:column;gap:8px}
-.bubble{max-width:72%;padding:10px 12px;border-radius:14px;box-shadow:0 3px 8px rgba(0,0,0,.12);word-wrap:break-word;background:#fff}
-.me{align-self:flex-end;background:#d8ecff}
+.peer .avatar{width:40px;height:40px}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#e6fff2;color:#0a603e;font-size:12px;font-weight:900}
+.chat{overflow:auto;background:linear-gradient(180deg,var(--soft),var(--bg))}
+.msgs{padding:16px 16px 90px 16px;display:flex;flex-direction:column;gap:8px}
+.bubble{max-width:72%;padding:10px 12px;border-radius:14px;box-shadow:0 3px 8px rgba(0,0,0,.08);word-wrap:break-word;background:var(--bubble-them)}
+.me{align-self:flex-end;background:var(--bubble-me)}
 .them{align-self:flex-start}
-.inputbar{display:flex;gap:8px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);background:linear-gradient(180deg,#f9fbff,#eef3ff)}
-.text{flex:1;height:42px;border:1px solid #cdd6e6;border-radius:10px;padding:0 12px;background:#fff;outline:0}
+.meta2{font-size:11px;color:var(--mut);margin-top:4px}
+.inputbar{display:flex;gap:8px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);background:linear-gradient(180deg,var(--card),var(--soft))}
+.text{flex:1;height:44px;border:1px solid var(--line);border-radius:10px;padding:0 12px;background:var(--card);color:var(--fg);outline:0}
 .modalbg{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:20}
-.modal{width:min(480px,92%);background:#fff;border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.35);overflow:hidden}
-.mhead{padding:12px 14px;background:linear-gradient(180deg,#203047,#1a2433);color:#fff;font-weight:800}
+.modal{width:min(480px,92%);background:var(--card);color:var(--fg);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.35);overflow:hidden;border:1px solid var(--line)}
+.mhead{padding:12px 14px;background:linear-gradient(180deg,var(--pri),var(--pri2));color:#fff;font-weight:800}
 .mbody{padding:14px;display:grid;gap:10px}
 .row{display:grid;grid-template-columns:130px 1fr;gap:8px;align-items:center}
 .switch{width:48px;height:26px;border-radius:20px;background:#d3dbe8;position:relative;cursor:pointer}
+html[data-theme="dark"] .switch{background:#2a3a4d}
 .switch:before{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.14s}
-.switch.on{background:#2b90ff}
+.switch.on{background:var(--cta)}
 .switch.on:before{left:25px}
-.mini{max-height:140px;overflow:auto;border:1px solid #e0e7f3;border-radius:10px}
-.minirow{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid #eef3ff}
-.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#1e293b;color:#fff;border-radius:10px;padding:10px 12px;display:none;z-index:40}
+.mini{max-height:140px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+.minirow{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-bottom:1px solid var(--line)}
 .warnbg{position:fixed;inset:0;background:rgba(0,0,0,.65);display:none;align-items:center;justify-content:center;z-index:50}
-.card{width:min(520px,94%);background:#fff;border-radius:14px;box-shadow:0 16px 60px rgba(0,0,0,.55);overflow:hidden}
-.card h3{margin:0;padding:16px;background:linear-gradient(180deg,#1f2b3a,#151d29);color:#fff}
+.card{width:min(520px,94%);background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 16px 60px rgba(0,0,0,.55);overflow:hidden}
+.card h3{margin:0;padding:16px;background:linear-gradient(180deg,var(--pri),var(--pri2));color:#fff}
 .card .p{padding:16px}
-.note{font-size:12px;color:#6b7a91}
-.small{font-size:12px}
-@media(max-width:980px){.app{grid-template-columns:1fr}.sidebar{position:fixed;z-index:15;left:0;top:56px;bottom:0;width:300px;transform:translateX(0)}.sidebar.hidden{transform:translateX(-100%);transition:.18s}.btn.ghost{display:inline-flex}}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#0b1722;color:#fff;border-radius:10px;padding:10px 12px;display:none;z-index:60}
+@media(max-width:980px){.app{grid-template-columns:1fr}.sidebar{position:fixed;z-index:15;left:0;top:58px;bottom:0;width:320px;transform:translateX(0)}.sidebar.hidden{transform:translateX(-100%);transition:.18s}.btn.ghost{display:inline-flex}}
 </style>
 </head>
 <body>
@@ -68,6 +77,7 @@ body{margin:0;background:linear-gradient(180deg,#f8fbff,#e8eef8);font:14px/1.45 
   <div class="brand"><div class="logo"></div><div class="title">OpenSourceTalk</div></div>
   <div class="actions">
     <button class="btn ghost" id="btnContacts">Contacts</button>
+    <button class="btn alt" id="btnTheme">Theme</button>
     <button class="btn alt" id="btnCopy">Copy My Number</button>
     <button class="btn" id="btnAdd">Add Contact</button>
     <button class="btn" id="btnSettings">Settings</button>
@@ -94,7 +104,7 @@ body{margin:0;background:linear-gradient(180deg,#f8fbff,#e8eef8);font:14px/1.45 
           <div class="meta" id="peerId"></div>
         </div>
       </div>
-      <div style="display:flex;gap:6px">
+      <div style="display:flex;gap:6px;align-items:center">
         <span class="pill" id="pillNet">Network: N/A</span>
         <span class="pill" id="pillMe">Me: N/A</span>
       </div>
@@ -112,15 +122,16 @@ body{margin:0;background:linear-gradient(180deg,#f8fbff,#e8eef8);font:14px/1.45 
     <div class="mhead">Settings</div>
     <div class="mbody">
       <div class="row"><div>Username</div><div><input class="input" id="inUser" placeholder="Display name"></div></div>
-      <div class="row"><div>Number</div><div style="display:flex;gap:8px"><input class="input" id="inNumber" readonly><button class="btn alt" id="btnRekey">Rekey</button></div></div>
+      <div class="row"><div>My Number</div><div><input class="input" id="inNumber" readonly></div></div>
       <div class="row"><div>Network Code</div><div style="display:flex;gap:8px"><input class="input" id="inNet" placeholder="Pantry ID"><button class="btn" id="btnCreateNet">Create</button></div></div>
       <div class="row"><div>Only Contacts</div><div class="switch" id="swStrict"></div></div>
+      <div class="row"><div>Theme</div><div class="switch" id="swTheme"></div></div>
       <div class="row"><div>Blocked</div><div class="mini" id="blkList"></div></div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
         <button class="btn" id="btnSave">Save</button>
         <button class="btn alt" id="btnClose">Close</button>
       </div>
-      <div class="small">End-to-end encryption is on. Rekeying changes your number and makes old messages unreadable.</div>
+      <div class="meta">End-to-end encryption is on. Your number is fixed per device.</div>
     </div>
   </div>
 </div>
@@ -135,7 +146,7 @@ body{margin:0;background:linear-gradient(180deg,#f8fbff,#e8eef8);font:14px/1.45 
         <button class="btn" id="btnAddOk">Add</button>
         <button class="btn alt" id="btnAddCancel">Cancel</button>
       </div>
-      <div class="small">The contact must be on the same network.</div>
+      <div class="meta">The contact must be on the same network.</div>
     </div>
   </div>
 </div>
@@ -144,8 +155,7 @@ body{margin:0;background:linear-gradient(180deg,#f8fbff,#e8eef8);font:14px/1.45 
   <div class="card">
     <h3>Important</h3>
     <div class="p">
-      <div style="background:#fff3cd;color:#664d03;border:1px solid #ffe69c;border-radius:12px;padding:12px">OpenSourceTalk is not moderated. Be careful with links. Use at your own risk.</div>
-      <div class="note" style="margin-top:8px">This appears once.</div>
+      <div style="background:#fff3cd;color:#664d03;border:1px solid #ffe69c;border-radius:12px;padding:12px">OpenSourceTalk is not moderated. Be careful with links and content. Use at your own risk.</div>
       <div style="margin-top:12px;display:flex;gap:10px"><button class="btn" id="btnWarnOk">I Understand</button></div>
     </div>
   </div>
@@ -156,9 +166,8 @@ body{margin:0;background:linear-gradient(180deg,#f8fbff,#e8eef8);font:14px/1.45 
 <script>
 const $=q=>document.querySelector(q),$$=q=>Array.from(document.querySelectorAll(q))
 const API={base:"https://getpantry.cloud/apiv1/pantry",users:"users",inbox:"inbox-"}
-const COOK="OST_V2"
-const S={username:"",number:"",network:"",strict:true,contacts:{},blocked:[],keys:{priv:"",pub:"",nonce:""},seenWarn:false}
-const pad=n=>n.toString().padStart(2,"0")
+const COOK="OST_V3"
+const S={username:"",number:"",network:"",strict:true,theme:"light",contacts:{},blocked:[],keys:{priv:"",pub:"",nonce:""},seenWarn:false}
 function setCookie(k,v){document.cookie=k+"="+encodeURIComponent(v)+"; max-age=31536000; samesite=lax; secure"}
 function getCookie(k){const m=document.cookie.split("; ").map(x=>x.split("=")).find(x=>x[0]===k);return m?decodeURIComponent(m[1]):null}
 function save(){setCookie(COOK,btoa(unescape(encodeURIComponent(JSON.stringify(S)))))}
@@ -170,7 +179,8 @@ function b642ab(str){const bin=atob(str);const len=bin.length;const buf=new Arra
 async function sha256(buf){return await crypto.subtle.digest("SHA-256",buf)}
 function luhn(base){const s=base.split("").reverse().map((d,i)=>{d=parseInt(d);if(i%2===0){d*=2;if(d>9)d-=9}return d}).reduce((a,b)=>a+b,0);return ((10-(s%10))%10).toString()}
 function fmtNum(n){return n?`${n.slice(0,4)} ${n.slice(4,8)} ${n.slice(8)}`:""}
-function now(){return Date.now()}
+const pad=n=>n.toString().padStart(2,"0")
+const now=()=>Date.now()
 function ago(ms){const d=new Date(ms);return pad(d.getHours())+":"+pad(d.getMinutes())}
 function isDigits(x,len){return /^\d+$/.test(x)&&x.length===len}
 function uid(n=16){const a=new Uint8Array(n);crypto.getRandomValues(a);return ab2b64(a).replace(/[^A-Za-z0-9]/g,"").slice(0,n)}
@@ -181,11 +191,12 @@ async function hkdfKey(bits,info){const r=await crypto.subtle.importKey("raw",bi
 async function enc(key,plain,ad){const iv=crypto.getRandomValues(new Uint8Array(12));const ct=await crypto.subtle.encrypt({name:"AES-GCM",iv,additionalData:ad?new TextEncoder().encode(ad):undefined},key,new TextEncoder().encode(plain));return {iv:ab2b64(iv),ct:ab2b64(ct)}}
 async function dec(key,ctB64,ivB64,ad){const ct=b642ab(ctB64);const iv=new Uint8Array(b642ab(ivB64));const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv,additionalData:ad?new TextEncoder().encode(ad):undefined},key,ct);return new TextDecoder().decode(pt)}
 async function numberFrom(pubB64,nonce){const raw=b642ab(pubB64);const salt=b642ab(nonce||"");const buf=new Uint8Array(raw.byteLength+salt.byteLength);buf.set(new Uint8Array(raw),0);buf.set(new Uint8Array(salt),raw.byteLength);const h=await sha256(buf.buffer);const v=BigInt("0x"+hex(h).slice(0,16));const base=(v%BigInt(1e11)).toString().padStart(11,"0");return base+luhn(base)}
-async function sharedBitsWith(num){const users=await apiUsersGet();const rec=users[num];if(!rec)throw new Error("not registered");const priv=await importPriv(S.keys.priv);const pub=await importPub(rec.pub);return await crypto.subtle.deriveBits({name:"ECDH",public:pub},priv,256)}
+async function sharedBitsWith(num){if(!S.network)throw new Error("no network");const users=await apiUsersGet();const rec=users[num];if(!rec)throw new Error("not registered");const priv=await importPriv(S.keys.priv);const pub=await importPub(rec.pub);return await crypto.subtle.deriveBits({name:"ECDH",public:pub},priv,256)}
 async function e2eEncrypt(toNum,plain){const bits=await sharedBitsWith(toNum);const key=await hkdfKey(bits,S.number+"|"+toNum+"|v1");return await enc(key,plain,S.number)}
 async function e2eDecrypt(fromNum,ct,iv){const bits=await sharedBitsWith(fromNum);const key=await hkdfKey(bits,fromNum+"|"+S.number+"|v1");return await dec(key,ct,iv,fromNum)}
 async function powNonce(to,ts){let n=0;for(;;){const h=await sha256(new TextEncoder().encode(to+"|"+ts+"|"+n));if(hex(h).startsWith("000"))return n;n++}}
 function ensureDefaults(){if(!S.username)S.username="User "+uid(4)}
+function applyTheme(){document.documentElement.setAttribute("data-theme",S.theme)}
 function currentPeer(){return window.__peer||""}
 function setPeer(n){window.__peer=n;ui()}
 function addContact(num,name,trust){S.contacts[num]={name:name||"",trusted:!!trust,added:now()};save();ui()}
@@ -193,7 +204,7 @@ function pendingReqs(){return Object.entries(S.contacts).filter(([n,c])=>!c.trus
 function renderContacts(){const list=$("#contactList");list.innerHTML="";Object.keys(S.contacts).filter(n=>S.contacts[n].trusted).sort().forEach(n=>{const el=document.createElement("div");el.className="item"+(currentPeer()===n?" active":"");el.onclick=()=>{setPeer(n);toggleSidebar(false)};const av=document.createElement("div");av.className="avatar";const box=document.createElement("div");const a=document.createElement("div");a.style.fontWeight="800";a.textContent=S.contacts[n].name||n;const b=document.createElement("div");b.className="meta";b.textContent=fmtNum(n);box.appendChild(a);box.appendChild(b);el.appendChild(av);el.appendChild(box);list.appendChild(el)})}
 function renderReqs(){const list=$("#reqList");list.innerHTML="";pendingReqs().forEach(n=>{const el=document.createElement("div");el.className="item";const av=document.createElement("div");av.className="avatar";const main=document.createElement("div");const a=document.createElement("div");a.style.fontWeight="800";a.textContent=S.contacts[n].name||n;const b=document.createElement("div");b.className="meta";b.textContent=fmtNum(n);main.appendChild(a);main.appendChild(b);const act=document.createElement("div");const t=document.createElement("button");t.className="btn";t.textContent="Trust";t.onclick=e=>{e.stopPropagation();S.contacts[n].trusted=true;save();ui()};const d=document.createElement("button");d.className="btn alt";d.textContent="Ignore";d.onclick=e=>{e.stopPropagation();delete S.contacts[n];save();ui()};act.appendChild(t);act.appendChild(d);el.appendChild(av);el.appendChild(main);el.appendChild(act);list.appendChild(el)})}
 function renderBlocked(){const list=$("#blkList");list.innerHTML="";S.blocked.forEach(n=>{const r=document.createElement("div");r.className="minirow";const l=document.createElement("div");l.textContent=(S.contacts[n]?.name||n)+" • "+fmtNum(n);const b=document.createElement("button");b.className="btn danger";b.textContent="Unblock";b.onclick=()=>{S.blocked=S.blocked.filter(x=>x!==n);save();renderBlocked()};r.appendChild(l);r.appendChild(b);list.appendChild(r)})}
-function ui(){const p=currentPeer();$("#peerName").textContent=p?(S.contacts[p]?.name||p):"No chat selected";$("#peerId").textContent=p?fmtNum(p):"";$("#pillMe").textContent="Me: "+(S.number?fmtNum(S.number):"N/A");$("#pillNet").textContent="Network: "+(S.network||"N/A");$("#inUser").value=S.username;$("#inNumber").value=S.number?fmtNum(S.number):"";$("#inNet").value=S.network||"";$("#swStrict").classList.toggle("on",!!S.strict);$("#cntC").textContent=Object.keys(S.contacts).filter(k=>S.contacts[k].trusted).length;$("#cntR").textContent=pendingReqs().length;renderContacts();renderReqs();renderBlocked()}
+function ui(){applyTheme();const p=currentPeer();$("#peerName").textContent=p?(S.contacts[p]?.name||p):"No chat selected";$("#peerId").textContent=p?fmtNum(p):"";$("#pillMe").textContent="Me: "+(S.number?fmtNum(S.number):"N/A");$("#pillNet").textContent="Network: "+(S.network||"N/A");$("#inUser").value=S.username;$("#inNumber").value=S.number?fmtNum(S.number):"";$("#inNet").value=S.network||"";$("#swStrict").classList.toggle("on",!!S.strict);$("#swTheme").classList.toggle("on",S.theme==="dark");$("#cntC").textContent=Object.keys(S.contacts).filter(k=>S.contacts[k].trusted).length;$("#cntR").textContent=pendingReqs().length;renderContacts();renderReqs();renderBlocked()}
 function toggleSidebar(show){const sb=$("#sidebar");if(show===undefined)sb.classList.toggle("hidden");else sb.classList.toggle("hidden",!show)}
 async function apiCreateNetwork(){const r=await fetch(API.base,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:"OpenSourceTalk"})});const j=await r.json();return j.pantryId||j.id||j.pantry_id}
 async function apiPut(basket,obj){if(!S.network)throw new Error("no network");await fetch(`${API.base}/${S.network}/basket/${encodeURIComponent(basket)}`,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(obj)})}
@@ -202,28 +213,29 @@ async function apiUsersGet(){return await apiGet(API.users)||{}}
 async function apiUsersSet(u){await apiPut(API.users,u)}
 async function apiInboxAppend(to,msg){const b=API.inbox+to;const cur=await apiGet(b)||[];const cut=now()-30*24*3600*1000;const keep=cur.filter(m=>m.ts>=cut).slice(-400);keep.push(msg);await apiPut(b,keep)}
 async function ensureRegistered(){if(!S.network||!S.number||!S.keys.pub)return;const u=await apiUsersGet();if(!u[S.number]){u[S.number]={pub:S.keys.pub,username:S.username,nonce:S.keys.nonce,ts:now()};await apiUsersSet(u)}}
-async function tryClaimNumber(num){const u=await apiUsersGet();if(!u[num])return true;return u[num].pub===S.keys.pub}
-async function assignNumber(){let tries=0;while(tries<6){const n=await numberFrom(S.keys.pub,S.keys.nonce);if(await tryClaimNumber(n)){S.number=n;save();return}S.keys.nonce=uid(12);tries++}throw new Error("number busy")}
-async function bootstrap(){load();ensureDefaults();if(!S.keys.priv||!S.keys.pub){const kp=await genKeys();S.keys.priv=kp.priv;S.keys.pub=kp.b64pub;S.keys.nonce=uid(12)}if(!S.number){await assignNumber()}ui();if(!S.seenWarn)$("#warn").style.display="flex";if(S.network)await ensureRegistered();startPoll()}
-function appendBubble(me,txt,ts){const d=document.createElement("div");d.className="bubble "+(me?"me":"them");d.innerHTML=`<div>${txt.replace(/</g,"&lt;")}</div><div class="meta">${me?"You":S.contacts[currentPeer()]?.name||currentPeer()} • ${ago(ts)}</div>`;$("#msgs").appendChild(d);$("#msgs").scrollTop=1e9}
-async function send(){const to=currentPeer();if(!to){toast("Select a chat");return}if(S.blocked.includes(to)){toast("Blocked");return}const t=$("#msgText").value.trim();if(!t)return;const log=window.__rate||[];const nowt=now();const recent=log.filter(x=>nowt-x<60000);if(recent.length>20){toast("Slow down");return}recent.push(nowt);window.__rate=recent;const ts=now();const nonce=await powNonce(to,ts);const encd=await e2eEncrypt(to,t);await apiInboxAppend(to,{to,from:S.number,ct:encd.ct,iv:encd.iv,ts,nonce,v:1});$("#msgText").value="";appendBubble(true,t,ts)}
+async function assignNumber(){if(S.number)return;S.number=await numberFrom(S.keys.pub,S.keys.nonce);save()}
+async function bootstrap(){load();if(!S.theme)S.theme="light";applyTheme();if(!S.keys.priv||!S.keys.pub){const kp=await genKeys();S.keys.priv=kp.priv;S.keys.pub=kp.b64pub;S.keys.nonce=uid(12)}
+await assignNumber();if(!S.username)S.username="User "+S.number.slice(-4);ui();if(!S.seenWarn)$("#warn").style.display="flex";if(S.network)await ensureRegistered();startPoll()}
+function appendBubble(me,txt,ts){const d=document.createElement("div");d.className="bubble "+(me?"me":"them");d.innerHTML=`<div>${txt.replace(/</g,"&lt;")}</div><div class="meta2">${me?"You":S.contacts[currentPeer()]?.name||currentPeer()} • ${ago(ts)}</div>`;$("#msgs").appendChild(d);$("#msgs").scrollTop=1e9}
+async function send(){if(!S.network){toast("Set a network code first");return}const to=currentPeer();if(!to){toast("Select a chat");return}if(S.blocked.includes(to)){toast("Blocked");return}const t=$("#msgText").value.trim();if(!t)return;const log=window.__rate||[];const nowt=now();const recent=log.filter(x=>nowt-x<60000);if(recent.length>20){toast("Slow down");return}recent.push(nowt);window.__rate=recent;const ts=now();const nonce=await powNonce(to,ts);const encd=await e2eEncrypt(to,t);await apiInboxAppend(to,{to,from:S.number,ct:encd.ct,iv:encd.iv,ts,nonce,v:1});$("#msgText").value="";appendBubble(true,t,ts)}
 async function pull(){if(!S.number||!S.network)return;const box=await apiGet(API.inbox+S.number);if(!box)return;const cut=now()-30*24*3600*1000;const keep=[];for(const m of box){if(m.ts<cut)continue;const from=m.from;if(S.blocked.includes(from))continue;if(S.strict&&!S.contacts[from]){if(!S.contacts[from])S.contacts[from]={name:"",trusted:false,added:now()};keep.push(m);continue}try{const chk=await sha256(new TextEncoder().encode(m.to+"|"+m.ts+"|"+m.nonce));if(!hex(chk).startsWith("000"))continue;const plain=await e2eDecrypt(from,m.ct,m.iv);if(currentPeer()===from)appendBubble(false,plain,m.ts);if(!S.contacts[from])S.contacts[from]={name:"",trusted:true,added:now()}}catch(e){}keep.push(m)}await apiPut(API.inbox+S.number,keep);save();ui()}
 function startPoll(){if(window.__poll)return;window.__poll=setInterval(pull,6000)}
 $("#btnSend").onclick=send
 $("#msgText").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}})
 $("#btnSettings").onclick=()=>$("#settings").style.display="flex"
 $("#btnClose").onclick=()=>$("#settings").style.display="none"
-$("#btnSave").onclick=async()=>{S.username=$("#inUser").value.trim()||S.username;const old=S.network;S.network=$("#inNet").value.trim();S.strict=$("#swStrict").classList.contains("on");save();ui();$("#settings").style.display="none";if(S.network&&!old){await ensureRegistered();toast("Network set")}}
+$("#btnSave").onclick=async()=>{S.username=$("#inUser").value.trim()||S.username;const old=S.network;S.network=$("#inNet").value.trim();S.strict=$("#swStrict").classList.contains("on");S.theme=$("#swTheme").classList.contains("on")?"dark":"light";save();ui();$("#settings").style.display="none";if(S.network&&!old){await ensureRegistered();toast("Network set")}}
 $("#btnCreateNet").onclick=async()=>{try{$("#inNet").value=await apiCreateNetwork();toast("Created")}catch(e){toast("Failed")}}
 $("#swStrict").onclick=()=>$("#swStrict").classList.toggle("on")
+$("#swTheme").onclick=()=>$("#swTheme").classList.toggle("on")
+$("#btnTheme").onclick=()=>{S.theme=S.theme==="dark"?"light":"dark";save();ui()}
 $("#btnAdd").onclick=()=>$("#adder").style.display="flex"
 $("#btnAddCancel").onclick=()=>$("#adder").style.display="none"
-$("#btnAddOk").onclick=async()=>{const n=$("#addNum").value.replace(/\s+/g,"");const nick=$("#addName").value.trim();if(!isDigits(n,12)){toast("Invalid number");return}const u=await apiUsersGet();if(!u[n]){toast("Not found");return}addContact(n,nick||u[n].username||"",true);$("#adder").style.display="none";setPeer(n);toast("Added")}
+$("#btnAddOk").onclick=async()=>{if(!S.network){toast("Set a network code first");return}const n=$("#addNum").value.replace(/\s+/g,"");const nick=$("#addName").value.trim();if(!isDigits(n,12)){toast("Invalid number");return}const u=await apiUsersGet();if(!u[n]){toast("Not found on this network");return}addContact(n,nick||u[n].username||"",true);$("#adder").style.display="none";setPeer(n);toast("Added")}
 $("#btnNewChat").onclick=()=>$("#adder").style.display="flex"
 $("#btnBlock").onclick=()=>{const p=currentPeer();if(!p){toast("No chat");return}if(!S.blocked.includes(p))S.blocked.push(p);save();ui();toast("Blocked")}
 $("#btnCopy").onclick=()=>{navigator.clipboard.writeText(S.number||"");toast("Copied")}
 $("#btnContacts").onclick=()=>toggleSidebar()
-$("#btnRekey").onclick=async()=>{S.keys.nonce=uid(12);await assignNumber();await ensureRegistered();ui();toast("Rekeyed")}
 $("#btnWarnOk").onclick=()=>{S.seenWarn=true;save();$("#warn").style.display="none"}
 $("#search").addEventListener("input",e=>{$$(".item").forEach(x=>{x.style.display=x.textContent.toLowerCase().includes(e.target.value.toLowerCase())?"flex":"none"})})
 window.addEventListener("load",bootstrap)
