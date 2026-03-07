@@ -1,183 +1,193 @@
 # hello
 
-this is a repository
+this repository exists
 
-it currently contains
+nobody is entirely sure why
 
-nothing important
+but it does
 
-this readme exists because empty repositories look suspicious
+and now you are here
 
-so this file exists to prevent that
-
-welcome
+so you might as well stay for a bit
 
 ---
 
-# important disclaimer
+# welcome
 
-this README is a **placeholder**
+hello visitor
 
-it does not describe the project
+my name is **neko**
 
-because the project does not exist yet
+this repository currently contains
 
-future neko will figure it out later
+absolutely nothing useful
 
-present neko decided to fill the space with nonsense
+so instead it contains
 
-this is considered acceptable engineering practice
-
----
-
-# author
-
-this repository was created by
-
-**neko**
-
-a person who at the time of writing this
-
-did not know what to put in the readme
-
-so instead
-
-this happened
+cats
 
 ---
 
 # table of contents
 
 1. introduction
-2. placeholder explanation
-3. random cats
-4. unnecessary documentation
-5. placeholder lore
-6. more cats
-7. extremely important technical section
-8. even more cats
-9. concluding nonsense
+2. the first cat
+3. more cats
+4. oh no
+5. they are multiplying
+6. the lore begins
+7. cat science
+8. the scroll continues
+9. the cat council
+10. final warnings
 
 ---
 
 # introduction
 
-hello visitor
+once upon a time
 
-you have opened this repository
+someone created a repository
 
-you might be expecting documentation
+that person was **neko**
 
-or code explanations
+the repository had no purpose
 
-or setup instructions
+so it became a cat archive
 
-instead you have discovered
-
-this
+this decision changed everything
 
 ---
 
-# placeholder explanation
+# the first cat
 
-sometimes a repository needs a README
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
 
-even if there is nothing to say
+scientists believe this is
 
-this is that README
-
-it exists
-
-purely to exist
-
-like a rock
-
-or a chair
-
-or that one bug in code that nobody touches because everything still works
+a cat
 
 ---
 
-# random cat observation
+# observation notes
 
-![cat](https://picsum.photos/seed/cat1/800/500)
+the cat has the following features
 
-this is a cat
+* ears
+* eyes
+* cat behavior
+* mysterious intentions
 
-probably
-
-it might also be a very convincing cat impersonator
-
-research continues
+this confirms our hypothesis
 
 ---
 
 # another cat
 
-![cat](https://picsum.photos/seed/cat2/800/500)
+![cat](https://upload.wikimedia.org/wikipedia/commons/b/b1/VAN_CAT.png)
 
-this one looks different
+the second cat has appeared
 
-this is because it is a different cat
+this is expected
 
-science
-
----
-
-# additional cat research
-
-![cat](https://picsum.photos/seed/cat3/800/500)
-
-the cat above appears to be looking at something
-
-scientists believe that something might be:
-
-* a bug
-* a wall
-* nothing
-* the concept of existence
+cats rarely travel alone
 
 ---
 
-# extremely serious documentation
+# cat science report
 
-this section normally contains things like
+after extensive research
 
-installation instructions
+scientists discovered the following
 
-usage examples
+cats will
 
-configuration guides
+* sit in boxes
+* sit on keyboards
+* sit on important things
+* sit on you
 
-instead we will list extremely useful placeholder instructions
-
-step 1
-open repository
-
-step 2
-look at readme
-
-step 3
-wonder why this exists
-
-step 4
-continue scrolling anyway
+sometimes all at once
 
 ---
 
-# cat monitoring system
+# the third cat
 
-![cat](https://picsum.photos/seed/cat4/800/500)
+![cat](https://upload.wikimedia.org/wikipedia/commons/a/a3/June_odd-eyed-cat.jpg)
 
-another subject has appeared
+this cat has two different eye colors
 
-the monitoring system is functioning correctly
+this means
 
-the monitoring system is the internet
+it is twice as mysterious
 
 ---
 
-# system architecture
+# the situation escalates
+
+a fourth cat appears
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/6/69/June_odd-eyed-cat_cropped.jpg)
+
+the research team is beginning to worry
+
+---
+
+# report log
+
+day 1
+
+one cat appeared
+
+day 2
+
+two cats appeared
+
+day 3
+
+four cats appeared
+
+day 4
+
+the scientists stopped counting
+
+---
+
+# oh no
+
+they are multiplying
+
+---
+
+# another cat appears
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_poster_1.jpg)
+
+nobody invited this cat
+
+it simply arrived
+
+---
+
+# neko journal entry
+
+hello
+
+this is **neko**
+
+creator of this repository
+
+i originally intended to add useful code here
+
+but then
+
+the cats arrived
+
+and everything changed
+
+---
+
+# architecture diagram
 
 ```
 internet
@@ -186,186 +196,233 @@ github
    |
 this repository
    |
-readme
+cats
    |
-cat images
+more cats
    |
-confusion
+even more cats
 ```
 
-this architecture is considered stable
+this system is working perfectly
 
 ---
 
-# placeholder lore
+# additional cat
 
-once upon a time
-
-neko created a repository
-
-but there was nothing to write in the readme
-
-so neko wrote a readme explaining there was nothing to write
-
-then added cats
-
-because cats improve documentation
-
-this is now historical fact
-
----
-
-# more cat data
-
-![cat](https://picsum.photos/seed/cat5/800/500)
+![cat](https://upload.wikimedia.org/wikipedia/commons/4/4c/Push_van_cat.jpg)
 
 this cat appears calm
 
-the research team is impressed
+too calm
 
 ---
 
-# unexpected cat
+# strange discovery
 
-![cat](https://picsum.photos/seed/cat6/800/500)
+while scrolling this repository
 
-this one appeared unexpectedly
+users have reported
 
-which is normal for cats
+seeing
 
----
+more cats
 
-# unnecessary development roadmap
-
-future plans for this repository may include
-
-* actual documentation
-* maybe code
-* possibly something useful
-* more cats
-
-mostly more cats
+than expected
 
 ---
 
-# advanced placeholder analysis
+# the lore begins
 
-after reviewing the repository we discovered
+long ago
 
-there is still no real content here
+before repositories existed
 
-however the readme has successfully become extremely long
+there was
 
-this is progress
+a cat
 
----
+then another cat appeared
 
-# more random cat
+and another
 
-![cat](https://picsum.photos/seed/cat7/800/500)
+eventually
 
-this one looks suspicious
+someone invented the internet
 
-the investigation continues
-
----
-
-# cat number eight
-
-![cat](https://picsum.photos/seed/cat8/800/500)
-
-the cat population is growing
-
-this was inevitable
+and the cats followed
 
 ---
 
-# cat number nine
+# the cat council
 
-![cat](https://picsum.photos/seed/cat9/800/500)
+deep within the internet
 
-the research department has stopped asking questions
+there exists
 
----
+a secret council
 
-# philosophical statement
+made entirely of cats
 
-sometimes
+their responsibilities include
 
-a repository does not need meaning
-
-sometimes it just needs a readme
-
-and cats
-
----
-
-# additional placeholder documentation
-
-this section exists to increase the size of the readme
-
-large readmes look impressive
-
-even when they contain absolutely nothing
+* judging humans
+* knocking things off tables
+* sleeping
+* more sleeping
 
 ---
 
-# more cats
+# another observation
 
-![cat](https://picsum.photos/seed/cat10/800/500)
+![cat](https://upload.wikimedia.org/wikipedia/commons/5/5e/Sleeping_cat_on_her_back.jpg)
 
-another cat has been documented
+this cat is sleeping
 
----
+scientists estimate
 
-![cat](https://picsum.photos/seed/cat11/800/500)
+this behavior occurs
 
-this cat might be judging the repository
-
-that is understandable
+90 percent of the time
 
 ---
 
-![cat](https://picsum.photos/seed/cat12/800/500)
+# scrolling further
 
-the cats continue arriving
+if you continue scrolling
 
-the system is working
+more cats will appear
 
----
-
-# final notes from neko
-
-hello again
-
-if you are still reading this
-
-that is surprising
-
-this readme was only meant to prevent the repository from looking empty
-
-but now it has become extremely long
-
-this is acceptable
-
-future neko will replace this with something meaningful
-
-probably
-
-maybe
-
-no guarantees
+this is not optional
 
 ---
 
-# final cat
+# additional cat evidence
 
-![cat](https://picsum.photos/seed/finalcat/800/500)
+![cat](https://upload.wikimedia.org/wikipedia/commons/d/dc/Blackcat-Lilith.jpg)
 
-thank you for visiting this placeholder repository
+this cat appears suspicious
 
-please return later
+the research team does not trust it
 
-there might be actual content here someday
+---
 
-or more cats
+# neko statement
+
+this repository
+
+was never supposed to become
+
+a cat archive
+
+but now
+
+it cannot be stopped
+
+---
+
+# cat multiplication event
+
+another cat
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/1/12/Cat_August_2010-4.jpg)
+
+and another
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/2/25/Kittyply_edit1.jpg)
+
+the population is increasing rapidly
+
+---
+
+# emergency report
+
+the cats have discovered
+
+the scroll bar
+
+---
+
+# they are approaching
+
+---
+
+# another cat
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/f/fc/Cat_on_snow.jpg)
+
+this cat has conquered snow
+
+---
+
+# the deeper lore
+
+legend says
+
+there exists
+
+a legendary cat
+
+known only as
+
+**the repository guardian**
+
+nobody has seen it
+
+but everyone suspects
+
+it is watching
+
+---
+
+# cat behavior log
+
+common behaviors include
+
+* staring at nothing
+* teleporting between rooms
+* knocking objects off desks
+* judging humans silently
+
+---
+
+# the scroll continues
+
+if you are still reading
+
+you are now part of the experiment
+
+---
+
+# final wave of cats
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/8/83/Cat_march_2010-1a.jpg)
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/7/74/Cat_sitting.jpg)
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/5/53/Sheba1.JPG)
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/9/9b/Gustav_chocolate.jpg)
+
+the cats are everywhere now
+
+---
+
+# final message
+
+this repository was created by
+
+**neko**
+
+it currently contains
+
+cats
+
+and probably more cats later
+
+thank you for visiting
+
+please close the door quietly
+
+the cats are sleeping
+
+for now
