@@ -1,428 +1,389 @@
-# hello
-
-this repository exists
-
-nobody is entirely sure why
-
-but it does
-
-and now you are here
-
-so you might as well stay for a bit
-
----
-
-# welcome
-
-hello visitor
-
-my name is **neko**
-
-this repository currently contains
-
-absolutely nothing useful
-
-so instead it contains
-
-cats
-
----
-
-# table of contents
-
-1. introduction
-2. the first cat
-3. more cats
-4. oh no
-5. they are multiplying
-6. the lore begins
-7. cat science
-8. the scroll continues
-9. the cat council
-10. final warnings
-
----
-
-# introduction
-
-once upon a time
-
-someone created a repository
-
-that person was **neko**
-
-the repository had no purpose
-
-so it became a cat archive
-
-this decision changed everything
-
----
-
-# the first cat
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
-
-scientists believe this is
-
-a cat
-
----
-
-# observation notes
-
-the cat has the following features
-
-* ears
-* eyes
-* cat behavior
-* mysterious intentions
-
-this confirms our hypothesis
-
----
-
-# another cat
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/b/b1/VAN_CAT.png)
-
-the second cat has appeared
-
-this is expected
-
-cats rarely travel alone
-
----
-
-# cat science report
-
-after extensive research
-
-scientists discovered the following
-
-cats will
-
-* sit in boxes
-* sit on keyboards
-* sit on important things
-* sit on you
-
-sometimes all at once
-
----
-
-# the third cat
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/a/a3/June_odd-eyed-cat.jpg)
-
-this cat has two different eye colors
-
-this means
-
-it is twice as mysterious
-
----
-
-# the situation escalates
-
-a fourth cat appears
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/6/69/June_odd-eyed-cat_cropped.jpg)
-
-the research team is beginning to worry
-
----
-
-# report log
-
-day 1
-
-one cat appeared
-
-day 2
-
-two cats appeared
-
-day 3
-
-four cats appeared
-
-day 4
-
-the scientists stopped counting
-
----
-
-# oh no
-
-they are multiplying
-
----
-
-# another cat appears
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_poster_1.jpg)
-
-nobody invited this cat
-
-it simply arrived
-
----
-
-# neko journal entry
+# the extremely important repository of neko
 
 hello
 
-this is **neko**
+you have entered a repository
 
-creator of this repository
+this repository contains
 
-i originally intended to add useful code here
-
-but then
-
-the cats arrived
-
-and everything changed
-
----
-
-# architecture diagram
-
-```
-internet
-   |
-github
-   |
-this repository
-   |
 cats
-   |
-more cats
-   |
-even more cats
-```
 
-this system is working perfectly
+this is not an accident
+
+this is the result of years of extremely questionable decisions
 
 ---
 
-# additional cat
+# about this repository
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/4/4c/Push_van_cat.jpg)
+this repository was created by **neko**
+
+neko opened github
+
+neko looked at the empty readme
+
+neko thought
+
+"hmm"
+
+then neko thought again
+
+"hmm but with cats"
+
+so now we are here
+
+---
+
+# cat observation log
+
+the first cat has appeared
+
+oh no
+
+this might be the beginning
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
 
 this cat appears calm
 
-too calm
+this is suspicious
 
 ---
 
-# strange discovery
+# cat observation log 2
 
-while scrolling this repository
+another cat
 
-users have reported
+this was not expected
 
-seeing
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
 
-more cats
+scientists are writing things down
 
-than expected
+the notes mostly say
+
+"yes that is a cat"
 
 ---
 
-# the lore begins
+# cat observation log 3
+
+another cat has arrived
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
+
+the situation is developing
+
+---
+
+# the beginning of the lore
 
 long ago
 
-before repositories existed
+before the repository existed
+
+before the commits
+
+before the readme
 
 there was
 
 a cat
 
-then another cat appeared
+no one knows where the cat came from
 
-and another
+but the cat was there
 
-eventually
+watching
 
-someone invented the internet
+---
 
-and the cats followed
+# the discovery
+
+one day neko opened a terminal
+
+typed something
+
+probably wrong
+
+then looked up
+
+and saw
+
+a cat
+
+the cat looked back
+
+the cat said nothing
+
+because cats do not speak human language
+
+usually
+
+---
+
+# cat observation log 4
+
+oh no
+
+they are multiplying
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/4/4c/Cat_public_domain_dedication_image_0010.jpg)
+
+the research team is concerned
+
+---
+
+# research notes
+
+important discoveries so far
+
+* cats are cats
+* cats remain cats
+* cats refuse to stop being cats
+* cats sometimes sit on keyboards
+
+this last one is extremely dangerous
+
+---
+
+# the lore expands
+
+after the first cat appeared
+
+another one arrived
+
+then another
+
+then another
+
+eventually someone asked
+
+"should we stop the cats"
+
+and the answer was
+
+no
+
+---
+
+# cat observation log 5
+
+another cat
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/5/5e/Cat_public_domain_dedication_image_0001.jpg)
+
+the repository has entered stage two
+
+more cats
+
+---
+
+# stage two: the multiplying
+
+scientists attempted to count the cats
+
+the number reached
+
+"many"
+
+after that they gave up
+
+---
+
+# neko speaks
+
+hello
+
+this part of the documentation is written by **neko**
+
+if you are reading this
+
+you have scrolled very far
+
+this means two things
+
+1. you are curious
+2. the cats are working
+
+---
+
+# cat observation log 6
+
+another one
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/4/4e/A-Cat.jpg)
+
+this one appears thoughtful
+
+possibly planning something
+
+---
+
+# important warning
+
+if you continue scrolling
+
+there will be
+
+more cats
+
+this is unavoidable
+
+---
+
+# the ancient cat prophecy
+
+according to legend
+
+when enough cats gather in one place
+
+something strange happens
+
+no one knows what
+
+but everyone agrees
+
+it probably involves more cats
+
+---
+
+# cat observation log 7
+
+oh no
+
+another one
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/8/8c/Portrait_of_a_cat.jpg)
+
+the prophecy may be beginning
+
+---
+
+# strange events
+
+users reported unusual phenomena
+
+* keyboards becoming warm
+* mysterious purring sounds
+* git commits appearing at night
+
+scientists suspect cats
+
+---
+
+# cat observation log 8
+
+another cat
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/6/69/Cat_public_domain_dedication_image_0002.jpg)
+
+this cat appears innocent
+
+it is not
 
 ---
 
 # the cat council
 
-deep within the internet
+some believe the cats are organized
 
-there exists
+they gather at night
 
-a secret council
+in secret meetings
 
-made entirely of cats
+discussing
 
-their responsibilities include
-
-* judging humans
-* knocking things off tables
-* sleeping
-* more sleeping
+things
 
 ---
 
-# another observation
+# secret cat meeting transcript
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/5/5e/Sleeping_cat_on_her_back.jpg)
+cat 1: meow
 
-this cat is sleeping
+cat 2: meow
 
-scientists estimate
+cat 3: meow
 
-this behavior occurs
-
-90 percent of the time
+meeting concluded
 
 ---
 
-# scrolling further
+# cat observation log 9
 
-if you continue scrolling
+more cats
 
-more cats will appear
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
 
-this is not optional
-
----
-
-# additional cat evidence
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/d/dc/Blackcat-Lilith.jpg)
-
-this cat appears suspicious
-
-the research team does not trust it
+this situation is escalating
 
 ---
 
-# neko statement
+# the rise of cat civilization
 
-this repository
+historians believe cats have always been watching
 
-was never supposed to become
+waiting
 
-a cat archive
+planning
 
-but now
+quietly sitting on furniture
 
-it cannot be stopped
-
----
-
-# cat multiplication event
-
-another cat
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/1/12/Cat_August_2010-4.jpg)
-
-and another
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/2/25/Kittyply_edit1.jpg)
-
-the population is increasing rapidly
+pretending nothing is happening
 
 ---
 
-# emergency report
+# cat observation log 10
 
-the cats have discovered
+yes
 
-the scroll bar
+another one
 
----
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
 
-# they are approaching
-
----
-
-# another cat
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/f/fc/Cat_on_snow.jpg)
-
-this cat has conquered snow
+they are definitely multiplying
 
 ---
 
-# the deeper lore
+# the repository grows
 
-legend says
+more commits
 
-there exists
+more lines
 
-a legendary cat
+more cats
 
-known only as
-
-**the repository guardian**
-
-nobody has seen it
-
-but everyone suspects
-
-it is watching
+the system is working
 
 ---
 
-# cat behavior log
+# neko final statement
 
-common behaviors include
+if you reached this part of the readme
 
-* staring at nothing
-* teleporting between rooms
-* knocking objects off desks
-* judging humans silently
+congratulations
 
----
+you have survived the cat documentation
 
-# the scroll continues
+the cats appreciate your patience
 
-if you are still reading
-
-you are now part of the experiment
+probably
 
 ---
 
-# final wave of cats
+# final cats
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/8/83/Cat_march_2010-1a.jpg)
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/7/74/Cat_sitting.jpg)
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/5/53/Sheba1.JPG)
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/9/9b/Gustav_chocolate.jpg)
-
-the cats are everywhere now
+![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
 
 ---
 
 # final message
 
-this repository was created by
+thank you for visiting this repository
 
-**neko**
+please leave quietly
 
-it currently contains
-
-cats
-
-and probably more cats later
-
-thank you for visiting
-
-please close the door quietly
-
-the cats are sleeping
-
-for now
+the cats are watching
