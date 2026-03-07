@@ -1,404 +1,443 @@
-# neko repository
+<div align="center">
 
-hello
+# hello there
 
-this repository exists
+hi uh
 
-nobody knows why
+do u want to see some cats
 
-but it does
+okay
 
----
-
-# introduction
-
-welcome traveler
-
-you have discovered a repository
-
-inside this repository there are many things
-
-mostly cats
-
-not code
-
-not documentation
-
-cats
+</div>
 
 ---
 
-# cat log 1
+## introduction
 
-a cat has appeared
+this readme contains cats
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+that is the entire concept
+
+scroll down carefully
+
+they might multiply
+
+---
+
+## first cat
+
+<img src="https://cataas.com/cat" width="500"/>
 
 this is a cat
 
-the research team confirms
+it appeared
+
+nobody knows why
+
+but it is here now
 
 ---
 
-# cat log 2
+## second cat
 
-another cat
+<img src="https://cataas.com/cat/sleepy" width="500"/>
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
+this cat is sleepy
 
-this one is closer
+the cat has no responsibilities
 
-possibly observing us
-
----
-
-# cat log 3
-
-another cat
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
-
-this situation is escalating
+unlike us
 
 ---
 
-# the beginning of the lore
+## third cat
+
+<img src="https://cataas.com/cat/cute" width="500"/>
+
+this cat is cute
+
+which is suspicious
+
+cats usually have hidden plans
+
+---
+
+## cat observation log
+
+day 1  
+there was 1 cat
+
+day 2  
+there were 2 cats
+
+day 3  
+there were more cats
+
+this is concerning
+
+---
+
+## another cat
+
+<img src="https://cataas.com/cat/grumpy" width="500"/>
+
+this cat is not happy
+
+maybe because there are too many cats now
+
+---
+
+## scientific discovery
+
+scientists have determined
+
+cats appear
+
+when someone scrolls
+
+so if you stop scrolling
+
+the cats stop multiplying
+
+probably
+
+maybe
+
+not confirmed
+
+---
+
+## cat number something
+
+<img src="https://cataas.com/cat/sleep" width="500"/>
+
+this one is sleeping
+
+do not wake it
+
+it might spawn more cats
+
+---
+
+## ancient cat lore
 
 long ago
 
-before commits
-
 before repositories
 
-before readme files
+before commits
+
+before pull requests
 
 there was
 
 a cat
 
-no one knows where it came from
+just one
 
-it simply existed
+then someone scrolled
 
----
-
-# neko arrives
-
-one day
-
-**neko**
-
-opened github
-
-and created a repository
-
-the repository was empty
-
-this was unacceptable
-
-so cats were added
+and everything changed
 
 ---
 
-# cat log 4
+## cat
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/4/4c/Cat_public_domain_dedication_image_0010.jpg)
+<img src="https://cataas.com/cat/kitten" width="500"/>
 
-oh no
+small cat detected
 
-they are multiplying
+small cats eventually become large cats
 
----
-
-# research notes
-
-scientists discovered several facts
-
-* cats exist
-* cats remain cats
-* cats refuse to stop being cats
-* cats sometimes stare into nothing
-
-this last one is very concerning
+this is how the system grows
 
 ---
 
-# cat log 5
+## repository status
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+current files
 
-another cat
-
-the number is increasing
-
----
-
-# the cat council
-
-legends say cats meet at night
-
-in secret meetings
-
-discussing plans
-
-possibly snacks
+cat  
+cat  
+cat  
+cat  
+another cat  
+possibly more cats
 
 ---
 
-# transcript from cat council
+## suspicious cat
 
-cat 1: meow
+<img src="https://cataas.com/cat/funny" width="500"/>
 
-cat 2: meow
+this cat knows something
 
-cat 3: meow
-
-meeting concluded
+it refuses to explain
 
 ---
 
-# cat log 6
+## the multiplication event
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
+scrolling continues
 
-this one knows something
+more cats appear
 
----
-
-# cat multiplication event
-
-the research team attempted to count the cats
-
-the number reached
-
-many
-
-after that they stopped counting
+this readme might become unstable
 
 ---
 
-# neko speaks
+## cat
 
-hello
+<img src="https://cataas.com/cat/cool" width="500"/>
 
-this part of the readme is written by **neko**
+this cat is cool
 
-if you are reading this
-
-you have scrolled very far
-
-this means two things
-
-1. curiosity
-2. the cats are working
+probably a developer
 
 ---
 
-# cat log 7
+## investigation notes
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
+why cats
 
-another cat
+nobody knows
 
-this was inevitable
-
----
-
-# the prophecy
-
-ancient internet prophecy states
-
-when enough cats gather
-
-something strange happens
-
-nobody knows what
-
-but it definitely involves more cats
+but it seems important
 
 ---
 
-# cat log 8
+## another investigation cat
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+<img src="https://cataas.com/cat/space" width="500"/>
 
-the prophecy continues
+space cat discovered
 
----
+this suggests cats may exist outside the repository
 
-# strange phenomena
-
-users reported unusual behavior
-
-* keyboards becoming warm
-* mysterious purring
-* code compiling faster
-* code compiling slower
-
-scientists blame cats
+this expands the problem significantly
 
 ---
 
-# cat log 9
+## cat count
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
-
-the cats are watching
-
----
-
-# stage two
-
-the repository has entered stage two
-
-stage two means
-
-more cats
-
----
-
-# cat log 10
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
-
-another subject documented
-
----
-
-# cat timeline
-
-year 1
-one cat
-
-year 2
-two cats
-
-year 3
-many cats
-
-year 4
+1 cat  
+2 cats  
+3 cats  
+4 cats  
+5 cats  
+6 cats  
 too many cats
 
 ---
 
-# cat log 11
+## documentation
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+the cats do not follow documentation
 
-the situation is now irreversible
-
----
-
-# cat philosophy
-
-sometimes life is complicated
-
-sometimes code refuses to compile
-
-sometimes bugs appear
-
-in those moments
-
-look at a cat
+they simply exist
 
 ---
 
-# cat log 12
+## cat
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
+<img src="https://cataas.com/cat/sleepy?width=500" width="500"/>
 
-this cat agrees
+another sleepy cat
 
-probably
-
----
-
-# the expansion
-
-more commits were made
-
-more lines appeared
-
-the repository became larger
-
-the cats approved
+sleeping cats generate dream cats
 
 ---
 
-# cat log 13
+## dream cat
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
+<img src="https://cataas.com/cat?width=500&height=500" width="500"/>
 
-another one
+this one appeared unexpectedly
+
+the system is losing control
 
 ---
 
-# scroll checkpoint
+## lore expansion
 
-if you reached this point
+the first programmer discovered cats
 
-you have passed the cat checkpoint
+inside the repository
 
-there will be
+they tried deleting them
+
+git commit
+
+git push
+
+the cats returned
+
+---
+
+## cat
+
+<img src="https://cataas.com/cat/gray" width="500"/>
+
+gray cat detected
+
+gray cats blend into documentation
+
+---
+
+## repository warning
+
+if the cat population exceeds
+
+safe limits
+
+the repository may become
+
+entirely cats
+
+---
+
+## cat
+
+<img src="https://cataas.com/cat/orange" width="500"/>
+
+orange cat discovered
+
+orange cats are known for chaos
+
+---
+
+## chaos level
+
+low  
+medium  
+high  
+very high  
+orange cat
+
+---
+
+## cat
+
+<img src="https://cataas.com/cat/kitten?width=500" width="500"/>
+
+kitten detected again
+
+the cycle repeats
+
+---
+
+## scroll report
+
+you are still scrolling
+
+which means
 
 more cats
 
 ---
 
-# cat log 14
+## cat
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+<img src="https://cataas.com/cat/cute/sleep" width="500"/>
 
-the cats are multiplying again
+cute sleeping cat
 
----
-
-# cat lore continues
-
-some believe cats control the internet
-
-others believe the internet controls cats
-
-scientists refuse to comment
+danger level unclear
 
 ---
 
-# cat log 15
+## cat research facility
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
+this repository is now
 
-another cat
+a cat research facility
 
----
-
-# final stage
-
-the repository is now mostly cats
-
-this was the goal
+please remain calm
 
 ---
 
-# final cat wave
+## cat
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
+<img src="https://cataas.com/cat?width=600" width="500"/>
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+another one appeared
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
+this is becoming predictable
 
 ---
 
-# final message
+## mid scroll lore
 
-this repository belongs to **neko**
+at this point
 
-if you reached the bottom
+the reader usually realizes
 
-the cats thank you
+the cats will never stop
 
-please leave quietly
+---
 
-they are sleeping
+## cat
 
-probably
+<img src="https://cataas.com/cat/sleepy?width=600" width="500"/>
+
+sleepy cat again
+
+they are everywhere
+
+---
+
+## cat committee
+
+the cats have formed a committee
+
+they are discussing
+
+whether to allow more cats
+
+---
+
+## result
+
+more cats approved
+
+---
+
+## cat
+
+<img src="https://cataas.com/cat/funny?width=600" width="500"/>
+
+committee member
+
+very suspicious
+
+---
+
+## repository future
+
+eventually
+
+this entire readme
+
+will be
+
+cats
+
+---
+
+## cat
+
+<img src="https://cataas.com/cat?height=400" width="500"/>
+
+this one is observing you
+
+do not panic
+
+---
+
+## final warning for this section
+
+scrolling further
+
+will cause
+
+additional cats
