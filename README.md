@@ -1,78 +1,64 @@
-# the extremely important repository of neko
+# neko repository
 
 hello
 
-you have entered a repository
+this repository exists
 
-this repository contains
+nobody knows why
+
+but it does
+
+---
+
+# introduction
+
+welcome traveler
+
+you have discovered a repository
+
+inside this repository there are many things
+
+mostly cats
+
+not code
+
+not documentation
 
 cats
 
-this is not an accident
-
-this is the result of years of extremely questionable decisions
-
 ---
 
-# about this repository
+# cat log 1
 
-this repository was created by **neko**
-
-neko opened github
-
-neko looked at the empty readme
-
-neko thought
-
-"hmm"
-
-then neko thought again
-
-"hmm but with cats"
-
-so now we are here
-
----
-
-# cat observation log
-
-the first cat has appeared
-
-oh no
-
-this might be the beginning
+a cat has appeared
 
 ![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
 
-this cat appears calm
+this is a cat
 
-this is suspicious
+the research team confirms
 
 ---
 
-# cat observation log 2
+# cat log 2
 
 another cat
 
-this was not expected
-
 ![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
 
-scientists are writing things down
+this one is closer
 
-the notes mostly say
-
-"yes that is a cat"
+possibly observing us
 
 ---
 
-# cat observation log 3
+# cat log 3
 
-another cat has arrived
+another cat
 
 ![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
 
-the situation is developing
+this situation is escalating
 
 ---
 
@@ -80,225 +66,86 @@ the situation is developing
 
 long ago
 
-before the repository existed
+before commits
 
-before the commits
+before repositories
 
-before the readme
+before readme files
 
 there was
 
 a cat
 
-no one knows where the cat came from
+no one knows where it came from
 
-but the cat was there
-
-watching
+it simply existed
 
 ---
 
-# the discovery
+# neko arrives
 
-one day neko opened a terminal
+one day
 
-typed something
+**neko**
 
-probably wrong
+opened github
 
-then looked up
+and created a repository
 
-and saw
+the repository was empty
 
-a cat
+this was unacceptable
 
-the cat looked back
-
-the cat said nothing
-
-because cats do not speak human language
-
-usually
+so cats were added
 
 ---
 
-# cat observation log 4
+# cat log 4
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/4/4c/Cat_public_domain_dedication_image_0010.jpg)
 
 oh no
 
 they are multiplying
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/4/4c/Cat_public_domain_dedication_image_0010.jpg)
-
-the research team is concerned
-
 ---
 
 # research notes
 
-important discoveries so far
+scientists discovered several facts
 
-* cats are cats
+* cats exist
 * cats remain cats
 * cats refuse to stop being cats
-* cats sometimes sit on keyboards
+* cats sometimes stare into nothing
 
-this last one is extremely dangerous
-
----
-
-# the lore expands
-
-after the first cat appeared
-
-another one arrived
-
-then another
-
-then another
-
-eventually someone asked
-
-"should we stop the cats"
-
-and the answer was
-
-no
+this last one is very concerning
 
 ---
 
-# cat observation log 5
+# cat log 5
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
 
 another cat
 
-![cat](https://upload.wikimedia.org/wikipedia/commons/5/5e/Cat_public_domain_dedication_image_0001.jpg)
-
-the repository has entered stage two
-
-more cats
-
----
-
-# stage two: the multiplying
-
-scientists attempted to count the cats
-
-the number reached
-
-"many"
-
-after that they gave up
-
----
-
-# neko speaks
-
-hello
-
-this part of the documentation is written by **neko**
-
-if you are reading this
-
-you have scrolled very far
-
-this means two things
-
-1. you are curious
-2. the cats are working
-
----
-
-# cat observation log 6
-
-another one
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/4/4e/A-Cat.jpg)
-
-this one appears thoughtful
-
-possibly planning something
-
----
-
-# important warning
-
-if you continue scrolling
-
-there will be
-
-more cats
-
-this is unavoidable
-
----
-
-# the ancient cat prophecy
-
-according to legend
-
-when enough cats gather in one place
-
-something strange happens
-
-no one knows what
-
-but everyone agrees
-
-it probably involves more cats
-
----
-
-# cat observation log 7
-
-oh no
-
-another one
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/8/8c/Portrait_of_a_cat.jpg)
-
-the prophecy may be beginning
-
----
-
-# strange events
-
-users reported unusual phenomena
-
-* keyboards becoming warm
-* mysterious purring sounds
-* git commits appearing at night
-
-scientists suspect cats
-
----
-
-# cat observation log 8
-
-another cat
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/6/69/Cat_public_domain_dedication_image_0002.jpg)
-
-this cat appears innocent
-
-it is not
+the number is increasing
 
 ---
 
 # the cat council
 
-some believe the cats are organized
-
-they gather at night
+legends say cats meet at night
 
 in secret meetings
 
-discussing
+discussing plans
 
-things
+possibly snacks
 
 ---
 
-# secret cat meeting transcript
+# transcript from cat council
 
 cat 1: meow
 
@@ -310,80 +157,248 @@ meeting concluded
 
 ---
 
-# cat observation log 9
-
-more cats
-
-![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
-
-this situation is escalating
-
----
-
-# the rise of cat civilization
-
-historians believe cats have always been watching
-
-waiting
-
-planning
-
-quietly sitting on furniture
-
-pretending nothing is happening
-
----
-
-# cat observation log 10
-
-yes
-
-another one
+# cat log 6
 
 ![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
 
-they are definitely multiplying
+this one knows something
 
 ---
 
-# the repository grows
+# cat multiplication event
 
-more commits
+the research team attempted to count the cats
 
-more lines
+the number reached
+
+many
+
+after that they stopped counting
+
+---
+
+# neko speaks
+
+hello
+
+this part of the readme is written by **neko**
+
+if you are reading this
+
+you have scrolled very far
+
+this means two things
+
+1. curiosity
+2. the cats are working
+
+---
+
+# cat log 7
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
+
+another cat
+
+this was inevitable
+
+---
+
+# the prophecy
+
+ancient internet prophecy states
+
+when enough cats gather
+
+something strange happens
+
+nobody knows what
+
+but it definitely involves more cats
+
+---
+
+# cat log 8
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+
+the prophecy continues
+
+---
+
+# strange phenomena
+
+users reported unusual behavior
+
+* keyboards becoming warm
+* mysterious purring
+* code compiling faster
+* code compiling slower
+
+scientists blame cats
+
+---
+
+# cat log 9
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
+
+the cats are watching
+
+---
+
+# stage two
+
+the repository has entered stage two
+
+stage two means
 
 more cats
 
-the system is working
+---
+
+# cat log 10
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
+
+another subject documented
 
 ---
 
-# neko final statement
+# cat timeline
 
-if you reached this part of the readme
+year 1
+one cat
 
-congratulations
+year 2
+two cats
 
-you have survived the cat documentation
+year 3
+many cats
 
-the cats appreciate your patience
+year 4
+too many cats
+
+---
+
+# cat log 11
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+
+the situation is now irreversible
+
+---
+
+# cat philosophy
+
+sometimes life is complicated
+
+sometimes code refuses to compile
+
+sometimes bugs appear
+
+in those moments
+
+look at a cat
+
+---
+
+# cat log 12
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
+
+this cat agrees
 
 probably
 
 ---
 
-# final cats
+# the expansion
+
+more commits were made
+
+more lines appeared
+
+the repository became larger
+
+the cats approved
+
+---
+
+# cat log 13
 
 ![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
+
+another one
+
+---
+
+# scroll checkpoint
+
+if you reached this point
+
+you have passed the cat checkpoint
+
+there will be
+
+more cats
+
+---
+
+# cat log 14
+
 ![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+
+the cats are multiplying again
+
+---
+
+# cat lore continues
+
+some believe cats control the internet
+
+others believe the internet controls cats
+
+scientists refuse to comment
+
+---
+
+# cat log 15
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
+
+another cat
+
+---
+
+# final stage
+
+the repository is now mostly cats
+
+this was the goal
+
+---
+
+# final cat wave
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/0/0b/Cat_domestic.jpg)
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/3/3a/Cat03.jpg)
+
 ![cat](https://upload.wikimedia.org/wikipedia/commons/3/3d/Cat_closeup.jpg)
 
 ---
 
 # final message
 
-thank you for visiting this repository
+this repository belongs to **neko**
+
+if you reached the bottom
+
+the cats thank you
 
 please leave quietly
 
-the cats are watching
+they are sleeping
+
+probably
