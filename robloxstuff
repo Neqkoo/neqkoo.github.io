@@ -209,6 +209,140 @@
     "game": "Zombie Attack",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/h2nd/300/refs/heads/main/ZombieAttackV2.lua\"))()"
   },
+
+  {
+    "name": "Doors (All Modes!)",
+    "uploader": "code.leak",
+    "game": "Doors",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/npNWQQBA\"))()"
+  },
+
+  {
+    "name": "Doors (All Modes!)",
+    "uploader": "code.leak",
+    "game": "Doors",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/npNWQQBA\"))()"
+  },
+
+  {
+    "name": "Street Life Remastered",
+    "uploader": "spook1361",
+    "game": "Street Life Remastered",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/chrhrt/streetliferemastered/refs/heads/main/slr\"))()"
+  },
+
+  {
+    "name": "SCP Retrobreach Item ESP",
+    "uploader": "ayothatswild",
+    "game": "SCP Retrobreach",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/Meletjika1/Retrograd-Item-esp/refs/heads/main/RETROBREACH.lua\"))()"
+  },
+
+  {
+    "name": "Jujutsu Shenanigans",
+    "uploader": "b.lacksoul",
+    "game": "Jujutsu Shenanigans",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/b-lacksoul/Matcha/refs/heads/main/jjs\"))()"
+  },
+
+  {
+    "name": "Isle Item and Merc ESP",
+    "uploader": "ayothatswild",
+    "game": "Isle",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/Meletjika1/Retrograd-Item-esp/refs/heads/main/ISLEV2%20ESP.lua\"))()"
+  },
+
+  {
+    "name": "Retrograd Item ESP",
+    "uploader": "ayothatswild",
+    "game": "Retrograd",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/Meletjika1/Retrograd-Item-esp/refs/heads/main/esp.lua\"))()"
+  },
+
+  {
+    "name": "Car Crushers 2 | Auto Farm , Car Mods",
+    "uploader": "favian0880",
+    "game": "Car Crushers 2",
+    "script": "loadstring(game:HttpGet(\"https://gist.githubusercontent.com/FavianOnDat/08a4408359c61fcd1a9bfef8f46ca90b/raw/54b1705d5f8e81ed494b7e8034a752594086c4b2/Car%20Crushers%202.lua\"))()"
+  },
+
+  {
+    "name": "Criminality",
+    "uploader": "ozy.x_x",
+    "game": "Criminality",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/0rbimatcha/ozyorbimathcascripts/refs/heads/main/matchascripts/LOADER.lua\"))()"
+  },
+
+  {
+    "name": "CHAIN",
+    "uploader": "orb1i",
+    "game": "CHAIN",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/0rbimatcha/ozyorbimathcascripts/refs/heads/main/matchascripts/LOADER.lua\"))()"
+  },
+
+  {
+    "name": "Grace Autofarm - Open Source",
+    "uploader": "pyro182__",
+    "game": "Grace",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/N6RdWxDa\"))()"
+  },
+
+  {
+    "name": "Blade Ball Auto Parry ;o",
+    "uploader": "kixielux",
+    "game": "Blade Ball",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/NotOnlyForThisBladeballscript/tyforthewait/refs/heads/main/Parry\"))()"
+  },
+
+  {
+    "name": "Old A Bizarre Day [Item ESP]",
+    "uploader": "mvuh",
+    "game": "Old A Bizarre Day",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/sTQmxQFP\"))()"
+  },
+
+  {
+    "name": "EBT0X -ClientDaddy Headless + Korblox (idfk how to get the actual korblox)",
+    "uploader": "ebt0x",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/sxeaware/korbloxheadlessvisual/refs/heads/main/zzz\"))()"
+  },
+
+  {
+    "name": "Bizzare Hijinks - Menu",
+    "uploader": "nejrio",
+    "game": "Bizzare Hijinks",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/hitechboi/hhhitechboi/refs/heads/main/uni.lua\"))()"
+  },
+
+  {
+    "name": "Doors Script",
+    "uploader": "kittygat0",
+    "game": "Doors",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/M0onzyz/Matcha/refs/heads/main/DOORS.lua\"))()"
+  },
+
+  {
+    "name": "Bee Swarm Simulator",
+    "uploader": "lito2w",
+    "game": "Bee Swarm Simulator",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/yoursocol23-creator/WBSS/refs/heads/main/1V1\"))()"
+  },
+
+  {
+    "name": "parl0v's 99 Nights in the Forest Menu",
+    "uploader": "parl0v",
+    "game": "99 Nights in the Forest",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/parl0v/matchaFiles/refs/heads/main/99%20Nights%20in%20the%20Forest/main.lua\"))()"
+  },
+
+  {
+    "name": "Pizza Place - Delivery AutoFarm",
+    "uploader": "whymayko",
+    "game": "Pizza Place",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/WhyMayko/Pizza/refs/heads/main/main.lua\"))()"
+  },
+
   {
     "name": "DOORS ESP (Beta)",
     "uploader": "forbidal",
