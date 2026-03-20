@@ -1,0 +1,218 @@
+[
+  {
+    "name": "MemeWare.hvh Counter Blox HVH",
+    "uploader": "fonso0_",
+    "game": "Counter Blox",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/fonso-0/matcha-scripts/refs/heads/main/MemeWare.lua\"))()"
+  },
+  {
+    "name": "Basket Ball Zero (Request)",
+    "uploader": "kixielux",
+    "game": "Basketball: Zero",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/NotOnlyForThisBladeballscript/bbz/refs/heads/main/yamazz\"))()"
+  },
+  {
+    "name": "Driving Empire AutoArrest",
+    "uploader": "konfuku",
+    "game": "Driving Empire",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/loweriscooler/DrivingEmpire/refs/heads/main/DrivingEmpire.lua\"))();"
+  },
+  {
+    "name": "VoidHub",
+    "uploader": "bow_arrow",
+    "game": "Multiple Games",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/DevBarke/VoidHub/refs/heads/main/Loader\"))()"
+  },
+  {
+    "name": "MatchaScriptHub",
+    "uploader": "adur1011",
+    "game": "Multiple Games",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/9SgxAMpT\"))()"
+  },
+  {
+    "name": "Blox Fruits",
+    "uploader": "crayonskidder",
+    "game": "Blox Fruits",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/myth4c/Scripts/refs/heads/main/Blox%20Fruits%20v3\"))()"
+  },
+  {
+    "name": "Project Delta (Beta)",
+    "uploader": "trickzz.",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/TrickZz-Matcha/Main-script/refs/heads/main/test\"))()"
+  },
+  {
+    "name": "spookware++ - war tycoon",
+    "uploader": "liketyy",
+    "game": "War Tycoon",
+    "script": "loadstring(game:HttpGet(\"https://likety.lol/spookware++.lua\"))()"
+  },
+  {
+    "name": "mm2 script arshibeld",
+    "uploader": "4skp",
+    "game": "Murder Mystery 2",
+    "script": "loadstring(game:HttpGet(\"https://mm2-ecru-eight.vercel.app/api/luaScript\"))();"
+  },
+  {
+    "name": "Skid Hub V2 - Script - By TheBayHarbourSkidder",
+    "uploader": "ice_of_death",
+    "game": "Multiple Games",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/RobloxTurboX/SkidHUB/refs/heads/main/SkidHubLoader.lua\"))()"
+  },
+  {
+    "name": "shitsaken // Forsaken Script",
+    "uploader": "jurylol",
+    "game": "Forsaken",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/jurylmao/otherscripts/refs/heads/main/shitsaken.lua\"))()"
+  },
+  {
+    "name": "Artorias Client Jailbreak",
+    "uploader": "chinanumber2",
+    "game": "Jailbreak",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/cn2two/latte/refs/heads/main/jbsrc.lua\"))()"
+  },
+  {
+    "name": "Prison Life - Menu(Check It)",
+    "uploader": "nejrio",
+    "game": "Prison Life",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/hitechboi/hhhitechboi/refs/heads/main/uni.lua\"))()"
+  },
+  {
+    "name": "Bizarre Lineage - Galax Hub",
+    "uploader": "whymayko",
+    "game": "Bizarre Lineage",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/WhyMayko/Lineage/refs/heads/main/main.lua\"))()"
+  },
+  {
+    "name": "Jujutsu Shenanigans",
+    "uploader": "infinite.i",
+    "game": "Jujutsu Shenanigans",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/WhyMayko/L/refs/heads/main/main.lua\"))()"
+  },
+  {
+    "name": "chroma.io \\ Steal a Brainrot Unwalk Script",
+    "uploader": "acezzy",
+    "game": "Steal a Brainrot",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/chromav1/chromasab/refs/heads/main/chromasabobf.lua\"))()"
+  },
+  {
+    "name": "Abyssal Menu - Abyss",
+    "uploader": "ptacunit",
+    "game": "Abyss",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/falisc/luavm/refs/heads/main/AbyssalMenu.lua\"))();"
+  },
+  {
+    "name": "Rivals Skin Changer UP",
+    "uploader": "not_x3b0",
+    "game": "Rivals",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/sdzfrgefdfrgxg/matcha-LuaU-VM-Files/refs/heads/main/rivalsSkinChanger.lua\"))()"
+  },
+  {
+    "name": "ShadowHub",
+    "uploader": "zub100",
+    "game": "Fnaf : Eternal Nights",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/suUPbTZc\"))()"
+  },
+  {
+    "name": "Da Hood hvh",
+    "uploader": "debrainers",
+    "game": "Da Hood",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/debrainers/scripts/refs/heads/main/orbit.lua\"))()"
+  },
+  {
+    "name": "Foresto: Hunting Game",
+    "uploader": "crayonskidder",
+    "game": "Foresto",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/myth4c/Scripts/refs/heads/main/Foresto\"))()"
+  },
+  {
+    "name": "likety's blade ball auto parry",
+    "uploader": "liketyy",
+    "game": "Blade Ball",
+    "script": "loadstring(game:HttpGet(\"https://likety.lol/bladeball.lua\"))()"
+  },
+  {
+    "name": "Universal legit sword studder/reacher",
+    "uploader": "unclverrr",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/ZQA9JsMZ\"))()"
+  },
+  {
+    "name": "Rivals Cloudy HUB",
+    "uploader": "vileyx.",
+    "game": "Rivals",
+    "script": "loadstring(game:HttpGet(\"https://api.jnkie.com/api/v1/luascripts/public/1b4e4b1e1b4eadfb4427226b0e47a2a0398cb759fa0a49bffa5f5d66a92115dd/download\"))()"
+  },
+  {
+    "name": "BLOOD DEBT \\\\ ESP",
+    "uploader": "onelighted",
+    "game": "Blood Debt",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/64x64lighted/blood-debt-blah-blah-blah/refs/heads/main/blood%20debt.lua\"))()"
+  },
+  {
+    "name": "Simple Evade ESP",
+    "uploader": "f7caaa05622916f1948e8b684c44d9b1",
+    "game": "Evade",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/Fallingdvwn/Useless/refs/heads/main/Script.lua\"))()"
+  },
+  {
+    "name": "CMD-X remake",
+    "uploader": "lito2w",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/celexh/W-israel/refs/heads/main/Cmd-x%20ported\"))()"
+  },
+  {
+    "name": "Murder Mystery 2 Esp",
+    "uploader": "crayonskidder",
+    "game": "Murder Mystery 2",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/myth4c/Scripts/refs/heads/main/Murder%20Mystery%202\"))();"
+  },
+  {
+    "name": "Universal Head Hitbox Expander",
+    "uploader": "192.0.0.2",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/LuaSecurity/Matcha-Scripts/refs/heads/main/Content/Universal%20Head%20Hitbox%20Expander\"))()"
+  },
+  {
+    "name": "Arcane Hub | Rewritten!",
+    "uploader": "192.0.0.2",
+    "game": "Multiple Games",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/LuaSecurity/Matcha-Scripts/refs/heads/main/Arcane%20Loader.lua\"))()"
+  },
+  {
+    "name": "Auto Piano",
+    "uploader": "orb1i",
+    "game": "Multiple Games",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/0rbimatcha/ozyorbimathcascripts/refs/heads/main/matchascripts/LOADER.lua\"))()"
+  },
+  {
+    "name": "auto align",
+    "uploader": "lito2w",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/celexh/W-israel/refs/heads/main/Align\"))()"
+  },
+  {
+    "name": "Player Follower",
+    "uploader": "lito2w",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/celexh/W-israel/refs/heads/main/W%20israel%20script\"))()"
+  },
+  {
+    "name": "SharkBite 2 | ESP , Auto Kill , Auto Farm",
+    "uploader": "favian0880",
+    "game": "SharkBite 2",
+    "script": "loadstring(game:HttpGet(\"https://gist.githubusercontent.com/FavianOnDat/d099925da2223b491e905efff48941bb/raw/91ee4363fe1ccaa7be6fc6fb00411f77a5e4648b/SharkBite%202%20v1.2.lua\"))()"
+  },
+  {
+    "name": "Zombie Attack Autofarm",
+    "uploader": "forbidal",
+    "game": "Zombie Attack",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/h2nd/300/refs/heads/main/ZombieAttackV2.lua\"))()"
+  },
+  {
+    "name": "DOORS ESP (Beta)",
+    "uploader": "forbidal",
+    "game": "Doors",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/h2nd/300/refs/heads/main/DOORS.lua\"))()"
+  }
+]
