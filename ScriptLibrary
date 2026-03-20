@@ -1,0 +1,264 @@
+-- MIT License
+--
+-- Copyright (c) 2026 @neko
+--
+-- Permission is hereby granted, free of charge, to any person obtaining a copy
+-- of this software and associated documentation files (the "Software"), to deal
+-- in the Software without restriction, including without limitation the rights
+-- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+-- copies of the Software, and to permit persons to whom the Software is
+-- furnished to do so, subject to the following conditions:
+--
+-- The above copyright notice and this permission notice shall be included in all
+-- copies or substantial portions of the Software.
+--
+-- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+-- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+-- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+-- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+-- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+-- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+-- SOFTWARE.
+
+--[[
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣼⣿⣿⣿⣿⣿⣿⣿⣿⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⣦⣄⢀⣼⣿⣿⣿⣿⣿⠿⠛⠋⠉⠁⠀⠀⠉⠉⠛⠻⢿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣤⣤⣤⣤⣤⣶⣿⣿⣿⡿⠛⢻⣾⣿⣿⣿⠟⢋⣤⠾⠛⠛⠛⠛⠓⠄⠀⠀⠀⠀⠀⢉⡛⠿⣷⣶⠤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀⢀⣾⣿⣿⠟⠁⠀⠉⣀⣤⣤⠀⢀⣤⣶⣿⣿⣿⣿⣷⣦⡀⠈⠙⠲⣦⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⠏⠀⡀⠀⣸⣿⣿⠋⠀⣠⣶⣿⣿⠟⠁⣴⣿⣿⣿⠟⣉⣤⣤⣤⡉⠛⠆⠀⠀⠀⠙⢿⣿⣷⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣿⣿⡟⠀⣼⠇⢀⣿⣿⡇⠀⢰⣿⣿⣿⠃⠀⢰⣿⣿⣿⣡⣾⣿⡿⠿⣿⣿⡆⠀⠀⢰⡄⠀⠀⠙⣿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⡇⢰⣿⠀⢸⣿⣿⣇⠀⠀⢻⣿⠃⠀⠀⣿⣿⣿⣿⣿⣿⣿⣀⣀⣼⣿⠇⠀⣧⠀⣿⡄⠀⠀⠈⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⡇⢸⣿⠀⢸⣿⣿⣿⣆⢠⡀⠹⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣷⣮⣭⣥⣤⣾⡇⣸⣿⣿⠀⠀⠀⢸⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠻⣿⣿⣿⡇⠘⣿⡄⠘⣿⣿⣿⣿⣧⡙⣷⣦⣄⡀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣫⣾⣿⣿⣿⠀⢸⠀⢸⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡞⠀⠀⠻⣿⣿⣷⡀⠹⣇⠀⢻⣿⣿⣿⣿⣿⣦⡛⢿⣿⣿⣶⣦⣭⣭⣍⣉⣉⣭⣭⣶⣿⣿⣿⣿⣿⠃⢀⣿⠀⣾⣿⣿⣿⢁⣀⣀⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠁⠀⠀⢀⠹⣿⣿⣷⡄⠈⠀⠘⣿⣿⣿⣿⣿⣿⣿⣦⣍⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⣠⣿⢏⣾⣿⣿⣿⠏⠙⣿⣿⣿⣦⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⠀⠀⠀⣾⣆⠘⢿⣿⣿⣦⣀⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣙⠻⢿⣿⣿⣿⣿⣿⡿⠿⠋⠁⠠⠞⣫⣵⣿⣿⣿⠟⠁⣠⠇⢸⣿⣿⣿⡇⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⠀⠀⢠⣿⣿⣄⠀⠹⣿⣿⣿⣷⣄⡉⠻⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣭⣉⠉⢉⣀⣀⣀⣤⣴⣶⣿⣿⡿⠿⠋⠁⣠⣾⡿⠀⣸⣿⣿⣿⣷⡀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣯⠀⠀⣾⣿⣿⣿⣦⡀⠈⠻⢿⣿⣿⣿⣷⣦⣌⡉⠛⠿⢿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣭⣉⡉⠉⠉⠉⠉⠀⢀⣀⣴⣾⣿⡿⠁⣰⣿⣿⣿⣿⣿⣿⣦⡀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⠀⠀⣿⣿⣿⣿⣿⣿⣦⡀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣶⣤⣤⣈⣉⠙⠛⠛⠛⠛⠛⠛⢛⣛⣉⣥⣤⣶⣾⣿⣿⣿⣿⠏⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣷
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡄⠀⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⣡⣴⣿⣿⣿⠿⠛⠛⠉⠉⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣷⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡄⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⢋⣥⣴⡿⠟⣻⠏⠁⠀⠀⠀⢰⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⡄⠀⠀⠘⣿⣿⣧⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡀⠀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠋⠁⠀⠀⣀⣠⣤⣶⣿⠋⠀⠀⠀⠀⢀⡞⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢷⡀⠀⠀⠹⣿⣿⣧⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⢁⣀⣤⣴⣶⣾⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⠀⣾⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠸⣷⡀⠀⠀⠹⣿⣿⣷⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠹⣿⣿⣿⣿⣿⡿⢋⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⢀⣾⠃⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠹⣿⣦⡀⠀⠙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⢿⣿⣿⣿⢋⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠁⠀⠀⠀⠀⣰⣿⠋⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣷⣦⣌⣻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣇⢸⣿⡿⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀⠀⠀⣠⣾⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢨⣿⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⣀⣴⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣠⠀⠀⠀⠀⠀⠈⠛⠿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣽⣿⠿⣿⣿⣿⣿⣿⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⢀⣠⣴⣾⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣼⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠈⢹⣿⣿⣿⣿⣿⣿⣮⣭⣛⣛⣹⠿⠿⠿⠿⠿⠿⠿⠟⣛⣋⣡⣤⣶⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢠⣾⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢸⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⣿⣿⡿⣿⣛⣭⣭⣽⣿⣛⣛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢸⣿⣿⣿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⣿⠟⠁⠀⠀⠉⠛⢿⣿⣿⣿⣿⣿⣶⣤⣄⣀⠀⠀⠀⠀⠀⢀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣼⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠁⠀⠀⠀⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣤⣄⠀⠀⠀⠀⠀⢸⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⢸⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣤⣀⣤⣴⣶⣶⣶⣶⣿⣷⣶⣶⣶⣶⣤⣤⡀⠀⠀⠀⠀⠀⠀⠀
+⠀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣯⡻⣿⣿⣿⣇⠀⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣻⣿⣿⣿⣿⣿⣿⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣮⡻⣿⣿⣸⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⣴⣿⣿⣿⣿⣿⣿⣟⣿⣾⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠉⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⡜⣿⢹⣿⣿⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿⢟⣫⣾⣿⣿⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⡍⢸⣿⣿⠀⠀⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⢟⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠅⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠛⠛⠉⣧⢸⣿⣿⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⠟⣵⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣿⡇⠀⠀⠀⠀⢸⣿⣿⡿⣡⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⡇⠀⠀⠀⠀⢸⣿⠟⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⠀⠀⠀⠀⠸⢋⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⡭⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⠟⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣷⠀⠀⢀⣿⠏⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡇⠀⣾⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣼⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠿⠿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+]]
+
+local HUB_URL = "https://raw.githubusercontent.com/Neqkoo/neqkoo.github.io/refs/heads/main/robloxstuff" -- You can change your list, or whatever
+
+local scripts = {}
+local ready = false
+
+task.spawn(function()
+	local ok, raw = pcall(game.HttpGet, game, HUB_URL)
+	if not ok or not raw then ready = true return end
+	local hs = game:GetService("HttpService")
+	local ok2, data = pcall(hs.JSONDecode, hs, raw)
+	if ok2 and type(data) == "table" then scripts = data end
+	ready = true
+end)
+
+local function buildGameListFrom(list)
+	local seen, out = {}, {"All Games"}
+	for _, s in ipairs(list) do
+		if s.game and not seen[s.game] then
+			seen[s.game] = true
+			table.insert(out, s.game)
+		end
+	end
+	table.sort(out, function(a, b)
+		if a == "All Games" then return true end
+		if b == "All Games" then return false end
+		return a < b
+	end)
+	return out
+end
+
+local function doFilter(search, gameIdx, gameList, sortIdx)
+	local q = (search or ""):lower():match("^%s*(.-)%s*$")
+	local gameFilter = gameList[gameIdx + 1]
+	local out = {}
+
+	for _, s in ipairs(scripts) do
+		local skip = false
+
+		if gameFilter ~= "All Games" and s.game ~= gameFilter then
+			skip = true
+		end
+
+		if not skip and q ~= "" then
+			local inName     = s.name     and s.name:lower():find(q, 1, true)
+			local inGame     = s.game     and s.game:lower():find(q, 1, true)
+			local inUploader = s.uploader and s.uploader:lower():find(q, 1, true)
+			if not inName and not inGame and not inUploader then
+				skip = true
+			end
+		end
+
+		if not skip then
+			table.insert(out, s)
+		end
+	end
+
+	if sortIdx == 1 then
+		table.sort(out, function(a, b) return (a.name or "") < (b.name or "") end)
+	elseif sortIdx == 2 then
+		table.sort(out, function(a, b) return (a.name or "") > (b.name or "") end)
+	elseif sortIdx == 3 then
+		table.sort(out, function(a, b) return (a.game or "") < (b.game or "") end)
+	end
+
+	return out
+end
+
+local prevQ, prevGame, prevSort = "", -1, -1
+local comboId = 0
+
+UI.AddTab("Script Library", function(tab)
+	if not ready then
+		local s = tab:Section("Please wait", "Left")
+		s:Text("Loading scripts from the hub...")
+		return
+	end
+
+	local q       = UI.GetValue("lib_q")    or ""
+	local gameIdx = UI.GetValue("lib_game") or 0
+	local sortIdx = UI.GetValue("lib_sort") or 0
+
+	local tempList = doFilter(q, 0, {"All Games"}, 0)
+	local gameList = buildGameListFrom(#q > 0 and tempList or scripts)
+
+	if gameIdx >= #gameList then
+		gameIdx = 0
+		UI.SetValue("lib_game", 0)
+	end
+
+	local filterSec = tab:Section("Filters", "Left", {"Search", "Game & Sort"})
+
+	if filterSec.page == 0 then
+		filterSec:InputText("lib_q", "Name, game, or creator...", "")
+		filterSec:Spacing()
+		filterSec:Text("Matches name, game and uploader fields.")
+	elseif filterSec.page == 1 then
+		filterSec:Combo("lib_game", "Game", gameList, gameIdx)
+		filterSec:Spacing()
+		filterSec:Combo("lib_sort", "Order", {"Default", "Name A-Z", "Name Z-A", "Game A-Z"}, sortIdx)
+		filterSec:Spacing()
+		filterSec:Button("Clear Filters", function()
+			UI.SetValue("lib_q", "")
+			UI.SetValue("lib_game", 0)
+			UI.SetValue("lib_sort", 0)
+		end)
+	end
+
+	local changed = (q ~= prevQ or gameIdx ~= prevGame or sortIdx ~= prevSort)
+
+	if changed then
+		prevQ, prevGame, prevSort = q, gameIdx, sortIdx
+		UI.SetValue("lib_pick", 0)
+		comboId = comboId + 1
+	end
+
+	local filtered = doFilter(q, gameIdx, gameList, sortIdx)
+	local label = #filtered == 1 and "1 script found" or (#filtered .. " scripts found")
+
+	local names = {}
+	for _, s in ipairs(filtered) do
+		table.insert(names, s.name)
+	end
+	if #names == 0 then names = {"No results"} end
+
+	local listSec = tab:Section(label, "Left")
+	listSec:Combo("lib_pick_" .. comboId, "Script", names, 0)
+
+	local idx    = (UI.GetValue("lib_pick_" .. comboId) or 0) + 1
+	local chosen = filtered[idx]
+
+	local infoSec = tab:Section("Script Details", "Right", {"Info", "Loadstring"})
+
+	if infoSec.page == 0 then
+		if chosen then
+			infoSec:Text("Name")
+			infoSec:Text(chosen.name or "—")
+			infoSec:Spacing()
+			infoSec:Text("Creator")
+			infoSec:Text(chosen.uploader or "Unknown")
+			infoSec:Spacing()
+			infoSec:Text("Game")
+			infoSec:Text(chosen.game or "Unknown")
+		else
+			infoSec:Spacing()
+			infoSec:Text("No script selected.")
+			infoSec:Text("Pick one from the left panel.")
+		end
+	elseif infoSec.page == 1 then
+		if chosen and chosen.script then
+			local preview = chosen.script:len() > 110
+				and chosen.script:sub(1, 110) .. "..."
+				or chosen.script
+			infoSec:Text("Loadstring preview:")
+			infoSec:Spacing()
+			infoSec:Text(preview)
+		else
+			infoSec:Text("Select a script to see the loadstring.")
+		end
+	end
+
+	local execSec = tab:Section("Execute", "Right")
+
+	if chosen then
+		execSec:Text("Selected:  " .. (chosen.name or "?"))
+		execSec:Spacing()
+	else
+		execSec:Text("No script selected.")
+		execSec:Spacing()
+	end
+
+	execSec:Button("Execute Script", 210, 34, function()
+		if not chosen or not chosen.script then return end
+		local fn, loadErr = loadstring(chosen.script)
+		if not fn then
+			warn("[ScriptLib] Could not load: " .. tostring(loadErr))
+			return
+		end
+		local ok, runErr = pcall(fn)
+		if not ok then
+			warn("[ScriptLib] Script errored: " .. tostring(runErr))
+		end
+	end)
+end)
+notify("Script Library tab was added to your Matcha interface", "Script Library", 7)
+warn("[ScriptLib] Script Library was installed.")
