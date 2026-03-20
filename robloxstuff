@@ -218,13 +218,6 @@
   },
 
   {
-    "name": "Doors (All Modes!)",
-    "uploader": "code.leak",
-    "game": "Doors",
-    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/npNWQQBA\"))()"
-  },
-
-  {
     "name": "Street Life Remastered",
     "uploader": "spook1361",
     "game": "Street Life Remastered",
