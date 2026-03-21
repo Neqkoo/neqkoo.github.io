@@ -21,7 +21,7 @@
     "name": "VoidHub",
     "uploader": "bow_arrow",
     "game": "Multiple Games",
-    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/DevBarke/VoidHub/refs/heads/main/Loader\"))()"
+    "script": "loadstring(game:HttpGet(\"https://tryvoid.online/api/Loader\"))()"
   },
   {
     "name": "MatchaScriptHub",
