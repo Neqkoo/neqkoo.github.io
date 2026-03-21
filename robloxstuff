@@ -337,6 +337,230 @@
   },
 
   {
+    "name": "Blox Fruits Autofarm (1st, 2nd, 3rd) Sea",
+    "uploader": "zlxcyyy",
+    "game": "Blox Fruits",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/LxchuOnTop/AutofarmBloxFruits/refs/heads/main/BFruit.lua\"))()"
+  },
+
+  {
+    "name": "Dandy's World [ESP ONLY, Monsters + Generators]",
+    "uploader": "pegglefan1",
+    "game": "Dandy's World",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/YLfhYQpC\"))()"
+  },
+
+  {
+    "name": "Dandy's World - Simple ESP",
+    "uploader": "p14sm4",
+    "game": "Dandy's World",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/534JQ8Wa\"))()"
+  },
+
+  {
+    "name": "EVADE GUI!!!111!11!!!",
+    "uploader": "wwrdenn",
+    "game": "Evade",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/XonistReal/matchamentality/refs/heads/main/evadegui.lua\"))()"
+  },
+
+  {
+    "name": "parl0v's Massacre Menu",
+    "uploader": "parl0v",
+    "game": "Massacre",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/parl0v/matchaFiles/refs/heads/main/Massacre/main.lua\"))()"
+  },
+
+  {
+    "name": "Sensational. - untitled boxing game (RELEASED)",
+    "uploader": "lawfulneutral0",
+    "game": "untitled boxing game",
+    "script": "loadstring(game:HttpGet(\"https://script.google.com/macros/s/AKfycbxj0XQh1ky2RcSweQ9dh0Ik2AjfbtrEDFaltEpvKew_mtuIIfH1lEFgj-DEDMLQ0Dwc/exec\"))()"
+  },
+
+  {
+    "name": "The Rake: Remastered",
+    "uploader": "kaiz.n",
+    "game": "The Rake: Remastered",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/kznkez/the-bake-remastered/refs/heads/main/rake.lua\"))()"
+  },
+
+  {
+    "name": "The Rake: Remastered",
+    "uploader": "kaiz.n",
+    "game": "The Rake: Remastered",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/kznkez/the-bake-remastered/refs/heads/main/rake.lua\"))()"
+  },
+
+  {
+    "name": "Front lines esp",
+    "uploader": "baozitylerm",
+    "game": "FRONTLINES",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/ikGgGBxt\"))()"
+  },
+
+  {
+    "name": "Pressure script rework",
+    "uploader": "myskovlad",
+    "game": "Pressure",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/kinamy200111/Pressure/refs/heads/main/Pressure.lua\"))()"
+  },
+
+  {
+    "name": "ChudMenu for M a t c h a",
+    "uploader": "localplayerpawn",
+    "game": "Operations: Siege",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/kinamy200111/Pressure/refs/heads/main/Pressure.lua\"))()"
+  },
+
+  {
+    "name": "Universal Audio Logger",
+    "uploader": "not_x3b0",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/NXT8tVHU\"))()"
+  },
+
+  {
+    "name": "Violence district - OHHHHHHHHHHHHH ITS WORKING AFTER 9 HOURS",
+    "uploader": "dudehsdhn",
+    "game": "Violence district",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/yghhujikl/Violence-District/refs/heads/main/Violenceissobad\"))()"
+  },
+
+  {
+    "name": "Anima (released)",
+    "uploader": "15g2",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://gist.githubusercontent.com/99f9/120579daf862e1d6c994e0c1f58f1603/raw/1cba9453fdef552a96d1979fcaf77943f8cac4f9/uhqscript.lua\"))()"
+  },
+
+  {
+    "name": "Crosshair Customiser",
+    "uploader": "acezzy",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/chromav1/crosshaircustom/refs/heads/main/main\"))()"
+  },
+
+  {
+    "name": "Blindshot",
+    "uploader": "panikewww",
+    "game": "Blindshot",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/panikew/piskascript/refs/heads/main/Blind%20Shot\"))()"
+  },
+
+  {
+    "name": "Die of Death // script",
+    "uploader": "jurylol",
+    "game": "Die of Death",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/jurylmao/otherscripts/refs/heads/main/DieOfDeath.lua\"))()"
+  },
+
+  {
+    "name": "WIP Inventory Esp (Mm2, south bronx, tha bronx 3",
+    "uploader": "5vyl",
+    "game": "Multiple Games",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/an6ger/chatgptesp/refs/heads/main/chatgptesp.lua\"))()"
+  },
+
+  {
+    "name": "Word Bomb",
+    "uploader": "kittygat0",
+    "game": "Word Bomb",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/an6ger/chatgptesp/refs/heads/main/chatgptesp.lua\"))()"
+  },
+
+  {
+    "name": "Forsaken Autoblock (v2.0)",
+    "uploader": "acidzs",
+    "game": "Forsaken",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/gXsUh1EU\"))()"
+  },
+
+  {
+    "name": "Walkfling GUI",
+    "uploader": "1i3t",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/purifiedhate/FlingGUI/refs/heads/main/Main.lua\"))()"
+  },
+
+  {
+    "name": "dingus esp slop",
+    "uploader": "typicaalusername",
+    "game": "Dingus",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/UD8PRT2k\"))()"
+  },
+
+  {
+    "name": "Instant proximity prompt + change proximity prompt activation distance",
+    "uploader": "notkezo",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/dTdsAXL3\"))()"
+  },
+
+  {
+    "name": "Lost front esp",
+    "uploader": "tobot2445",
+    "game": "The Lost Front",
+    "script": "loadstring(game:HttpGet(\"https://api.rubis.app/v2/scrap/gs7eq6GFNzuP62XA/raw?accessKey=123qweasd\"))()"
+  },
+
+  {
+    "name": "Snake game",
+    "uploader": "holygrials",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/holygrial/Matcha-Public/refs/heads/main/Snake.lua\"))()"
+  },
+
+  {
+    "name": "Blind Shot ESP",
+    "uploader": "d.unne",
+    "game": "Blindshot",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dunnerulz/Blind-Shot-ESP/refs/heads/main/blindshotesp.lua\"))()"
+  },
+
+  {
+    "name": "Playerlist w inventory viewer",
+    "uploader": "murderratee",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/kcqn/better-playerlist/refs/heads/main/betterplayerlist.lua\"))()"
+  },
+
+  {
+    "name": "MM2 Script (better than others imo)",
+    "uploader": "murderratee",
+    "game": "Murder Mystery 2",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/kcqn/MM2/refs/heads/main/script\"))()"
+  },
+
+  {
+    "name": "blockspin inventory viewer",
+    "uploader": "chinanumber2",
+    "game": "BlockSpin",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/cn2two/latte/refs/heads/main/bs.lua\"))()"
+  },
+
+  {
+    "name": "Blade Ball Auto Parry",
+    "uploader": "d.unne",
+    "game": "Blade Ball",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dunnerulz/Wabi-Sabi-Ball/refs/heads/main/wabi-sabi-ap.lua\"))()"
+  },
+
+  {
+    "name": "chatgpthaxx by nulare",
+    "uploader": "notvault",
+    "game": "Counter Blox",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/cconstellation/MatchaScripts/refs/heads/main/nulare_chatgpthaxxx.lua\"))()"
+  },
+
+  {
+    "name": "ABA - Spring Hub",
+    "uploader": "liketyy",
+    "game": "ABA",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/likety/ABA/refs/heads/main/ABA.lua\"))()"
+  },
+
+  {
     "name": "DOORS ESP (Beta)",
     "uploader": "forbidal",
     "game": "Doors",
