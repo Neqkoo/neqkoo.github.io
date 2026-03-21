@@ -30,8 +30,8 @@
     "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/9SgxAMpT\"))()"
   },
   {
-    "name": "Blox Fruits",
-    "uploader": "crayonskidder",
+    "name": "redacted's | Blox Fruits Script",
+    "uploader": "redacted____1",
     "game": "Blox Fruits",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/myth4c/Scripts/refs/heads/main/Blox%20Fruits%20v3\"))()"
   },
@@ -121,7 +121,7 @@
   },
   {
     "name": "Foresto: Hunting Game",
-    "uploader": "crayonskidder",
+    "uploader": "redacted____1",
     "game": "Foresto",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/myth4c/Scripts/refs/heads/main/Foresto\"))()"
   },
@@ -163,7 +163,7 @@
   },
   {
     "name": "Murder Mystery 2 Esp",
-    "uploader": "crayonskidder",
+    "uploader": "redacted____1",
     "game": "Murder Mystery 2",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/myth4c/Scripts/refs/heads/main/Murder%20Mystery%202\"))();"
   },
