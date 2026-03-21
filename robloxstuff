@@ -797,6 +797,13 @@
   },
 
   {
+    "name": "Nightfall - Blade Ball Script",
+    "uploader": "mqerus1",
+    "game": "Blade Ball",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/Neqkoo/neqkoo.github.io/refs/heads/main/NoUseStuff/a\"))()"
+  },
+
+  {
     "name": "DOORS ESP (Beta)",
     "uploader": "forbidal",
     "game": "Doors",
