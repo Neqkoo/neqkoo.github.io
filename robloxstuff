@@ -790,6 +790,13 @@
   },
 
   {
+    "name": "Survive and kill The Killers Area51 - Get all guns",
+    "uploader": "bartus.zx",
+    "game": "Survive and kill The Killers Area51",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/6WrzDkg2\"))()"
+  },
+
+  {
     "name": "DOORS ESP (Beta)",
     "uploader": "forbidal",
     "game": "Doors",
