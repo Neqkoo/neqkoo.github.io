@@ -54,8 +54,8 @@
     "script": "loadstring(game:HttpGet(\"https://mm2-ecru-eight.vercel.app/api/luaScript\"))();"
   },
   {
-    "name": "Skid Hub V2 - Script - By TheBayHarbourSkidder",
-    "uploader": "ice_of_death",
+    "name": "SkidHub",
+    "uploader": "ice_of_death & liza6dd",
     "game": "Multiple Games",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/RobloxTurboX/SkidHUB/refs/heads/main/SkidHubLoader.lua\"))()"
   },
@@ -558,6 +558,235 @@
     "uploader": "liketyy",
     "game": "ABA",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/likety/ABA/refs/heads/main/ABA.lua\"))()"
+  },
+
+  {
+    "name": "Celeste Hub | Best Hub!",
+    "uploader": "joh.fgs",
+    "game": "Multiple Games",
+    "script": "_G.Key = \"YourKey\"\nloadstring(game:HttpGet(\"https://celeste-hub.onrender.com/api/content/loader\"))()"
+  },
+  {
+    "name": "Combat Warriors AP",
+    "uploader": "not_x3b0",
+    "game": "Combat Warriors",
+    "script": "_G.autoparry_toggle_key = 'P'\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/sdzfrgefdfrgxg/Matcha-LuaU-VM-Scripts/refs/heads/main/FREEapCW.lua\"))()"
+  },
+  {
+    "name": "Sound Space (Improved Auto-Play)",
+    "uploader": "softlockers",
+    "game": "Sound Space",
+    "script": "_G.settings = {\n    distance_before_move = 14,\n    smoothing_far        = 0.20,\n    smoothing_near       = 0.28,\n    near_threshold       = 60,\n    jitter_max           = 1.4,\n    skip_chance          = 0.07,\n    glide_decay          = 0.89,\n    glide_tremor         = 0.6,\n    curve_strength       = 0.7,\n    momentum             = 0.60,\n    axis_noise           = 0.55,\n    wander_speed         = 0.04,\n    wander_radius        = 0.35,\n}\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/Skanska/sp/refs/heads/main/SoundSpace.lua\"))()"
+  },
+  {
+    "name": "Volleyball Legends | Hitbox Expander",
+    "uploader": "rara",
+    "game": "Volleyball Legends",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/Luna7070/585438/refs/heads/main/002.lua\"))()"
+  },
+  {
+    "name": "SaveInstance",
+    "uploader": "matt.t123",
+    "game": "Universal",
+    "script": "_G.CONFIG = {\n    root = game,\n    includeServices = nil,\n    excludeServices = nil,\n    includeClassNames = nil,\n    excludeClassNames = nil,\n    includeNames = nil,\n    excludeNames = nil,\n    includeNamePatterns = nil,\n    excludeNamePatterns = nil,\n    includeChildrenOfFiltered = false,\n    decompileScripts = false,\n    excludePlayers = false,\n    showConsole = true\n}\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/Matt-T-123/SaveInstance/refs/heads/main/SaveInstance.lua\"))()"
+  },
+  {
+    "name": "Basketball Zero (repost)",
+    "uploader": "w6lv",
+    "game": "Basketball Zero",
+    "script": "loadstring(game:HttpGet(\"https://github.com/fhymn/script/raw/refs/heads/main/BZ\"))()"
+  },
+  {
+    "name": "bLockerman's Minesweeper Normal",
+    "uploader": "d.unne",
+    "game": "bLockerman's Minesweeper",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dunnerulz/matcha-slop/refs/heads/main/minesweeper.lua\"))()"
+  },
+  {
+    "name": "bLockerman's Minesweeper Infinite",
+    "uploader": "d.unne",
+    "game": "bLockerman's Minesweeper",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dunnerulz/matcha-slop/refs/heads/main/minesweeper-inf.lua\"))()"
+  },
+  {
+    "name": "Feet Viewer",
+    "uploader": "0szczur",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/0szczursoft/mata/refs/heads/main/ssr.lua\"))()"
+  },
+  {
+    "name": "latte fisch",
+    "uploader": "v6vz",
+    "game": "Fisch",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/scxllc/tp/refs/heads/main/z\"))()"
+  },
+  {
+    "name": "Fischief | AUTOFARM, TP, LOGS",
+    "uploader": "ebt0x",
+    "game": "Fisch",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/juyhitscripts/fisch/refs/heads/main/loader.lua\", true))()"
+  },
+  {
+    "name": "mm2yesido Hud",
+    "uploader": "wwrdenn",
+    "game": "Murder Mystery 2",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/XonistReal/matchamentality/refs/heads/main/mm2_autofarm.lua\"))()"
+  },
+  {
+    "name": "Blockspin Auto ATM",
+    "uploader": "chinanumber2",
+    "game": "Blockspin",
+    "script": "_G.AutoATM = true\n_G.AutoATM_Bind = 0x70\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/cn2two/latte/refs/heads/main/bsatm.lua\"))()"
+  },
+  {
+    "name": "MM2 autofarm 25speed",
+    "uploader": "hello78776",
+    "game": "Murder Mystery 2",
+    "script": "_G.tween_speed = 25\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/cconstellation/MatchaScripts/refs/heads/main/murdermystery2_autocandyfarm.lua\"))()"
+  },
+  {
+    "name": "Guts And Blackpowder ESP",
+    "uploader": "not_brainiac",
+    "game": "Guts And Blackpowder",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/BrainiacMods/Matcha/refs/heads/main/GNB\"))()"
+  },
+  {
+    "name": "NPC or DIE! Criminal and Sheriff ESP",
+    "uploader": "not_brainiac",
+    "game": "NPC or DIE!",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/BrainiacMods/Matcha/refs/heads/main/ESP\", true))()"
+  },
+  {
+    "name": "Enable Shift-Lock in any game!",
+    "uploader": "unknown",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/7mKckVSq\"))()"
+  },
+  {
+    "name": "le forge (The Forge script)",
+    "uploader": "n0tportal",
+    "game": "The Forge",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/notxynn/releases/refs/heads/main/leforge.lua\"))()"
+  },
+  {
+    "name": "Flee the Facility ESP",
+    "uploader": "59f.",
+    "game": "Flee the Facility",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/xCrozzz/FTF/refs/heads/main/agree.lua\"))()"
+  },
+  {
+    "name": "movement script (moon.lua)",
+    "uploader": "doinkx",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/d0inks/moon.lua/refs/heads/main/main.lua\"))()"
+  },
+  {
+    "name": "Xi Hub | Auto Collector",
+    "uploader": "maxidemierda",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://auto-collector.onrender.com/v1beta.lua\"))()"
+  },
+  {
+    "name": "Fisch",
+    "uploader": "d.unne",
+    "game": "Fisch",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dunnerulz/Fisch/refs/heads/main/fisch\"))()"
+  },
+  {
+    "name": "Operation 1",
+    "uploader": "luv.sora",
+    "game": "Operation One",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/hyphenixx/operationone/refs/heads/main/loader\"))()"
+  },
+  {
+    "name": "r15 animation gui",
+    "uploader": "y058361",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/jjengu/scripts/refs/heads/main/vm_animations.lua\"))()"
+  },
+  {
+    "name": "defuse stuff",
+    "uploader": "n0tportal",
+    "game": "Defuse Division",
+    "script": "loadstring(game:HttpGet('https://raw.githubusercontent.com/notxynn/releases/refs/heads/main/defusestuff.lua'))()"
+  },
+  {
+    "name": "99 Nights in the Forest – Hitbox Expander v2",
+    "uploader": "adddddd0699",
+    "game": "99 Nights in the Forest",
+    "script": "_G.Hitbox = 35\nloadstring(game:HttpGet(\"https://gist.githubusercontent.com/Dedelerscript/9b88912ef6c0296381b6a3922d2eb253/raw/6adaeac6fb0ecfb75d1d2f77dc8d1fec6da56b15/99nitf-hitbox-v2\"))()"
+  },
+  {
+    "name": "Slap Battles Script",
+    "uploader": "kittygat0",
+    "game": "Slap Battles",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/M0onzyz/Matcha/refs/heads/main/SLAP_BATTLES.lua\"))()"
+  },
+  {
+    "name": "Valley Prison",
+    "uploader": "murderratee",
+    "game": "Valley Prison",
+    "script": "loadstring(game:HttpGet('https://raw.githubusercontent.com/kcqn/Matcha-Valley-Prison/refs/heads/main/murderratee'))()"
+  },
+  {
+    "name": "Basketball Legends",
+    "uploader": "v0wf",
+    "game": "Basketball Legends",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/satireW/prison/refs/heads/main/obsfucatedbasketballlegends.lua\"))()"
+  },
+  {
+    "name": "Unknown Threat ESP",
+    "uploader": "z1xeddd",
+    "game": "Unknown Threat",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/Z1xed/Unknown-Threat-ESP/main/script.lua\"))()"
+  },
+  {
+    "name": "Skid Mafia",
+    "uploader": "kittygat0",
+    "game": "Multiple Games",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/likety/ABA/refs/heads/main/ABA.lua\"))()"
+  },
+  {
+    "name": "Fallen Survival | Node ESP",
+    "uploader": "al3xndrrr",
+    "game": "Fallen Survival",
+    "script": "_G.ESP_Config = {\n  Stone = true,\n  Metal = false,\n  Phosphate = false,\n  BoxSize = 10,\n  MaxDist = 200\n}\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/FOXTROXHACKS/Matcha/refs/heads/main/Fallen_Scripts/Fallen_Node_ESP_v1.5.lua\"))()"
+  },
+  {
+    "name": "Wabi Sabi Volleyball Legends",
+    "uploader": "d.unne",
+    "game": "Volleyball Legends",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dunnerulz/wabi-sabi-legends/refs/heads/main/wabi%20sabi%20legends.lua\"))()"
+  },
+  {
+    "name": "GPO Fruit ESP",
+    "uploader": "8big42longairpurificator1",
+    "game": "Fisch",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/celakk1/randomprojects/refs/heads/main/randomscript1.lua\"))()"
+  },
+  {
+    "name": "Pandi's Aim Trainer (AIMBOT)",
+    "uploader": "orb1i",
+    "game": "Pandi's Aim Trainer",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/orbiacc/Pandi-s-Aim-Trainer/refs/heads/main/PAND%C4%B0SA%C4%B0MTRA%C4%B0NEROBF.lua\"))()"
+  },
+  {
+    "name": "Best Rainbow Friends 2 script OAT",
+    "uploader": "lightskip",
+    "game": "Rainbow Friends 2",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/lightskiplua/Rainbow/refs/heads/main/obfus.txt\"))()"
+  },
+  {
+    "name": "Tribe Survival auto heal",
+    "uploader": "chinanumber2",
+    "game": "Tribe Survival",
+    "script": "_G.AutoHeal_Bind = 0x2E\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/cn2two/latte/refs/heads/main/tribe.lua\", true))()"
+  },
+  {
+    "name": "Parkour Legacy AutoFarm-ESP",
+    "uploader": "orb1i",
+    "game": "Parkour Legacy",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/orbiacc/PARKOUR-LEGACY/refs/heads/main/PARKOUR-LEGACYMAIN.lua\"))()"
   },
 
   {
