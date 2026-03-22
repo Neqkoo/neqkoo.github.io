@@ -75,6 +75,9 @@
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠿⠿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+よかったらこのコード自由に使っていいよ、でもクレジットはちゃんと入れてねw
+
 ]]
 
 local HUB_URL = type(_G.list) == "string" and _G.list ~= "" and _G.list or "https://raw.githubusercontent.com/Neqkoo/neqkoo.github.io/refs/heads/main/robloxstuff"
@@ -91,12 +94,30 @@ task.spawn(function()
 	ready = true
 end)
 
+local function wrapName(text, maxLen)
+	maxLen = maxLen or 28
+	if #text <= maxLen then return text end
+	local result = ""
+	while #text > maxLen do
+		local chunk = text:sub(1, maxLen)
+		local lastSpace = chunk:match(".*()%s") 
+		if lastSpace and lastSpace > maxLen * 0.5 then
+			result = result .. text:sub(1, lastSpace - 1) .. "\n"
+			text = text:sub(lastSpace + 1)
+		else
+			result = result .. chunk .. "\n"
+			text = text:sub(maxLen + 1)
+		end
+	end
+	return result .. text
+end
+
 local function buildGameListFrom(list)
 	local seen, out = {}, {"All Games"}
 	for _, s in ipairs(list) do
 		if s.game and not seen[s.game] then
 			seen[s.game] = true
-			table.insert(out, s.game)
+			table.insert(out, wrapName(s.game))
 		end
 	end
 	table.sort(out, function(a, b)
@@ -113,7 +134,7 @@ local function doFilter(search, gameIdx, gameList, sortIdx)
 	local out = {}
 	for _, s in ipairs(scripts) do
 		local skip = false
-		if gameFilter ~= "All Games" and s.game ~= gameFilter then skip = true end
+		if gameFilter ~= "All Games" and wrapName(s.game or "") ~= gameFilter then skip = true end
 		if not skip and q ~= "" then
 			local inName     = s.name     and s.name:lower():find(q, 1, true)
 			local inGame     = s.game     and s.game:lower():find(q, 1, true)
@@ -254,7 +275,7 @@ UI.AddTab("Script Library", function(tab)
 
 	local names = {}
 	for _, s in ipairs(filtered) do
-		table.insert(names, s.name)
+		table.insert(names, wrapName(s.name or ""))
 	end
 	if #names == 0 then names = {"No results"} end
 
@@ -290,13 +311,13 @@ UI.AddTab("Script Library", function(tab)
 	if infoSec.page == 0 then
 		if chosen then
 			infoSec:Text("Name")
-			infoSec:Text(chosen.name or "—")
+			infoSec:Text(wrapName(chosen.name or "—"))
 			infoSec:Spacing()
 			infoSec:Text("Creator")
 			infoSec:Text(chosen.uploader or "Unknown")
 			infoSec:Spacing()
 			infoSec:Text("Game")
-			infoSec:Text(chosen.game or "Unknown")
+			infoSec:Text(wrapName(chosen.game or "Unknown"))
 		else
 			infoSec:Spacing()
 			infoSec:Text("No script selected.")
@@ -318,7 +339,7 @@ UI.AddTab("Script Library", function(tab)
 	local execSec = tab:Section("Execute", "Right")
 
 	if chosen then
-		execSec:Text("Selected:  " .. (chosen.name or "?"))
+		execSec:Text("Selected:  " .. wrapName(chosen.name or "?"))
 		if gEntries then
 			execSec:Text("_G config detected — edit it on the left.")
 		end
