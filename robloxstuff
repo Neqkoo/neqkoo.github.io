@@ -663,10 +663,10 @@
     "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/7mKckVSq\"))()"
   },
   {
-    "name": "le forge (The Forge script)",
-    "uploader": "n0tportal",
-    "game": "The Forge",
-    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/notxynn/releases/refs/heads/main/leforge.lua\"))()"
+    "name": "Jump Showdown",
+    "uploader": "itouchmywiwi",
+    "game": "Jump Showdown",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/weballkaiz/scripts/refs/heads/main/JSD.lua\"))()"
   },
   {
     "name": "Flee the Facility ESP",
