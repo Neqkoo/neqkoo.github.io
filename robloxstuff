@@ -20,13 +20,13 @@
   {
     "name": "VoidHub",
     "uploader": "bow_arrow",
-    "game": "Multiple Games",
+    "game": "z: 3008, NPC or DIE, Death in the Box",
     "script": "loadstring(game:HttpGet(\"https://tryvoid.online/api/Loader\"))()"
   },
   {
     "name": "MatchaScriptHub",
     "uploader": "adur1011",
-    "game": "Multiple Games",
+    "game": "z: bubble gum simulator, Bladeball, Counter Blox, Arsenal, Reflex aim trainer, Forsaken (Beta), Dead Line (Beta), Flee The Facility, Dead Rails - Beta, Notoriety, Murder Mystery 2, Zombie Attack, Aim H4X, Doors, TheFinalStand2, 99 Nights In The Forest, Combat Wariors, Defuse Division",
     "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/9SgxAMpT\"))()"
   },
   {
@@ -56,7 +56,7 @@
   {
     "name": "SkidHub",
     "uploader": "ice_of_death & liza6dd",
-    "game": "Multiple Games",
+    "game": "z: Ink Game, Deadly Delivery(EARLY ACCESS - PAID), Your Bizzare Adventure(EARLY ACCESS - PAID), Build a Boat for a Treasure(EARLY ACCESS - PAID)",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/RobloxTurboX/SkidHUB/refs/heads/main/SkidHubLoader.lua\"))()"
   },
   {
@@ -176,13 +176,13 @@
   {
     "name": "Arcane Hub | Rewritten!",
     "uploader": "192.0.0.2",
-    "game": "Multiple Games",
+    "game": "z: Boom Hood, Build A Boat For Treasure, Arsenal, Counter Blox, Prison Life, Defuse Division, Strongest Punch Simulator, Evade, Murder Mystery 2",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/LuaSecurity/Matcha-Scripts/refs/heads/main/Arcane%20Loader.lua\"))()"
   },
   {
     "name": "Auto Piano",
     "uploader": "orb1i",
-    "game": "Multiple Games",
+    "game": "Games that have a Piano",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/0rbimatcha/ozyorbimathcascripts/refs/heads/main/matchascripts/LOADER.lua\"))()"
   },
   {
@@ -456,9 +456,9 @@
   },
 
   {
-    "name": "WIP Inventory Esp (Mm2, south bronx, tha bronx 3",
+    "name": "WIP Inventory Esp (Mm2, south bronx, tha bronx 3)",
     "uploader": "5vyl",
-    "game": "Multiple Games",
+    "game": "Murder Mystery 2, south bronx, tha bronx 3",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/an6ger/chatgptesp/refs/heads/main/chatgptesp.lua\"))()"
   },
 
@@ -563,7 +563,7 @@
   {
     "name": "Celeste Hub | Best Hub!",
     "uploader": "joh.fgs",
-    "game": "Multiple Games",
+    "game": "Whos the Spy, Murder Mystery 2, Babft, BloxStrike, Counter Blox, Giga Mansion Tycoon, Operation One, Zombie Attack, A desrt, Flee The Facility, Wavelength, Stands-Awakening, SLAP, Shawarma Kiosk",
     "script": "_G.Key = \"YourKey\"\nloadstring(game:HttpGet(\"https://celeste-hub.onrender.com/api/content/loader\"))()"
   },
   {
@@ -743,7 +743,7 @@
   {
     "name": "Skid Mafia",
     "uploader": "kittygat0",
-    "game": "Multiple Games",
+    "game": "ABA",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/likety/ABA/refs/heads/main/ABA.lua\"))()"
   },
   {
