@@ -808,5 +808,169 @@
     "uploader": "forbidal",
     "game": "Doors",
     "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/h2nd/300/refs/heads/main/DOORS.lua\"))()"
+  },
+
+  {
+    "name": "Anti Aim (AA) [code.leak]",
+    "uploader": "Multiple Games",
+    "game": "Multiple Games",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/miLzeafg\"))()"
+  },
+  {
+    "name": "attack on titan revolution",
+    "uploader": "jt001911",
+    "game": "Attack on Titan Revolution",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/pPz9trTw\"))()"
+  },
+  {
+    "name": "Project Delta INV ESP + DB",
+    "uploader": "jedtzgo",
+    "game": "Project Delta",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/JEDTZGO/JEDTZGO-Scripts-Lua/refs/heads/main/ProjectDelta_ESP_EN.lua\"))()"
+  },
+  {
+    "name": "Bizarre Lineage / Item ESP, AutoFarm, DIO Void",
+    "uploader": "8big42longairpurificator1",
+    "game": "Bizarre Lineage",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/celakk1/randomprojects/refs/heads/main/bizarre_lineage.lua\"))()"
+  },
+  {
+    "name": "open sourced jailbreak car fly or wtv",
+    "uploader": "dudehsdhn",
+    "game": "Jailbreak",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/K0twpZZu\"))()"
+  },
+  {
+    "name": "AutoBackstab for rivals",
+    "uploader": "lordragon7yt",
+    "game": "Rivals",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/8TXswmb6\"))()"
+  },
+  {
+    "name": "Jade | Bizarre Lineage",
+    "uploader": "v6vz",
+    "game": "Bizarre Lineage",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/scxllc/k/refs/heads/main/Bizzare\"))()"
+  },
+  {
+    "name": "Fullbright Script (FINALLY FINISHED!)",
+    "uploader": "kittygat0",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/2H3WSec2\"))()"
+  },
+  {
+    "name": "Chinese / Cone Hat",
+    "uploader": "redacted____1",
+    "game": "Universal",
+    "script": "_G.ConeHat = {\n    FPS = 60,\n    SEGMENTS = 24,\n    HAT_RADIUS = 1.8,\n    HAT_HEIGHT = 1.3,\n    HAT_Y = 0.6,\n    COL_CONE = Color3.new(0, 0, 0),\n    Z_CONE = 5,\n    TRANSPARENCY = 1\n}\nloadstring(game:HttpGet('https://raw.githubusercontent.com/myth4c/Scripts/refs/heads/main/Chinese%20Hat'))()"
+  },
+  {
+    "name": "The Armory Crate, Dropped, Hatches Esp",
+    "uploader": "kylosilly",
+    "game": "The Armory",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/kylosilly/Femboy.Rawr/refs/heads/main/Matcha/Loader.luau\"))()"
+  },
+  {
+    "name": "Wabi Sabi AP - Best Blade Ball Auto Parry",
+    "uploader": "d.unne",
+    "game": "Blade Ball",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dunnerulz/Wabi-Sabi-Ball/refs/heads/main/bb%20mini-obfuscated.lua\"))()"
+  },
+  {
+    "name": "Wabi Sabi Best Death Ball AP",
+    "uploader": "d.unne",
+    "game": "Death Ball",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dunnerulz/Wabi-Sabi-Ball/refs/heads/main/death-ball.lua\"))()"
+  },
+  {
+    "name": "Latina Feet",
+    "uploader": "d.unne",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet('https://pastebin.com/raw/dCmNR3j4'))()"
+  },
+  {
+    "name": "Universal Chat Spammer Troll",
+    "uploader": "favian0880",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://gist.githubusercontent.com/FavianOnDat/3edc3fa90f99c33d3ae85e0544866510/raw/bdbf953515aa5aeb38e3cdf4e36125db820f2ba4/ChatSpammer.lua\"))()"
+  },
+  {
+    "name": "Fake Headless | Client-Sided Only",
+    "uploader": "favian0880",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://gist.githubusercontent.com/FavianOnDat/7e9859f1a9358adf07f403ae5ca384aa/raw/861986ba9f2050f32865dd3c8cd617520ec9f553/headless\"))()"
+  },
+  {
+    "name": "Wabi Sabi Chess Club",
+    "uploader": "d.unne",
+    "game": "Chess Club",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/q4E5SLmD\"))()"
+  },
+  {
+    "name": "girlock garbage",
+    "uploader": "typicaalusername",
+    "game": "Girlock",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/cxNJpMjr\"))()"
+  },
+  {
+    "name": "Bedwars MetalESP",
+    "uploader": "666._v",
+    "game": "Bedwars",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/rconsoIe/RobloxMatcha/refs/heads/main/Bedwars/MetalESP.lua\"))()"
+  },
+  {
+    "name": "Project Remix || Hitbox Expander works for every weapon",
+    "uploader": "csty",
+    "game": "Project Remix",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/ubJPPcaX\"))()"
+  },
+  {
+    "name": "Arsenal Melee Changer",
+    "uploader": "opensky",
+    "game": "Arsenal",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/Jfeu76ic\"))()"
+  },
+  {
+    "name": "Lock Display - Steal a brainrot",
+    "uploader": "opensky",
+    "game": "Steal a Brainrot",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/ik3At0XB\"))()"
+  },
+  {
+    "name": "Criminality | ESP Safes, Cash Registers, Dealers, ATM etc.",
+    "uploader": "sly.sheen1337",
+    "game": "Criminality",
+    "script": "_G.cfg = {\n    update_interval = 0.5,\n    draw_small_safes = true,\n    draw_mid_safes = true,\n    draw_cash_regs = true,\n    draw_dealers = true,\n    draw_atms = true,\n    draw_distance = 150,\n    draw_broken_obj = true\n}\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/mikvooo123/matcha-luau/refs/heads/main/criminality.lua\"))()"
+  },
+  {
+    "name": "(650x) Parkour Modded (ESP-AutoFarm)",
+    "uploader": "orb1i",
+    "game": "Parkour Modded",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/orbiacc/-650x-Parkour-Modded/refs/heads/main/Parkour%20Modded.lua\"))()"
+  },
+  {
+    "name": "Volleyball Legends",
+    "uploader": "unknown",
+    "game": "Volleyball Legends",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/pokraczkas123/matcha/refs/heads/main/volleyball-legends.lua\"))()"
+  },
+  {
+    "name": "Forge",
+    "uploader": "d.unne",
+    "game": "The Forge",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dunnerulz/forgee/refs/heads/main/matcha-miner.lua\"))()"
+  },
+  {
+    "name": "You Vs Domer Autofarm",
+    "uploader": "whymayko",
+    "game": "You Vs Domer",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/yp06GRQE\"))()"
+  },
+  {
+    "name": "Tap Clicker | Auto click, Teleport",
+    "uploader": "15g2",
+    "game": "Tap Clicker",
+    "script": "loadstring(game:HttpGet(\"https://files.catbox.moe/s5tiiy.lua\"))()"
   }
+
 ]
