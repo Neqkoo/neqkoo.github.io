@@ -967,6 +967,12 @@
     "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/yp06GRQE\"))()"
   },
   {
+    "name": "Combat Warriors AP",
+    "uploader": "not_x3b0",
+    "game": "Combat Warriors",
+    "script": "_G.autoparry_toggle_key = 'P'; --//change your toggle like these cuh (e.g., 'E', 'Q', 'F1', 'SPACE', etc...)\nloadstring(game:HttpGet(\"https://raw.githubusercontent.com/sdzfrgefdfrgxg/Matcha-LuaU-VM-Scripts/refs/heads/main/FREEapCW.lua\"))()"
+  },
+  {
     "name": "Tap Clicker | Auto click, Teleport",
     "uploader": "15g2",
     "game": "Tap Clicker",
