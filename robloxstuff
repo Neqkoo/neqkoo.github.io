@@ -967,6 +967,42 @@
     "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/yp06GRQE\"))()"
   },
   {
+    "name": "Infernum (Universal Anti Aim)",
+    "uploader": "code.leak",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://pastebin.com/raw/yp06GRQE\"))()"
+  },
+  {
+    "name": "self trashtalk bot",
+    "uploader": "jugginburgers",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/kingvonlover/matcha-self-trashtalk-bot/refs/heads/main/matchatrashtalk.luau\"))()"
+  },
+  {
+    "name": "Simple Headless",
+    "uploader": "bryhh",
+    "game": "Universal",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/bryhh7/headless/refs/heads/main/headless.lua\"))()"
+  },
+  {
+    "name": "Wabi Sabi Ro!Qube",
+    "uploader": "d.unne",
+    "game": "Ro!Qube",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/dunnerulz/matcha-slop/main/roqube.lua\"))()"
+  },
+  {
+    "name": "Knockout - Hearts AutoFarm",
+    "uploader": "whymayko",
+    "game": "Knockout",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/WhyMayko/Knockout-Farm/refs/heads/main/knockout.lua\"))()"
+  },
+  {
+    "name": "MM2 Auto Farm",
+    "uploader": "notvault",
+    "game": "Murder Mystery 2",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/cconstellation/MatchaScripts/refs/heads/main/murdermystery2_autocandyfarm.lua\"))()"
+  },
+  {
     "name": "Combat Warriors AP",
     "uploader": "not_x3b0",
     "game": "Combat Warriors",
