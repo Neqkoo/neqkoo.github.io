@@ -3,607 +3,213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IMG.URL — image to compressed url</title>
-<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300;400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<title>bunni team leak page</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#020202;
-  --s0:#050505;
-  --s1:#090909;
-  --s2:#111;
-  --b0:#141414;
-  --b1:#1e1e1e;
-  --b2:#2c2c2c;
-  --green:#00ff88;
-  --green-dim:#003a1e;
-  --green-mid:#00994d;
-  --red:#ff3355;
-  --yellow:#ffe04a;
-  --text:#c8c8c8;
-  --muted:#3a3a3a;
-  --muted2:#555;
-  --mono:'Azeret Mono',monospace;
-  --display:'Bebas Neue',cursive;
-}
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--mono);font-size:12px;line-height:1.5}
-::selection{background:var(--green);color:#000}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:var(--s1)}
-::-webkit-scrollbar-thumb{background:var(--b2)}
-
-#app{
-  display:flex;flex-direction:column;align-items:center;
-  min-height:100vh;padding:3rem 1.25rem 4rem;
-}
-#app.hide{display:none}
-
-.logo-row{display:flex;flex-direction:column;align-items:center;margin-bottom:2.5rem}
-.logo{
-  font-family:var(--display);font-size:3.2rem;
-  letter-spacing:.12em;
-  background:linear-gradient(135deg,var(--green) 0%,#00ccdd 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  background-clip:text;
-}
-.logo-sub{
-  font-size:9px;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--muted2);margin-top:.15rem;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg, #111, #070707);
+    color: #f3f3f3;
+    text-align: center;
 }
 
-.zone{
-  width:100%;max-width:580px;
-  position:relative;
-  cursor:pointer;
-  user-select:none;
-  outline:none;
-}
-.zone-inner{
-  background:var(--s1);
-  border:1px solid var(--b1);
-  padding:3rem 2rem;
-  text-align:center;
-  transition:border-color .15s,background .15s;
-  position:relative;
-  overflow:hidden;
-}
-.zone-inner::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at center,rgba(0,255,136,.04) 0%,transparent 70%);
-  opacity:0;transition:opacity .2s;pointer-events:none;
-}
-.zone:hover .zone-inner,.zone.over .zone-inner{border-color:var(--green-mid);background:var(--s2)}
-.zone:hover .zone-inner::before,.zone.over .zone-inner::before{opacity:1}
-.corner{position:absolute;width:10px;height:10px;border-color:var(--green);border-style:solid}
-.corner.tl{top:-1px;left:-1px;border-width:1px 0 0 1px}
-.corner.tr{top:-1px;right:-1px;border-width:1px 1px 0 0}
-.corner.bl{bottom:-1px;left:-1px;border-width:0 0 1px 1px}
-.corner.br{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
-.zone:hover .corner,.zone.over .corner{border-color:var(--green)}
-
-.zone-glyph{
-  font-size:2.4rem;margin-bottom:1rem;
-  color:var(--muted2);transition:color .15s;
-}
-.zone:hover .zone-glyph{color:var(--green)}
-.zone-label{font-size:11px;color:var(--muted2);line-height:2}
-.zone-label b{color:var(--text);font-weight:600}
-.zone-formats{font-size:9px;color:var(--muted);letter-spacing:.08em;margin-top:.25rem}
-input[type=file]{display:none}
-
-.panel{width:100%;max-width:580px;margin-top:1.5rem;display:none}
-.panel.show{display:block}
-
-.preview-wrap{
-  position:relative;width:100%;background:#000;
-  border:1px solid var(--b1);border-bottom:none;
-  min-height:80px;display:flex;align-items:center;justify-content:center;
-  max-height:280px;overflow:hidden;
-}
-.preview-wrap img{max-width:100%;max-height:280px;object-fit:contain;display:block}
-
-.panel-body{
-  background:var(--s0);
-  border:1px solid var(--b1);
-  padding:1.25rem 1.5rem;
+.wrap {
+    width: min(820px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 48px 0 80px;
 }
 
-.prog-wrap{margin-bottom:1.25rem;display:none}
-.prog-wrap.show{display:block}
-.prog-label{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted2);margin-bottom:.4rem}
-.prog-track{height:1px;background:var(--b1);position:relative}
-.prog-fill{
-  height:1px;background:var(--green);
-  width:0%;transition:width .08s linear;
-  box-shadow:0 0 6px var(--green);
-}
-.prog-status{font-size:9px;color:var(--muted2);margin-top:.35rem}
-
-.stats-row{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:var(--b0);
-  border:1px solid var(--b0);
-  margin-bottom:1.25rem;display:none;
-}
-.stat{
-  background:var(--s1);padding:.8rem .9rem;
-  display:flex;flex-direction:column;gap:.2rem;
-}
-.stat-k{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.stat-v{font-size:13px;font-weight:700;color:var(--text)}
-.stat-v.g{color:var(--green)}
-.stat-v.y{color:var(--yellow)}
-.stat-v.r{color:var(--red)}
-
-.method-row{
-  margin-bottom:1rem;font-size:9px;
-  display:none;
-  gap:.75rem;align-items:center;flex-wrap:wrap;
-}
-.badge{
-  display:inline-flex;align-items:center;gap:.3rem;
-  background:var(--green-dim);color:var(--green);
-  padding:.2rem .55rem;font-size:9px;letter-spacing:.08em;
+h1 {
+    font-size: 46px;
+    font-weight: 700;
+    margin: 0 0 10px;
 }
 
-.url-wrap{
-  background:var(--bg);border:1px solid var(--b1);
-  padding:.75rem 1rem;margin-bottom:1.1rem;
-  font-size:10px;word-break:break-all;line-height:1.8;
-  max-height:90px;overflow-y:auto;display:none;
-}
-.url-domain{color:var(--muted2)}
-.url-data{color:var(--green)}
-
-.actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:.9rem}
-.btn{
-  display:inline-flex;align-items:center;gap:.4rem;
-  padding:.55rem 1.1rem;font-family:var(--mono);
-  font-size:11px;font-weight:600;letter-spacing:.06em;
-  border:1px solid var(--b2);background:transparent;
-  color:var(--text);cursor:pointer;transition:all .12s;
-}
-.btn:hover{border-color:var(--green);color:var(--green)}
-.btn.primary{background:var(--green);color:#000;border-color:var(--green)}
-.btn.primary:hover{background:#00ee7a;box-shadow:0 0 12px rgba(0,255,136,.25)}
-.btn.ghost{border-color:var(--b1)}
-
-.footnote{font-size:9px;color:var(--muted);line-height:1.6}
-.footnote.warn{color:#995500}
-
-.warn-bar{
-  background:#1a0800;border:1px solid #552200;
-  padding:.6rem .9rem;font-size:9px;color:#cc5500;
-  margin-bottom:.9rem;letter-spacing:.04em;display:none;
+h2 {
+    font-size: 22px;
+    font-weight: 400;
+    color: #d0d0d0;
+    margin: 0 0 30px;
 }
 
-#viewer{
-  display:none;flex-direction:column;align-items:center;
-  justify-content:center;min-height:100vh;padding:2rem;
-  background:var(--bg);
+.card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 28px 26px;
+    margin-top: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
-#viewer.show{display:flex}
 
-.v-logo{
-  font-family:var(--display);font-size:1.1rem;
-  letter-spacing:.2em;color:var(--muted);
-  margin-bottom:2rem;
+p {
+    font-size: 20px;
+    line-height: 1.65;
+    margin: 8px 0;
 }
-.v-img{
-  max-width:min(90vw,900px);max-height:72vh;
-  object-fit:contain;display:block;
-  border:1px solid var(--b1);
-}
-.v-meta{
-  margin-top:.9rem;display:flex;gap:1.5rem;
-  font-size:9px;color:var(--muted);
-  letter-spacing:.12em;text-transform:uppercase;
-}
-.v-status{color:var(--muted2);font-size:11px}
-.v-err{color:var(--red);font-size:11px;text-align:center;line-height:2}
-.v-back{
-  margin-top:1.8rem;color:var(--muted);font-size:10px;
-  text-decoration:none;letter-spacing:.1em;
-  transition:color .12s;
-}
-.v-back:hover{color:var(--green)}
 
-@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
-.blink{animation:pulse 1.4s ease-in-out infinite}
+.big {
+    font-size: 23px;
+}
+
+.btn {
+    margin-top: 24px;
+    padding: 18px 32px;
+    font-size: 22px;
+    font-weight: 700;
+    border: 0;
+    border-radius: 14px;
+    cursor: pointer;
+    background: #ff4d79;
+    color: white;
+    box-shadow: 0 8px 22px rgba(255,77,121,0.35);
+}
+
+.btn:hover {
+    transform: scale(1.03);
+}
+
+.list {
+    width: fit-content;
+    max-width: 100%;
+    margin: 22px auto 0;
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ebebeb;
+}
+
+.proof-title {
+    font-size: 29px;
+    margin-bottom: 10px;
+}
+
+.video-area {
+    margin-top: 18px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+    background: #1d1d1d;
+}
+
+.video-area iframe {
+    width: 100%;
+    height: 420px;
+    border: 0;
+    display: block;
+}
+
+.note {
+    margin-top: 22px;
+    font-size: 16px;
+    color: #b8b8b8;
+}
+
+.hidden-player {
+    position: fixed;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0.01;
+    pointer-events: none;
+    border: 0;
+}
+
+.fake-download-box {
+    margin-top: 26px;
+}
+
+.reveal {
+    display: none;
+    margin-top: 22px;
+}
+
+.reveal.show {
+    display: block;
+}
+
+.small {
+    font-size: 15px;
+    color: #bababa;
+    margin-top: 16px;
+}
 </style>
 </head>
 <body>
+<div class="wrap">
+    <h1>bunni team official leak site</h1>
+    <h2>do not tell neko because this was a very sneaky operation and also a little rude</h2>
 
-<div id="app">
-  <div class="logo-row">
-    <div class="logo">Upload Images With No Hosting</div>
-    <div class="logo-sub">image → maximum compression → shareable url</div>
-  </div>
+    <div class="card">
+        <p class="big">hi um</p>
+        <p>we the evil bunnis kidnapped neko</p>
+        <p>not forever probably</p>
+        <p>just for leak reasons</p>
+        <p>he left the plugin cave unlocked</p>
+        <p>so we walked in very carefully</p>
+        <p>and then less carefully after that</p>
+        <p>now we have every file</p>
+        <p>or at least a lot of files</p>
+        <p>some of them had names like final</p>
+        <p>then final real</p>
+        <p>then final real 2</p>
+        <p>which means this is serious</p>
 
-  <label class="zone" id="zone" tabindex="0">
-    <input type="file" id="fileIn" accept="image/*">
-    <div class="corner tl"></div>
-    <div class="corner tr"></div>
-    <div class="corner bl"></div>
-    <div class="corner br"></div>
-    <div class="zone-inner">
-      <div class="zone-glyph">⬡</div>
-      <div class="zone-label">
-        <b>drop image here</b><br>
-        or click to browse
-      </div>
-      <div class="zone-formats">PNG · JPG · WebP · GIF · AVIF · BMP · any format</div>
+        <div class="fake-download-box">
+            <button class="btn" id="downloadBtn">Download the source code of all of Neko's Plugins</button>
+            <div class="reveal" id="rickBox">
+                <div class="video-area">
+                    <iframe src="https://www.youtube.com/embed/QDia3e12czc?autoplay=1&mute=1&controls=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="list">
+            <div>things included in the leak maybe:</div>
+            <div>plugin_final_real</div>
+            <div>plugin_final_real_2</div>
+            <div>plugin_final_real_2_fixed</div>
+            <div>new folder</div>
+            <div>new folder 2</div>
+            <div>thing do not touch</div>
+            <div>very secret neko machine</div>
+            <div>random png pile</div>
+        </div>
+
+        <p class="small">warning this download may make your desktop look more important than usual</p>
     </div>
-  </label>
 
-  <div class="panel" id="panel">
-    <div class="preview-wrap">
-      <img id="preview" alt="">
+    <div class="card">
+        <div class="proof-title">proof that this happened for real</div>
+        <p>look we even have video evidence</p>
+        <p>this is a serious website made by serious bunni professionals</p>
+        <div class="video-area">
+            <iframe src="https://www.youtube.com/embed/EvAhPPejzBQ?autoplay=1&mute=1&controls=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        <p class="note">please ignore any weird music that starts playing that is normal leak website behavior</p>
     </div>
-    <div class="panel-body">
 
-      <div class="prog-wrap" id="progWrap">
-        <div class="prog-label blink" id="progLabel">scanning compression combos...</div>
-        <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
-        <div class="prog-status" id="progStatus"></div>
-      </div>
-
-      <div class="stats-row" id="statsRow">
-        <div class="stat">
-          <div class="stat-k">Original</div>
-          <div class="stat-v" id="sv0">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-k">Encoded</div>
-          <div class="stat-v g" id="sv1">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-k">Ratio</div>
-          <div class="stat-v g" id="sv2">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-k">URL chars</div>
-          <div class="stat-v" id="sv3">—</div>
-        </div>
-      </div>
-
-      <div class="method-row" id="methodRow"></div>
-
-      <div class="warn-bar" id="warnBar"></div>
-
-      <div class="url-wrap" id="urlWrap">
-        <span class="url-domain" id="urlDomain"></span><span class="url-data" id="urlData"></span>
-      </div>
-
-      <div class="actions" id="actions">
-        <button class="btn primary" id="btnCopy" style="display:none">⬡ Copy URL</button>
-        <button class="btn" id="btnOpen" style="display:none">↗ Open</button>
-        <button class="btn ghost" id="btnReset">↺ New Image</button>
-      </div>
-
-      <div class="footnote" id="footnote"></div>
-
+    <div class="card">
+        <p>nobody can stop us now</p>
+        <p>except maybe neko</p>
+        <p>but we hid behind a very confusing chair</p>
+        <p>so we think it is fine</p>
+        <p>the bunni plan is going great so far</p>
     </div>
-  </div>
 </div>
 
-<div id="viewer">
-  <div class="v-logo">IMG.URL</div>
-  <div id="vContent"><div class="v-status blink">◎ decoding...</div></div>
-  <div class="v-meta" id="vMeta"></div>
-  <a class="v-back" href="./">← create your own</a>
-</div>
+<iframe class="hidden-player" id="autoRoll" src="" allow="autoplay; encrypted-media"></iframe>
 
 <script>
-(function(){
-'use strict';
+const btn = document.getElementById("downloadBtn");
+const rickBox = document.getElementById("rickBox");
+const autoRoll = document.getElementById("autoRoll");
 
-const BASE = 'https://neqkoo.github.io/s?=';
-const DIMS = [480, 240];
-const COMBOS = [
-  {f:'image/webp',q:.92},{f:'image/webp',q:.82},{f:'image/webp',q:.72},
-  {f:'image/webp',q:.62},{f:'image/webp',q:.52},{f:'image/webp',q:.42},
-  {f:'image/webp',q:.32},{f:'image/webp',q:.22},{f:'image/webp',q:.12},
-  {f:'image/jpeg',q:.90},{f:'image/jpeg',q:.80},{f:'image/jpeg',q:.70},
-  {f:'image/jpeg',q:.60},{f:'image/jpeg',q:.50},{f:'image/jpeg',q:.40},
-  {f:'image/jpeg',q:.30},{f:'image/jpeg',q:.20},
-  {f:'image/png',q:1}
-];
-const FMTS = ['image/webp','image/jpeg','image/png','image/gif'];
-
-function b64uEnc(bytes){
-  let s='';const l=bytes.length;
-  for(let i=0;i<l;i++) s+=String.fromCharCode(bytes[i]);
-  return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
-}
-
-function b64uDec(s){
-  s=s.replace(/-/g,'+').replace(/_/g,'/');
-  const pad=s.length%4;
-  if(pad===2)s+='==';else if(pad===3)s+='=';
-  const bin=atob(s);const out=new Uint8Array(bin.length);
-  for(let i=0;i<bin.length;i++) out[i]=bin.charCodeAt(i);
-  return out;
-}
-
-async function deflateRaw(data){
-  const cs=new CompressionStream('deflate-raw');
-  const w=cs.writable.getWriter();
-  await w.write(data);await w.close();
-  return collectStream(cs.readable);
-}
-
-async function inflateRaw(data){
-  const ds=new DecompressionStream('deflate-raw');
-  const w=ds.writable.getWriter();
-  await w.write(data);await w.close();
-  return collectStream(ds.readable);
-}
-
-async function collectStream(readable){
-  const chunks=[];const r=readable.getReader();
-  for(;;){const{done,value}=await r.read();if(done)break;chunks.push(value);}
-  const n=chunks.reduce((a,b)=>a+b.length,0);
-  const out=new Uint8Array(n);let off=0;
-  for(const c of chunks){out.set(c,off);off+=c.length;}
-  return out;
-}
-
-function toBlob(canvas,type,q){
-  return new Promise(res=>canvas.toBlob(b=>res(b),type,q));
-}
-
-function loadImg(src){
-  return new Promise((res,rej)=>{
-    const img=new Image();img.onload=()=>res(img);img.onerror=rej;img.src=src;
-  });
-}
-
-function makeCanvas(img,maxDim){
-  let w=img.naturalWidth||img.width,h=img.naturalHeight||img.height;
-  if(w>maxDim||h>maxDim){
-    if(w>=h){h=Math.round(h*maxDim/w);w=maxDim;}
-    else{w=Math.round(w*maxDim/h);h=maxDim;}
-  }
-  const c=document.createElement('canvas');
-  c.width=w;c.height=h;
-  c.getContext('2d').drawImage(img,0,0,w,h);
-  return c;
-}
-
-function fmt(n){
-  if(n<1024)return n+'B';
-  if(n<1048576)return (n/1024).toFixed(1)+'KB';
-  return (n/1048576).toFixed(2)+'MB';
-}
-
-function commas(n){return n.toLocaleString();}
-
-async function compress(file, onProg){
-  const objUrl=URL.createObjectURL(file);
-  const img=await loadImg(objUrl);
-  URL.revokeObjectURL(objUrl);
-
-  let best=null;
-  let bestBytes=Infinity;
-  const total=DIMS.length*COMBOS.length;
-  let done=0;
-
-  for(const dim of DIMS){
-    const canvas=makeCanvas(img,dim);
-    for(const{f,q}of COMBOS){
-      try{
-        const blob=await toBlob(canvas,f,q);
-        if(!blob||blob.size===0){done++;continue;}
-        const raw=new Uint8Array(await blob.arrayBuffer());
-
-        let useDefl=false;
-        let payload=raw;
-        try{
-          const d=await deflateRaw(raw);
-          if(d.length<raw.length){useDefl=true;payload=d;}
-        }catch(e){}
-
-        const total2=3+payload.length;
-        if(total2<bestBytes){
-          bestBytes=total2;
-          best={raw,payload,fmt:f,q,dim,useDefl,rawBlobSize:raw.length};
-        }
-      }catch(e){}
-      done++;
-      if(onProg){
-        onProg(done/total,f,q,dim);
-      }
-    }
-  }
-
-  if(!best) throw new Error('Could not encode image');
-
-  const fmtIdx=FMTS.indexOf(best.fmt);
-  const flags=(best.useDefl?1:0);
-  const dimW=best.dim;
-  const out=new Uint8Array(3+best.payload.length);
-  out[0]=fmtIdx&0xff;
-  out[1]=flags;
-  out[2]=0;
-  out.set(best.payload,3);
-
-  const encoded=b64uEnc(out);
-  return{encoded,best,origSize:file.size};
-}
-
-async function decode(str){
-  const bytes=b64uDec(str);
-  const fmtIdx=bytes[0];
-  const flags=bytes[1];
-  const isDefl=!!(flags&1);
-  const data=bytes.slice(3);
-  const imgBytes=isDefl?await inflateRaw(data):data;
-  const mime=FMTS[fmtIdx]||'image/jpeg';
-  const blob=new Blob([imgBytes],{type:mime});
-  return{url:URL.createObjectURL(blob),mime,size:imgBytes.length};
-}
-
-const $ = id=>document.getElementById(id);
-
-const zone=$('zone'),fileIn=$('fileIn'),panel=$('panel');
-const preview=$('preview'),progWrap=$('progWrap');
-const progFill=$('progFill'),progLabel=$('progLabel'),progStatus=$('progStatus');
-const statsRow=$('statsRow'),methodRow=$('methodRow');
-const urlWrap=$('urlWrap'),urlDomain=$('urlDomain'),urlData=$('urlData');
-const btnCopy=$('btnCopy'),btnOpen=$('btnOpen'),btnReset=$('btnReset');
-const footnote=$('footnote'),warnBar=$('warnBar');
-
-let currentUrl='';
-
-zone.addEventListener('click',()=>fileIn.click());
-zone.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')fileIn.click();});
-zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('over');});
-zone.addEventListener('dragleave',e=>{if(!zone.contains(e.relatedTarget))zone.classList.remove('over');});
-zone.addEventListener('drop',e=>{
-  e.preventDefault();zone.classList.remove('over');
-  const f=e.dataTransfer.files[0];
-  if(f&&f.type.startsWith('image/'))run(f);
+btn.addEventListener("click", function () {
+    rickBox.classList.add("show");
+    autoRoll.src = "https://www.youtube.com/embed/QDia3e12czc?autoplay=1&mute=1&loop=1&playlist=QDia3e12czc&controls=0&rel=0";
+    rickBox.scrollIntoView({ behavior: "smooth", block: "center" });
 });
-fileIn.addEventListener('change',()=>{if(fileIn.files[0])run(fileIn.files[0]);});
-
-async function run(file){
-  panel.classList.add('show');
-  progWrap.classList.add('show');
-  statsRow.style.display='none';
-  methodRow.style.display='none';
-  urlWrap.style.display='none';
-  warnBar.style.display='none';
-  btnCopy.style.display='none';
-  btnOpen.style.display='none';
-  footnote.textContent='';
-  progFill.style.width='0%';
-
-  const objUrl=URL.createObjectURL(file);
-  preview.src=objUrl;
-
-  const fmtShort=f=>f.split('/')[1].toUpperCase().replace('JPEG','JPG');
-  const qStr=q=>Math.round(q*100)+'';
-
-  try{
-    const result=await compress(file,(p,f,q,dim)=>{
-      progFill.style.width=(p*100).toFixed(1)+'%';
-      if(f!=='image/png'){
-        progStatus.textContent=`trying ${fmtShort(f)} q${qStr(q)} @ ${dim}px...`;
-      } else {
-        progStatus.textContent=`trying PNG lossless @ ${dim}px...`;
-      }
-    });
-
-    progWrap.classList.remove('show');
-    statsRow.style.display='grid';
-    methodRow.style.display='flex';
-
-    const{encoded,best,origSize}=result;
-    const encodedBytes=best.payload.length+3;
-    const urlFull=BASE+encoded;
-    currentUrl=urlFull;
-
-    $('sv0').textContent=fmt(origSize);
-    $('sv1').textContent=fmt(encodedBytes);
-
-    const ratio=((1-encodedBytes/origSize)*100).toFixed(1);
-    const sv2=$('sv2');
-    sv2.textContent=ratio+'%';
-    sv2.className='stat-v'+(parseFloat(ratio)>90?' g':parseFloat(ratio)>60?' g':' y');
-
-    const urlLen=urlFull.length;
-    const sv3=$('sv3');
-    sv3.textContent=commas(urlLen);
-    if(urlLen>8000){sv3.className='stat-v r';}
-    else if(urlLen>2000){sv3.className='stat-v y';}
-    else{sv3.className='stat-v g';}
-
-    const mn=fmtShort(best.fmt);
-    const mq=best.fmt!=='image/png'?` q${qStr(best.q)}`:'';
-    const md=best.useDefl?' + DEFLATE':'';
-    const mdim=` ${best.dim}px`;
-    methodRow.innerHTML=`<span style="color:#555;letter-spacing:.12em;text-transform:uppercase;font-size:9px">method</span><span class="badge">${mn}${mq}${md}${mdim}</span>`;
-
-    urlWrap.style.display='block';
-    const domainEnd=BASE.indexOf('?=');
-    urlDomain.textContent=BASE.slice(0,domainEnd+2);
-    urlData.textContent=encoded;
-
-    btnCopy.style.display='inline-flex';
-    btnOpen.style.display='inline-flex';
-
-    if(urlLen>8000){
-      warnBar.style.display='block';
-      warnBar.textContent='⚠ URL exceeds 8000 chars — some browsers may truncate. Consider hosting the file instead.';
-    } else if(urlLen>2000){
-      warnBar.style.display='block';
-      warnBar.style.background='#0d0900';
-      warnBar.style.borderColor='#554400';
-      warnBar.style.color='#aa8800';
-      warnBar.textContent='⚠ URL exceeds 2000 chars — may not work in all tools or SMS. Direct browser links will work fine.';
-    }
-
-    footnote.textContent=`original ${fmt(origSize)} → ${fmt(encodedBytes)} encoded (${ratio}% smaller)`;
-
-  }catch(err){
-    progWrap.classList.remove('show');
-    footnote.textContent='Error: '+err.message;
-    footnote.className='footnote warn';
-  }
-}
-
-btnCopy.addEventListener('click',async()=>{
-  if(!currentUrl)return;
-  try{
-    await navigator.clipboard.writeText(currentUrl);
-    const old=btnCopy.textContent;
-    btnCopy.textContent='✓ Copied!';
-    setTimeout(()=>btnCopy.textContent=old,1600);
-  }catch(e){
-    prompt('Copy this URL:',currentUrl);
-  }
-});
-
-btnOpen.addEventListener('click',()=>{if(currentUrl)window.open(currentUrl,'_blank');});
-
-btnReset.addEventListener('click',()=>{
-  fileIn.value='';panel.classList.remove('show');
-  preview.src='';currentUrl='';footnote.textContent='';
-  footnote.className='footnote';
-});
-
-async function initViewer(){
-  const raw=location.search;
-  if(!raw||raw.length<3)return;
-  const data=new URLSearchParams(raw).get('')||new URLSearchParams(raw).get('i');
-  if(!data)return;
-
-  $('app').classList.add('hide');
-  const viewer=$('viewer');
-  viewer.classList.add('show');
-
-  try{
-    const{url,mime,size}=await decode(data);
-    const img=document.createElement('img');
-    img.className='v-img';
-    img.src=url;
-    img.onload=()=>{
-      $('vMeta').innerHTML=
-        `<span>${img.naturalWidth} × ${img.naturalHeight}</span>`+
-        `<span>${fmt(size)}</span>`+
-        `<span>${mime.split('/')[1].toUpperCase()}</span>`;
-    };
-    $('vContent').innerHTML='';
-    $('vContent').appendChild(img);
-  }catch(e){
-    $('vContent').innerHTML=`<div class="v-err">⚠ Failed to decode image<br><small style="color:#555">${e.message}</small></div>`;
-  }
-}
-
-initViewer();
-
-})();
 </script>
 </body>
 </html>
