@@ -5,211 +5,272 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>bunni team leak page</title>
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(180deg, #111, #070707);
-    color: #f3f3f3;
-    text-align: center;
+* {
+    box-sizing: border-box;
 }
 
-.wrap {
-    width: min(820px, calc(100% - 32px));
-    margin: 0 auto;
-    padding: 48px 0 80px;
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: #f4f4f4;
+}
+
+body.overlay-on {
+    overflow: hidden;
+}
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+}
+
+.box {
+    width: 100%;
+    max-width: 720px;
+    text-align: center;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 36px 28px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
 }
 
 h1 {
-    font-size: 46px;
-    font-weight: 700;
-    margin: 0 0 10px;
+    margin: 0 0 14px;
+    font-size: 40px;
+    line-height: 1.15;
 }
 
-h2 {
-    font-size: 22px;
-    font-weight: 400;
-    color: #d0d0d0;
-    margin: 0 0 30px;
+.lead {
+    margin: 0 auto 24px;
+    max-width: 580px;
+    font-size: 19px;
+    line-height: 1.7;
+    color: #dddddd;
 }
 
-.card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 20px;
-    padding: 28px 26px;
-    margin-top: 24px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+.lines {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 28px;
 }
 
-p {
-    font-size: 20px;
-    line-height: 1.65;
-    margin: 8px 0;
+.lines p {
+    margin: 0;
+    font-size: 19px;
+    line-height: 1.6;
 }
 
-.big {
-    font-size: 23px;
+.button-wrap {
+    margin: 28px 0 24px;
 }
 
-.btn {
-    margin-top: 24px;
-    padding: 18px 32px;
-    font-size: 22px;
-    font-weight: 700;
+button {
     border: 0;
     border-radius: 14px;
+    padding: 18px 28px;
+    font-size: 22px;
+    font-weight: 700;
     cursor: pointer;
-    background: #ff4d79;
+    background: #ff4f7a;
     color: white;
-    box-shadow: 0 8px 22px rgba(255,77,121,0.35);
+    min-width: 320px;
 }
 
-.btn:hover {
-    transform: scale(1.03);
+button:hover {
+    transform: scale(1.02);
 }
 
 .list {
-    width: fit-content;
-    max-width: 100%;
-    margin: 22px auto 0;
+    margin: 0 auto;
+    max-width: 420px;
     text-align: left;
-    font-size: 18px;
+    color: #d8d8d8;
+    font-size: 17px;
     line-height: 1.8;
-    color: #ebebeb;
-}
-
-.proof-title {
-    font-size: 29px;
-    margin-bottom: 10px;
-}
-
-.video-area {
-    margin-top: 18px;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.45);
-    background: #1d1d1d;
-}
-
-.video-area iframe {
-    width: 100%;
-    height: 420px;
-    border: 0;
-    display: block;
-}
-
-.note {
-    margin-top: 22px;
-    font-size: 16px;
-    color: #b8b8b8;
-}
-
-.hidden-player {
-    position: fixed;
-    left: -9999px;
-    top: -9999px;
-    width: 1px;
-    height: 1px;
-    opacity: 0.01;
-    pointer-events: none;
-    border: 0;
-}
-
-.fake-download-box {
-    margin-top: 26px;
-}
-
-.reveal {
-    display: none;
-    margin-top: 22px;
-}
-
-.reveal.show {
-    display: block;
 }
 
 .small {
-    font-size: 15px;
-    color: #bababa;
-    margin-top: 16px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #aaaaaa;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+}
+
+.overlay.show {
+    display: flex;
+}
+
+.player-shell {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+}
+
+.player-box {
+    width: min(96vw, 1600px);
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+#player {
+    width: 100%;
+    height: 100%;
+}
+
+.close {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 60;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    min-width: auto;
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-    <h1>bunni team official leak site</h1>
-    <h2>do not tell neko because this was a very sneaky operation and also a little rude</h2>
+<div class="page" id="mainPage">
+    <div class="box">
+        <h1>bunni team official leak site</h1>
+        <p class="lead">hi um. we got into neko's plugin cave somehow and now this page is here and everything is very serious probably.</p>
 
-    <div class="card">
-        <p class="big">hi um</p>
-        <p>we the evil bunnis kidnapped neko</p>
-        <p>not forever probably</p>
-        <p>just for leak reasons</p>
-        <p>he left the plugin cave unlocked</p>
-        <p>so we walked in very carefully</p>
-        <p>and then less carefully after that</p>
-        <p>now we have every file</p>
-        <p>or at least a lot of files</p>
-        <p>some of them had names like final</p>
-        <p>then final real</p>
-        <p>then final real 2</p>
-        <p>which means this is serious</p>
+        <div class="lines">
+            <p>we the evil bunnis kidnapped neko</p>
+            <p>it was not even that hard</p>
+            <p>he turned around for one second</p>
+            <p>and then the whole operation happened</p>
+            <p>now we have all the plugins</p>
+            <p>or at least a suspicious amount of folders</p>
+            <p>some of them say final</p>
+            <p>which means they are important</p>
+        </div>
 
-        <div class="fake-download-box">
-            <button class="btn" id="downloadBtn">Download the source code of all of Neko's Plugins</button>
-            <div class="reveal" id="rickBox">
-                <div class="video-area">
-                    <iframe src="https://www.youtube.com/embed/QDia3e12czc?autoplay=1&mute=1&controls=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-            </div>
+        <div class="button-wrap">
+            <button id="goBtn">Download the source code of all of Neko's Plugins</button>
         </div>
 
         <div class="list">
-            <div>things included in the leak maybe:</div>
-            <div>plugin_final_real</div>
-            <div>plugin_final_real_2</div>
-            <div>plugin_final_real_2_fixed</div>
+            <div>things in the leak maybe:</div>
+            <div>plugin final</div>
+            <div>plugin final real</div>
+            <div>plugin final real 2</div>
             <div>new folder</div>
-            <div>new folder 2</div>
-            <div>thing do not touch</div>
-            <div>very secret neko machine</div>
-            <div>random png pile</div>
+            <div>do not open this</div>
+            <div>neko ultra secret thing</div>
         </div>
 
-        <p class="small">warning this download may make your desktop look more important than usual</p>
-    </div>
-
-    <div class="card">
-        <div class="proof-title">proof that this happened for real</div>
-        <p>look we even have video evidence</p>
-        <p>this is a serious website made by serious bunni professionals</p>
-        <div class="video-area">
-            <iframe src="https://www.youtube.com/embed/EvAhPPejzBQ?autoplay=1&mute=1&controls=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-        <p class="note">please ignore any weird music that starts playing that is normal leak website behavior</p>
-    </div>
-
-    <div class="card">
-        <p>nobody can stop us now</p>
-        <p>except maybe neko</p>
-        <p>but we hid behind a very confusing chair</p>
-        <p>so we think it is fine</p>
-        <p>the bunni plan is going great so far</p>
+        <div class="small">this website was made by very serious bunni workers</div>
     </div>
 </div>
 
-<iframe class="hidden-player" id="autoRoll" src="" allow="autoplay; encrypted-media"></iframe>
+<div class="overlay" id="overlay">
+    <button class="close" id="closeBtn">close</button>
+    <div class="player-shell" id="fullscreenTarget">
+        <div class="player-box">
+            <div id="player"></div>
+        </div>
+    </div>
+</div>
 
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
-const btn = document.getElementById("downloadBtn");
-const rickBox = document.getElementById("rickBox");
-const autoRoll = document.getElementById("autoRoll");
+const goBtn = document.getElementById("goBtn");
+const overlay = document.getElementById("overlay");
+const closeBtn = document.getElementById("closeBtn");
+const fullscreenTarget = document.getElementById("fullscreenTarget");
+let player;
+let ready = false;
 
-btn.addEventListener("click", function () {
-    rickBox.classList.add("show");
-    autoRoll.src = "https://www.youtube.com/embed/QDia3e12czc?autoplay=1&mute=1&loop=1&playlist=QDia3e12czc&controls=0&rel=0";
-    rickBox.scrollIntoView({ behavior: "smooth", block: "center" });
-});
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player("player", {
+        videoId: "QDia3e12czc",
+        playerVars: {
+            autoplay: 0,
+            controls: 1,
+            rel: 0,
+            modestbranding: 1,
+            playsinline: 1
+        },
+        events: {
+            onReady: function () {
+                ready = true;
+            }
+        }
+    });
+}
+
+function openFullscreen(el) {
+    if (el.requestFullscreen) {
+        el.requestFullscreen().catch(function(){});
+    } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+    } else if (el.msRequestFullscreen) {
+        el.msRequestFullscreen();
+    }
+}
+
+function startRoll() {
+    document.body.classList.add("overlay-on");
+    overlay.classList.add("show");
+    openFullscreen(fullscreenTarget);
+
+    if (ready && player) {
+        try {
+            player.playVideo();
+            player.unMute();
+            player.setVolume(100);
+        } catch (e) {}
+    } else {
+        setTimeout(function () {
+            if (player) {
+                try {
+                    player.playVideo();
+                    player.unMute();
+                    player.setVolume(100);
+                } catch (e) {}
+            }
+        }, 500);
+    }
+}
+
+function stopRoll() {
+    document.body.classList.remove("overlay-on");
+    overlay.classList.remove("show");
+    if (player) {
+        try {
+            player.pauseVideo();
+        } catch (e) {}
+    }
+    if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(function(){});
+    }
+}
+
+goBtn.addEventListener("click", startRoll);
+closeBtn.addEventListener("click", stopRoll);
 </script>
 </body>
 </html>
