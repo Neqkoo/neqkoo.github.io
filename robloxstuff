@@ -1013,6 +1013,36 @@
     "uploader": "15g2",
     "game": "Tap Clicker",
     "script": "loadstring(game:HttpGet(\"https://files.catbox.moe/s5tiiy.lua\"))()"
+  },
+  {
+    "name": "Bite by Night - Check it Menu",
+    "uploader": "nejrio",
+    "game": "Bite by Night",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/hitechboi/hhhitechboi/refs/heads/main/uni.lua\"))()"
+  },
+  {
+    "name": "Pressure",
+    "uploader": "b.lacksoul",
+    "game": "Pressure",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/b-lacksoul/Matcha/refs/heads/main/pressure\"))()"
+  },
+  {
+    "name": "MM2 Skin Changer",
+    "uploader": "coconut_man",
+    "game": "Murder Mystery 2",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/CoconutManYt/Kidz/refs/heads/main/MM2/SkinChanger.lua\"))()"
+  },
+  {
+    "name": "Twisted Menu",
+    "uploader": "ch341par",
+    "game": "Twisted",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/bestchance12312/Twisted/refs/heads/main/Main\"))()"
+  },
+  {
+    "name": "retrograd gun and traitor esp",
+    "uploader": "ayothatswild",
+    "game": "retrograd",
+    "script": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/Meletjika1/Retrograd-Item-esp/refs/heads/main/esp.lua\"))()"
   }
 
 ]
